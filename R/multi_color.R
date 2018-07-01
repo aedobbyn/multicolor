@@ -7,10 +7,6 @@
 #' @param colors (character) A vector of colors, defaulting to
 #' c("red", "orange", "yellow", "green", "blue", "purple")
 #' @param type (character) Message (default), warning, or string
-#' @param as_string (logical) If TRUE, the response is a plain,
-#' uncolored string with ascii color tags attached.
-#' If FALSE, the string is passed to \code{cat}
-#' and colored text is returned.
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -25,11 +21,11 @@
 #' @examples
 #' multi_color("ahoy")
 #'
-#' animals[["buffalo"]] %>%
-#'   multi_color("green", "white", "orange")
+#' multi_color( # what = "masey",
+#'   cowsay::animals[["buffalo"]],
+#'   c("green", "white", "orange"))
 #'
-#' rms %>%
-#'   multi_color(sample(colors(), 10))
+#' multi_color(cowsay:::rms, sample(colors(), 10))
 
 multi_color <- function(txt = NULL,
                         colors = c("red", "orange", "yellow",

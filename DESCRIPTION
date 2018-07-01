@@ -1,6 +1,6 @@
 Package: multicolor
 Type: Package
-Title: USPS
+Title: multicolor
 Version: 0.1.0
 Author: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
 Maintainer: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
@@ -9,8 +9,8 @@ Depends: R (>= 2.10)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
-URL: http://github.com/aedobbyn/usps/
-BugReports: https://github.com/aedobbyn/usps/issues/
+URL: http://github.com/aedobbyn/multicolor/
+BugReports: https://github.com/aedobbyn/multicolor/issues/
 Imports: 
     dplyr,
     glue,

@@ -5,7 +5,7 @@
 \title{Multi-color text}
 \usage{
 multi_color(txt = NULL, colors = c("red", "orange", "yellow", "green",
-  "blue", "purple"), as_string = FALSE, ...)
+  "blue", "purple"), type = "message", ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
@@ -13,16 +13,13 @@ multi_color(txt = NULL, colors = c("red", "orange", "yellow", "green",
 \item{colors}{(character) A vector of colors, defaulting to
 c("red", "orange", "yellow", "green", "blue", "purple")}
 
-\item{as_string}{(logical) If TRUE, the response is a plain,
-uncolored string with ascii color tags attached.
-If FALSE, the string is passed to \code{cat}
-and colored text is returned.}
+\item{type}{(character) Message (default), warning, or string}
 
 \item{...}{Further args.}
 }
 \value{
-A string if \code{as_string} is TRUE, or colored
-text if FALSE.
+A string if \code{type} is "string", or colored
+text if type is "message" or "warning"
 }
 \description{
 Multi-color text
@@ -37,9 +34,9 @@ are fair game.
 \examples{
 multi_color("ahoy")
 
-animals[["buffalo"]] \%>\%
-  multi_color("green", "white", "orange")
+multi_color( # what = "masey",
+  cowsay::animals[["buffalo"]],
+  c("green", "white", "orange"))
 
-rms \%>\%
-  multi_color(sample(colors(), 10))
+multi_color(cowsay:::rms, sample(colors(), 10))
 }
