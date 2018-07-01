@@ -12,6 +12,7 @@ LazyData: TRUE
 URL: http://github.com/aedobbyn/multicolor/
 BugReports: https://github.com/aedobbyn/multicolor/issues/
 Imports: 
+    cowsay,
     crayon,
     dplyr,
     glue,
@@ -23,7 +24,6 @@ Imports:
     tidyr
 Suggests: 
     covr,
-    cowsay,
     knitr,
     rmarkdown,
     testthat
