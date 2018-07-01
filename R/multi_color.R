@@ -6,6 +6,7 @@
 #' @param txt (character) Some text to color.
 #' @param colors (character) A vector of colors, defaulting to
 #' c("red", "orange", "yellow", "green", "blue", "purple")
+#' @param type (character) Message (default), warning, or string
 #' @param as_string (logical) If TRUE, the response is a plain,
 #' uncolored string with ascii color tags attached.
 #' If FALSE, the string is passed to \code{cat}
@@ -18,8 +19,8 @@
 #' Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #'
-#' @return A string if \code{as_string} is TRUE, or colored
-#' text if FALSE.
+#' @return A string if \code{type} is "string", or colored
+#' text if type is "message" or "warning"
 #'
 #' @examples
 #' multi_color("ahoy")
@@ -33,14 +34,16 @@
 multi_color <- function(txt = NULL,
                         colors = c("red", "orange", "yellow",
                                    "green", "blue", "purple"),
-                        as_string = FALSE,
+                        type = "message",
                         ...) {
 
+  if (!is.character(txt)) stop("txt must be of class character.")
+
   if (!any(is.character(colors))) {
-    stop("All multi colors must be of type character.")
+    stop("All multi colors must be of class character.")
   }
 
-  rainbow_dict <-
+  color_dict <-
     tibble::tibble(
       color = colors,
       num = 1:length(colors)
@@ -76,7 +79,7 @@ multi_color <- function(txt = NULL,
   # Assign a color for every possible character index based on the longest line
   dict <-
     tibble::tibble(num = max_assigned) %>%
-    dplyr::left_join(rainbow_dict, by = "num") %>%
+    dplyr::left_join(color_dict, by = "num") %>%
     dplyr::mutate(
       char = max_char %>%
         stringr::str_split("") %>% .[[1]],
@@ -118,10 +121,9 @@ multi_color <- function(txt = NULL,
   out <- tbl$res %>%
     stringr::str_c(collapse = "")
 
-  if (as_string == TRUE) {
-    return(out)
-  } else {
-    out %>% cat()
-  }
+  switch(type,
+         message = message(out),
+         warning = warning(out),
+         string = out)
 }
 

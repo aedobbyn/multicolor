@@ -1,7 +1,7 @@
 ---
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 [![Travis build status](https://travis-ci.org/aedobbyn/multicolor.svg?branch=master)](https://travis-ci.org/aedobbyn/multicolor)
@@ -15,8 +15,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-# multicolor
+# multicolor `r emo::ji("art")`
 
+Color your strings, messages, and errors.
 
 ### Installation 
 
@@ -26,12 +27,57 @@ devtools::install_github("aedobbyn/multicolor")
 ```
 
 
-## Example
+## Usage
+
+```{r}
+library(multicolor)
+```
+
+Supply a character vector of colors to `colors`. Defaults to rainbow, i.e., `c("red", "orange", "yellow", "green", "blue", "purple")`. The text supplied will be divided into even(ish) vertical chunks of those colors.
 
 ```{r example}
-library(multicolor)
 multi_color("Hello world")
 ```
 
+If you want the bare string back with color encodings, use `type = "string"`.
+
+```{r}
+multi_color("Some words here",
+  type = "string")
+```
+
+The default is to message the result. 
+
+```{r}
+multi_color("Some words here",
+            sample(colors(), 
+                   sample(10, 1)))
+```
+
+
+Pairs nicely with the [`cowsay`](https://github.com/sckott/cowsay) package:
+
+```{r}
+library(cowsay)
+
+say(what = "holygrail", 
+    by = "yoda",
+    what_color = "olivedrab",
+    by_color = c("tomato1", "saddlebrown", "springgreen4", "turquoise2"))
+```
+
+Error in style:
+
+```{r}
+my_msg <- 
+  say(what = "Error: something went horribly wrong",
+    by = "rms",
+    what_color = "orange",
+    by_color = c("red", "red", "orange", "red", "red", "orange", "red", "red"),
+    type = "warning")
+
+e <- simpleError(my_msg)
+tryCatch(log("foo"), error = function(e) message(my_msg))
+```
 
 
