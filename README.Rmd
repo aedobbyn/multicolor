@@ -4,7 +4,8 @@ output:
     variant: markdown_github
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Travis build status](https://travis-ci.org/aedobbyn/multicolor.svg?branch=master)](https://travis-ci.org/aedobbyn/multicolor)
+
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -16,12 +17,21 @@ knitr::opts_chunk$set(
 
 # multicolor
 
-The goal of multicolor is to ...
+
+### Installation 
+
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("aedobbyn/multicolor")
+```
+
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
-## basic example code
+library(multicolor)
+multi_color("Hello world")
 ```
+
+
+
