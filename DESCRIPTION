@@ -1,0 +1,30 @@
+Package: multicolor
+Type: Package
+Title: USPS
+Version: 0.1.0
+Author: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
+Maintainer: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
+Description: Color text in multiple ways.
+Depends: R (>= 2.10)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: TRUE
+URL: http://github.com/aedobbyn/usps/
+BugReports: https://github.com/aedobbyn/usps/issues/
+Imports: 
+    dplyr,
+    glue,
+    jsonlite,
+    magrittr,
+    purrr,
+    stringr,
+    tibble (>= 1.2),
+    tidyr
+Suggests: 
+    covr,
+    cowsay,
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1.9000
