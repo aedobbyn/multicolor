@@ -4,6 +4,10 @@ context("multicolor")
 
 test_that("baseline works", {
 
+  expect_error(
+    suppressMessages(
+      multi_color()))
+
   expect_silent(
     suppressMessages(
       multi_color("one fine day")))

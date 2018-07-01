@@ -12,6 +12,7 @@ LazyData: TRUE
 URL: http://github.com/aedobbyn/multicolor/
 BugReports: https://github.com/aedobbyn/multicolor/issues/
 Imports: 
+    crayon,
     dplyr,
     glue,
     jsonlite,
