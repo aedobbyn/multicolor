@@ -74,10 +74,19 @@ my_msg <-
     by = "rms",
     what_color = "orange",
     by_color = c("red", "red", "orange", "red", "red", "orange", "red", "red"),
-    type = "warning")
+    type = "string")
 
 e <- simpleError(my_msg)
 tryCatch(log("foo"), error = function(e) message(my_msg))
 ```
 
+
+
+```{r}
+say(what = 
+      "Aha, I see you set {this_variable} to {this_option}. Excellent choice.",
+    by = "owl",
+    what_color = c("green", "blue"),
+    by_color = c(""))
+```
 

@@ -39,6 +39,10 @@ multi_color <- function(txt = NULL,
     stop("All multi colors must be of class character.")
   }
 
+  if (!type %in% c("message", "warning", "string")) {
+    stop("type must be one of message, warning, or string")
+  }
+
   color_dict <-
     tibble::tibble(
       color = colors,

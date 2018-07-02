@@ -8,6 +8,14 @@ test_that("baseline works", {
     suppressMessages(
       multi_color()))
 
+  expect_error(
+    suppressMessages(
+      multi_color(123)))
+
+  expect_error(
+    suppressMessages(
+      multi_color(type = "foo")))
+
   expect_silent(
     suppressMessages(
       multi_color("one fine day")))
