@@ -2,4 +2,5 @@
 
 export("%>%")
 export(multi_color)
+export(things)
 importFrom(magrittr,"%>%")
