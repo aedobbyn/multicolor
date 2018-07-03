@@ -1,9 +1,12 @@
+
 [![Travis build
 status](https://travis-ci.org/aedobbyn/multicolor.svg?branch=master)](https://travis-ci.org/aedobbyn/multicolor)
 
-# multicolor 🎨
+# multicolor 🎨 <img src="./man/img/egret.jpg" alt="egret" height="225px" align="right">
 
-Color your strings, messages, and errors.
+Apply multiple colors to your messages and warnings. Built on the
+[`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely with
+[`cowsay`](https://github.com/sckott/cowsay).
 
 ### Installation
 
@@ -25,29 +28,44 @@ colors.
 
 ``` r
 multi_color("Hello world")
-#> Hello world
 ```
+
+<p align="left">
+
+<img src="./man/img/hello_world.jpg" alt="hello_world" height="25px">
+
+</p>
 
 If you want the bare string back with color encodings, use `type =
 "string"`.
 
 ``` r
-multi_color("Some words here",
+multi_color("Why are avocado pits so big?",
   type = "string")
-#> Some words here
 ```
 
-The default is to message the result.
+<p align="center">
+
+<img src="./man/img/avocado_q.jpg" alt="avocado_q" height="100px">
+
+</p>
+
+The default is to message the
+result.
 
 ``` r
-multi_color("Some words here",
+multi_color("The wild avocado grows in subtropical jungles, so the new sprout has to get several feet tall before it can share sunlight (to make food) with its neighbors. Until it grows out of their shadows, it relies on nutrients in the seed, so it'd better be big.",
             sample(colors(), 
                    sample(10, 1)))
-#> Some words here
 ```
 
-Pairs nicely with the [`cowsay`](https://github.com/sckott/cowsay)
-package:
+<p align="center">
+
+<img src="./man/img/avocado_a.jpg" alt="avocado_a" height="60px">
+
+</p>
+
+### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
 ``` r
 library(cowsay)
@@ -56,48 +74,13 @@ say(what = "holygrail",
     by = "yoda",
     what_color = "olivedrab",
     by_color = c("tomato1", "saddlebrown", "springgreen4", "turquoise2"))
-#>  ----- 
-#> Found them? In Mercia?! The coconut's tropical! 
-#>  ------ 
-#>     \   
-#>      \
-#>                    ____
-#>                 _.' :  `._
-#>             .-.'`.  ;   .'`.-.
-#>    __      / : ___\ ;  /___ ; \      __
-#>   ,'_ ""--.:__;".-.";: :".-.":__;.--"" _`,
-#>   :' `.t""--.. '<@.`;_  ',@>` ..--""j.' `;
-#>        `:-.._J '-.-'L__ `-- ' L_..-;'
-#>           "-.__ ;  .-"  "-.  : __.-"
-#>              L ' /.------.\ ' J
-#>              "-.   "--"   .-"
-#>              __.l"-:_JL_;-";.__
-#>          .-j/'.;  ;""""  / .'\"-.
-#>          .' /:`. "-.:     .-" .';  `.
-#>       .-"  / ;  "-. "-..-" .-"  :    "-.
-#>   .+"-.  : :      "-.__.-"      ;-._   \
-#>   ; \  `.; ;                    : : "+. ;
-#>   :  ;   ; ;                    : ;  : \:
-#>   ;  :   ; :                    ;:   ;  :
-#>   : \  ;  :  ;                  : ;  /  ::
-#>   ;  ; :   ; :                  ;   :   ;:
-#>   :  :  ;  :  ;                : :  ;  : ;
-#>   ;\    :   ; :                ; ;     ; ;
-#>   : `."-;   :  ;              :  ;    /  ;
-#>  ;    -:   ; :              ;  : .-"   :
-#>   :\     \  :  ;            : \.-"      :
-#>   ;`.    \  ; :            ;.'_..--  / ;
-#>   :  "-.  "-:  ;          :/."      .'  :
-#>    \         \ :          ;/  __        :
-#>     \       .-`.\        /t-""  ":-+.   :
-#>      `.  .-"    `l    __/ /`. :  ; ; \  ;
-#>        \   .-" .-"-.-"  .' .'j \  /   ;/
-#>         \ / .-"   /.     .'.' ;_:'    ;
-#>   :-""-.`./-.'     /    `.___.'
-#>                \ `t  ._  /  bug
-#>                 "-.t-._:'
-#> 
 ```
+
+<p align="left">
+
+<img src="./man/img/yoda.jpg" alt="yoda" height="300px">
+
+</p>
 
 Error in style:
 
@@ -107,52 +90,31 @@ my_msg <-
     by = "rms",
     what_color = "orange",
     by_color = c("red", "red", "orange", "red", "red", "orange", "red", "red"),
-    type = "warning")
-#> Warning in say(what = "Error: something went horribly wrong", by = "rms", :  ----- 
-#>  
-#> Error: something went horribly wrong 
-#>  ------ 
-#>     \   
-#>      \
-#>                     @@@@@@ @
-#>                   @@@@     @@
-#>                  @@@@ =   =  @@ 
-#>                 @@@ @ _   _   @@ 
-#>                  @@@ @(0)|(0)  @@ 
-#>                 @@@@   ~ | ~   @@
-#>                 @@@ @  (o1o)    @@
-#>                @@@    #######    @
-#>                @@@   ##{+++}##   @@
-#>               @@@@@ ## ##### ## @@@@
-#>               @@@@@#############@@@@
-#>              @@@@@@@###########@@@@@@
-#>             @@@@@@@#############@@@@@
-#>             @@@@@@@### ## ### ###@@@@
-#>              @ @  @              @  @
-#>                @                    @
+    type = "string")
 
 e <- simpleError(my_msg)
 tryCatch(log("foo"), error = function(e) message(my_msg))
-#>  ----- 
-#>  
-#> Error: something went horribly wrong 
-#>  ------ 
-#>     \   
-#>      \
-#>                     @@@@@@ @
-#>                   @@@@     @@
-#>                  @@@@ =   =  @@ 
-#>                 @@@ @ _   _   @@ 
-#>                  @@@ @(0)|(0)  @@ 
-#>                 @@@@   ~ | ~   @@
-#>                 @@@ @  (o1o)    @@
-#>                @@@    #######    @
-#>                @@@   ##{+++}##   @@
-#>               @@@@@ ## ##### ## @@@@
-#>               @@@@@#############@@@@
-#>              @@@@@@@###########@@@@@@
-#>             @@@@@@@#############@@@@@
-#>             @@@@@@@### ## ### ###@@@@
-#>              @ @  @              @  @
-#>                @                    @
 ```
+
+<p align="left">
+
+<img src="./man/img/rms_error.jpg" alt="rms" height="400px">
+
+</p>
+
+``` r
+this_variable <- "foo"
+this_option <- "bar"
+
+say(what = 
+      glue::glue("Aha, I see you set {this_variable} to {this_option}. Excellent choice."),
+    by = "owl",
+    what_color = c("salmon2", "springgreen4"),
+    by_color = c("turquoise3", "peachpuff3", "seagreen3"))
+```
+
+<p align="left">
+
+<img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="250px">
+
+</p>
