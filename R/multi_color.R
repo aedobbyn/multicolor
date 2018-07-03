@@ -6,7 +6,7 @@
 #' @param txt (character) Some text to color.
 #' @param colors (character) A vector of colors, defaulting to
 #' c("red", "orange", "yellow", "green", "blue", "purple")
-#' @param type (character) Message (default), warning, or string
+#' @param type (character) Message (default) or string
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -39,7 +39,7 @@ multi_color <- function(txt = NULL,
     stop("All multi colors must be of class character.")
   }
 
-  if (!type %in% c("message", "warning", "string")) {
+  if (!type %in% c("message", "string")) {
     stop("type must be one of message, warning, or string")
   }
 
