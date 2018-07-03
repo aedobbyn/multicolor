@@ -5,10 +5,10 @@
 #' @details \code{things} is a named character list of ASCII animals and characters.
 #' @export
 #' @examples
-#' things[["rms"]] %>% cat()
-#' things[["rms"]]
 #' things[["turkey"]]
+#' things[["rms"]] %>% cat()
 #' names(things)
+#' multi_color(things[["stretchycat"]])  # To say something, use the cowsay package
 
 things <-
   append(cowsay::animals,

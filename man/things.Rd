@@ -15,9 +15,9 @@ Named vector of animals and other characters e.g. Yoda, from the \code{cowsay} p
 \code{things} is a named character list of ASCII animals and characters.
 }
 \examples{
-things[["rms"]] \%>\% cat()
-things[["rms"]]
 things[["turkey"]]
+things[["rms"]] \%>\% cat()
 names(things)
+multi_color(things[["stretchycat"]])  # To say something, use the cowsay package
 }
 \keyword{datasets}
