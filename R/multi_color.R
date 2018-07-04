@@ -40,7 +40,7 @@ multi_color <- function(txt = NULL,
   }
 
   if (!type %in% c("message", "string")) {
-    stop("type must be one of message, warning, or string")
+    stop("type must be one of message or string")
   }
 
   color_dict <-
