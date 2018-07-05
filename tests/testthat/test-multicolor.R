@@ -20,6 +20,11 @@ test_that("baseline works", {
     suppressMessages(
       multi_color("one fine day")))
 
+  expect_error(
+    suppressMessages(multi_color("warnings aren't allowed",
+                                 type = "warning"))
+  )
+
 })
 
 test_that("integration with cowsay", {
@@ -37,10 +42,4 @@ test_that("integration with cowsay", {
     )
   )
 
-  expect_error(
-    suppressMessages(cowsay::say(what = "warnings aren't allowed",
-                         by = "stretchycat", what_color = "white",
-                         by_color = c("red", "white", "green"),
-                         type = "warning"))
-  )
 })
