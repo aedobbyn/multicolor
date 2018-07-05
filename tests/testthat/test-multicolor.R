@@ -36,4 +36,11 @@ test_that("integration with cowsay", {
           by_color = colors())
     )
   )
+
+  expect_error(
+    suppressMessages(cowsay::say(what = "warnings aren't allowed",
+                         by = "stretchycat", what_color = "white",
+                         by_color = c("red", "white", "green"),
+                         type = "warning"))
+  )
 })
