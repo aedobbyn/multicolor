@@ -82,7 +82,16 @@ say(what = "holygrail",
 
 </p>
 
-Error in style:
+Error in
+style:
+
+``` r
+my_error <- multi_color("An unknown error has occurred.", type = "string")
+
+stop(my_error)
+```
+
+And with character:
 
 ``` r
 my_msg <- 
