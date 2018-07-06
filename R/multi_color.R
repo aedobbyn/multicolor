@@ -43,6 +43,33 @@ multi_color <- function(txt = NULL,
     stop("type must be one of message or string")
   }
 
+  get_open_close <- function(c) {    # Deal with grays
+    if (crayon:::is_r_color(c)) {
+      o_c <- crayon:::style_from_r_color(c,
+                                         bg = FALSE, num_colors = 1, grey = FALSE)
+    } else if (!crayon:::is_r_color(c)) {
+      o_c <-crayon:::style_from_rgb(c,
+                              bg = FALSE, num_colors = 1, grey = FALSE)
+    }
+    out <- list(o_c)
+    names(out) <- c
+    return(out)
+  }
+
+  color_list <-
+    purrr::map(colors, get_open_close)
+
+  color_df <-
+    color_list %>%
+    purrr::flatten() %>%
+    tibble::as_tibble() %>%
+    tidyr::gather("color", "tag") %>%
+    tidyr::unnest(tag) %>%
+    dplyr::group_by(color) %>%
+    dplyr::mutate(
+      tag_num = row_number()
+    )
+
   color_dict <-
     tibble::tibble(
       color = colors,
