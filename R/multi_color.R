@@ -76,6 +76,7 @@ multi_color <- function(txt = NULL,
       num = 1:length(colors)
     )
 
+  # Get tibble of lines
   whose_line <-
     tibble::tibble(
       full = txt
@@ -129,24 +130,70 @@ multi_color <- function(txt = NULL,
     ) %>%
     # Assign colors by char position
     dplyr::left_join(dict, by = "rn") %>%
-    dplyr::select(-lines) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      # Save the function in a list because we can't store a function in a col
-      color_fun = crayon::make_style(color) %>% list(),
-      styled = color_fun(split_chars)
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(line_id) %>%
-    # Re-add a newline at the end of the last character of every line
-    dplyr::mutate(
-      res = ifelse(rn == max(rn),
-                   styled %>% paste("\n", sep = ""),
-                   styled)
+    dplyr::select(-lines)
+
+  assign_tag <- function(df) {
+    if (df$color_num == 1) {
+      out <- color_df %>%
+        filter(color == df$color) %>%
+        filter(tag_num == 1) %>%
+        pull(tag)
+    } else if (df$color_num == max(df$color_num)) {
+      out <- color_df %>%
+        filter(color == df$color) %>%
+        filter(tag_num == 2) %>%
+        pull(tag)
+    } else {
+      out <- NA_character_
+    }
+    return(out)
+  }
+
+  tbl2 <-
+    tbl %>%
+    group_by(color) %>%
+    mutate(
+      color_num = row_number(),
+      tag = assign_tag(.)
+      # tag = ifelse(color_num == 1,
+      #              color_df %>% filter(color == .$color) %>%
+      #                filter(tag_num == 1) %>% pull(tag),
+      #              NA)
     )
 
-  out <- tbl$res %>%
-    stringr::str_c(collapse = "")
+  tbl3 <-
+    tbl2 %>%
+    mutate(
+      tag = case_when(
+        color_num == 1 ~ color_df %>%
+            filter(color == color) %>%
+            filter(tag_num == 1) %>%
+            pull(tag) %>% first(),
+        color_num == max(color_num) ~ color_df %>%
+            filter(color == color) %>%
+            filter(tag_num == 2) %>%
+            pull(tag) %>% first(),
+        TRUE ~ NA_character_
+      )
+    )
+
+  #   dplyr::rowwise() %>%
+  #   dplyr::mutate(
+  #     # Save the function in a list because we can't store a function in a col
+  #     color_fun = crayon::make_style(color) %>% list(),
+  #     styled = color_fun(split_chars)
+  #   ) %>%
+  #   dplyr::ungroup() %>%
+  #   dplyr::group_by(line_id) %>%
+  #   # Re-add a newline at the end of the last character of every line
+  #   dplyr::mutate(
+  #     res = ifelse(rn == max(rn),
+  #                  styled %>% paste("\n", sep = ""),
+  #                  styled)
+  #   )
+  #
+  # out <- tbl$res %>%
+  #   stringr::str_c(collapse = "")
 
   switch(type,
          message = message(out),
