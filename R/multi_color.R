@@ -6,7 +6,7 @@
 #' @param txt (character) Some text to color.
 #' @param colors (character) A vector of colors, defaulting to
 #' c("red", "orange", "yellow", "green", "blue", "purple")
-#' @param type (character) Message (default) or string
+#' @param type (character) Message (default), warning, or string
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -39,7 +39,7 @@ multi_color <- function(txt = NULL,
     stop("All multi colors must be of class character.")
   }
 
-  if (!type %in% c("message", "string")) {
+  if (!type %in% c("message", "warning", "string")) {
     stop("type must be one of message or string")
   }
 
@@ -176,21 +176,6 @@ multi_color <- function(txt = NULL,
                      outchr)
       )
 
-  #   dplyr::rowwise() %>%
-  #   dplyr::mutate(
-  #     # Save the function in a list because we can't store a function in a col
-  #     color_fun = crayon::make_style(color) %>% list(),
-  #     styled = color_fun(split_chars)
-  #   ) %>%
-  #   dplyr::ungroup() %>%
-  #   dplyr::group_by(line_id) %>%
-  #   # Re-add a newline at the end of the last character of every line
-  #   dplyr::mutate(
-  #     res = ifelse(rn == max(rn),
-  #                  styled %>% paste("\n", sep = ""),
-  #                  styled)
-  #   )
-  #
   out <- tbl5$res %>%
     stringr::str_c(collapse = "")
 
