@@ -67,12 +67,12 @@ multi_color <- function(txt = NULL,
     tidyr::unnest(tag) %>%
     dplyr::group_by(color) %>%
     dplyr::mutate(
-      tag_num = row_number()
+      tag_num = dplyr::row_number()
     ) %>%
-    mutate(
-      tpe = case_when(
-        tag_num == 1 ~ "min",
-        tag_num == 2 ~ "max",
+    dplyr::mutate(
+      tag_type = dplyr::case_when(
+        tag_num == 1 ~ "open",
+        tag_num == 2 ~ "close",
         TRUE ~ NA_character_
       )
     )
@@ -137,46 +137,41 @@ multi_color <- function(txt = NULL,
     ) %>%
     # Assign colors by char position
     dplyr::left_join(dict, by = "rn") %>%
-    dplyr::select(-lines)
-
-
-  tbl2 <-
-    tbl %>%
-    group_by(color, line_id) %>%
-    mutate(
-      color_num = row_number(),
-      tpe = case_when(
-        color_num == 1 ~ "min",
-        color_num == max(color_num) ~ "max",
+    dplyr::select(-lines) %>%
+    dplyr::group_by(color, line_id) %>%
+    # Add a new column for putting the open and close tags in the right spot
+    dplyr::mutate(
+      color_num = dplyr::row_number(),
+      tag_type = dplyr::case_when(
+        color_num == 1 ~ "open",
+        color_num == max(color_num) ~ "close",
         TRUE ~ NA_character_
       )
-    )
-
-  tbl3 <-
-    tbl2 %>%
-    left_join(color_df, by = c("color", "tpe"))
-
-  tbl4 <-
-    tbl3 %>%
-    rowwise %>%
-    mutate(
-      outchr = case_when(
-        tpe == "min" ~ str_c(tag, split_chars, collapse = ""),
-        tpe == "max" ~ str_c(split_chars, tag, collapse = ""),
+    ) %>%
+    dplyr::left_join(color_df,
+                     by = c("color", "tag_type")) %>%
+    dplyr::ungroup() %>%
+    dplyr::rowwise() %>%
+    # Put open tags before the character and close tags after
+    dplyr::mutate(
+      tagged_chr = dplyr::case_when(
+        tag_type == "open" ~
+          stringr::str_c(tag, split_chars, collapse = ""),
+        tag_type == "close" ~
+          stringr::str_c(split_chars, tag, collapse = ""),
         TRUE ~ split_chars
       )
-    )
-
-  tbl5 <-
-    tbl4 %>%
-    group_by(line_id) %>%
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::group_by(line_id) %>%
       dplyr::mutate(
-        res = ifelse(rn == max(rn),
-                     outchr %>% paste("\n", sep = ""),
-                     outchr)
+        res = dplyr::case_when(
+          rn == max(rn) ~ tagged_chr %>% paste("\n", sep = ""),
+          TRUE ~ tagged_chr
+        )
       )
 
-  out <- tbl5$res %>%
+  out <- tbl$res %>%
     stringr::str_c(collapse = "")
 
   switch(type,
