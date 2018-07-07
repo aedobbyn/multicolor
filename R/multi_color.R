@@ -68,6 +68,13 @@ multi_color <- function(txt = NULL,
     dplyr::group_by(color) %>%
     dplyr::mutate(
       tag_num = row_number()
+    ) %>%
+    mutate(
+      tpe = case_when(
+        tag_num == 1 ~ "min",
+        tag_num == 2 ~ "max",
+        TRUE ~ NA_character_
+      )
     )
 
   color_dict <-
@@ -132,48 +139,31 @@ multi_color <- function(txt = NULL,
     dplyr::left_join(dict, by = "rn") %>%
     dplyr::select(-lines)
 
-  assign_tag <- function(df) {
-    if (df$color_num == 1) {
-      out <- color_df %>%
-        filter(color == df$color) %>%
-        filter(tag_num == 1) %>%
-        pull(tag)
-    } else if (df$color_num == max(df$color_num)) {
-      out <- color_df %>%
-        filter(color == df$color) %>%
-        filter(tag_num == 2) %>%
-        pull(tag)
-    } else {
-      out <- NA_character_
-    }
-    return(out)
-  }
 
   tbl2 <-
     tbl %>%
     group_by(color) %>%
     mutate(
       color_num = row_number(),
-      tag = assign_tag(.)
-      # tag = ifelse(color_num == 1,
-      #              color_df %>% filter(color == .$color) %>%
-      #                filter(tag_num == 1) %>% pull(tag),
-      #              NA)
+      tpe = case_when(
+        color_num == 1 ~ "min",
+        color_num == max(color_num) ~ "max",
+        TRUE ~ NA_character_
+      )
     )
 
   tbl3 <-
     tbl2 %>%
+    left_join(color_df, by = c("color", "tpe"))
+
+  tbl4 <-
+    tbl3 %>%
+    rowwise %>%
     mutate(
-      tag = case_when(
-        color_num == 1 ~ color_df %>%
-            filter(color == color) %>%
-            filter(tag_num == 1) %>%
-            pull(tag) %>% first(),
-        color_num == max(color_num) ~ color_df %>%
-            filter(color == color) %>%
-            filter(tag_num == 2) %>%
-            pull(tag) %>% first(),
-        TRUE ~ NA_character_
+      outchr = case_when(
+        tpe == "min" ~ str_c(tag, char, collapse = ""),
+        tpe == "max" ~ str_c(tag, char, collapse = "\\"),
+        TRUE ~ char
       )
     )
 
