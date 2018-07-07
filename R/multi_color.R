@@ -142,7 +142,7 @@ multi_color <- function(txt = NULL,
 
   tbl2 <-
     tbl %>%
-    group_by(color) %>%
+    group_by(color, line_id) %>%
     mutate(
       color_num = row_number(),
       tpe = case_when(
@@ -161,11 +161,20 @@ multi_color <- function(txt = NULL,
     rowwise %>%
     mutate(
       outchr = case_when(
-        tpe == "min" ~ str_c(tag, char, collapse = ""),
-        tpe == "max" ~ str_c(char, tag, collapse = ""),
-        TRUE ~ char
+        tpe == "min" ~ str_c(tag, split_chars, collapse = ""),
+        tpe == "max" ~ str_c(split_chars, tag, collapse = ""),
+        TRUE ~ split_chars
       )
     )
+
+  tbl5 <-
+    tbl4 %>%
+    group_by(line_id) %>%
+      dplyr::mutate(
+        res = ifelse(rn == max(rn),
+                     outchr %>% paste("\n", sep = ""),
+                     outchr)
+      )
 
   #   dplyr::rowwise() %>%
   #   dplyr::mutate(
@@ -182,7 +191,7 @@ multi_color <- function(txt = NULL,
   #                  styled)
   #   )
   #
-  out <- tbl4$outchr %>%
+  out <- tbl5$res %>%
     stringr::str_c(collapse = "")
 
   switch(type,
