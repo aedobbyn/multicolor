@@ -174,6 +174,18 @@ multi_color <- function(txt = NULL,
   out <- tbl$res %>%
     stringr::str_c(collapse = "")
 
+  if (type == "warning") {
+    if (nchar(out) < 100) {
+      wl <- 100
+    } else if (nchar(out) > 8170) {
+      wl <- 8170
+    } else {
+      wl <- nchar(out)
+    }
+    warn_op <- options(warning.length = wl)
+    on.exit(options(warn_op))
+  }
+
   switch(type,
          message = message(out),
          warning = warning(out),
