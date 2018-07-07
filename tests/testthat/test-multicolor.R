@@ -20,11 +20,6 @@ test_that("baseline works", {
     suppressMessages(
       multi_color("one fine day")))
 
-  expect_error(
-    suppressMessages(multi_color("warnings aren't allowed",
-                                 type = "warning"))
-  )
-
 })
 
 test_that("integration with cowsay", {

@@ -13,7 +13,7 @@ multi_color(txt = NULL, colors = c("red", "orange", "yellow", "green",
 \item{colors}{(character) A vector of colors, defaulting to
 c("red", "orange", "yellow", "green", "blue", "purple")}
 
-\item{type}{(character) Message (default) or string}
+\item{type}{(character) Message (default), warning, or string}
 
 \item{...}{Further args.}
 }
