@@ -162,7 +162,7 @@ multi_color <- function(txt = NULL,
     mutate(
       outchr = case_when(
         tpe == "min" ~ str_c(tag, char, collapse = ""),
-        tpe == "max" ~ str_c(tag, char, collapse = "\\"),
+        tpe == "max" ~ str_c(char, tag, collapse = ""),
         TRUE ~ char
       )
     )
@@ -182,8 +182,8 @@ multi_color <- function(txt = NULL,
   #                  styled)
   #   )
   #
-  # out <- tbl$res %>%
-  #   stringr::str_c(collapse = "")
+  out <- tbl4$outchr %>%
+    stringr::str_c(collapse = "")
 
   switch(type,
          message = message(out),
