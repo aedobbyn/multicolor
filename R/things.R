@@ -11,6 +11,7 @@
 #' multi_color(things[["stretchycat"]])  # To say something, use the cowsay package
 
 things <-
-  append(cowsay::animals,
+  append(
+    cowsay::animals,
     list("rms" = cowsay:::rms)
   )

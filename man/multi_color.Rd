@@ -4,8 +4,8 @@
 \alias{multi_color}
 \title{Multi-color text}
 \usage{
-multi_color(txt = NULL, colors = c("red", "orange", "yellow", "green",
-  "blue", "purple"), type = "message", ...)
+multi_color(txt = "hello world!", colors = c("red", "orange", "yellow",
+  "green", "blue", "purple"), type = "message", ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
@@ -34,9 +34,13 @@ are fair game.
 \examples{
 multi_color("ahoy")
 
-multi_color( # what = "masey",
+multi_color(colors = c(rgb(0.1, 0.2, 0.5),
+                       "yellow",
+                       rgb(0.2, 0.9, 0.1)))
+
+multi_color(
   cowsay::animals[["buffalo"]],
-  c("green", "white", "orange"))
+  c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 
 multi_color(cowsay:::rms, sample(colors(), 10))
 }

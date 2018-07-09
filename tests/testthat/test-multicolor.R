@@ -3,38 +3,59 @@ library(crayon)
 context("multicolor")
 
 test_that("baseline works", {
+  expect_error(
+    suppressMessages(
+      multi_color()
+    )
+  )
 
   expect_error(
     suppressMessages(
-      multi_color()))
+      multi_color(123)
+    )
+  )
 
   expect_error(
     suppressMessages(
-      multi_color(123)))
-
-  expect_error(
-    suppressMessages(
-      multi_color(type = "foo")))
+      multi_color(type = "foo")
+    )
+  )
 
   expect_silent(
     suppressMessages(
-      multi_color("one fine day")))
+      multi_color("one fine day")
+    )
+  )
+})
+
+test_that("colors(), including grays, and rbg work", {
+
+  expect_silent(
+    suppressMessages(
+      multi_color("you're gonna want me for your girl",
+                  c(sample(colors(), 3),
+                    rgb(0.1, 0.3, 0.5),
+                    rgb(0.6, 0.4, 0.2),
+                    "gray3", "#666666"))
+    )
+  )
 
 })
 
 test_that("integration with cowsay", {
   expect_silent(
-    suppressMessages(cowsay::say(# what = "I'm a rare Irish buffalo",
-                         txt = "buffalo", what_color = "pink",
-                         by_color = c("green", "white", "orange")))
+    suppressMessages(cowsay::say( # what = "I'm a rare Irish buffalo",
+      txt = "buffalo", what_color = "pink",
+      by_color = c("green", "white", "orange")
+    ))
   )
 
   expect_silent(
     suppressMessages(
       cowsay::say("I'm not crying, you're crying",
-          what_color = "green", # green,
-          by_color = colors())
+        what_color = "green", # green,
+        by_color = colors()
+      )
     )
   )
-
 })

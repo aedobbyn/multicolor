@@ -21,18 +21,23 @@
 #' @examples
 #' multi_color("ahoy")
 #'
-#' multi_color( # what = "masey",
+#' multi_color(colors = c(rgb(0.1, 0.2, 0.5),
+#'                        "yellow",
+#'                        rgb(0.2, 0.9, 0.1)))
+#'
+#' multi_color(
 #'   cowsay::animals[["buffalo"]],
-#'   c("green", "white", "orange"))
+#'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 #'
 #' multi_color(cowsay:::rms, sample(colors(), 10))
 
-multi_color <- function(txt = NULL,
-                        colors = c("red", "orange", "yellow",
-                                   "green", "blue", "purple"),
+multi_color <- function(txt = "hello world!",
+                        colors = c(
+                          "red", "orange", "yellow",
+                          "green", "blue", "purple"
+                        ),
                         type = "message",
                         ...) {
-
   if (!is.character(txt)) stop("txt must be of class character.")
 
   if (!any(is.character(colors))) {
@@ -43,13 +48,17 @@ multi_color <- function(txt = NULL,
     stop("type must be one of message or string")
   }
 
-  get_open_close <- function(c) {    # Deal with grays
+  if (length(colors) <= 1) stop("colors must be a vector of length > 1")
+
+  get_open_close <- function(c) {
     if (crayon:::is_r_color(c)) {
       o_c <- crayon:::style_from_r_color(c,
-                                         bg = FALSE, num_colors = 1, grey = FALSE)
+        bg = FALSE, num_colors = 1, grey = FALSE
+      )
     } else if (!crayon:::is_r_color(c)) {
-      o_c <-crayon:::style_from_rgb(c,
-                              bg = FALSE, num_colors = 1, grey = FALSE)
+      o_c <- crayon:::style_from_rgb(c,
+        bg = FALSE, num_colors = 1, grey = FALSE
+      )
     }
     out <- list(o_c)
     names(out) <- c
@@ -106,8 +115,9 @@ multi_color <- function(txt = NULL,
   # Cut into roughly equal buckets
   max_assigned <-
     cut(seq(nchar(max_char)), length(colors),
-        include.lowest = TRUE,
-        dig.lab = 0) %>%
+      include.lowest = TRUE,
+      dig.lab = 0
+    ) %>%
     as.numeric() %>%
     round()
 
@@ -117,7 +127,8 @@ multi_color <- function(txt = NULL,
     dplyr::left_join(color_dict, by = "num") %>%
     dplyr::mutate(
       char = max_char %>%
-        stringr::str_split("") %>% .[[1]],
+        stringr::str_split("") %>%
+        .[[1]],
       rn = dplyr::row_number()
     )
 
@@ -149,27 +160,28 @@ multi_color <- function(txt = NULL,
       )
     ) %>%
     dplyr::left_join(color_df,
-                     by = c("color", "tag_type")) %>%
+      by = c("color", "tag_type")
+    ) %>%
     dplyr::ungroup() %>%
     dplyr::rowwise() %>%
     # Put open tags before the character and close tags after
     dplyr::mutate(
       tagged_chr = dplyr::case_when(
         tag_type == "open" ~
-          stringr::str_c(tag, split_chars, collapse = ""),
+        stringr::str_c(tag, split_chars, collapse = ""),
         tag_type == "close" ~
-          stringr::str_c(split_chars, tag, collapse = ""),
+        stringr::str_c(split_chars, tag, collapse = ""),
         TRUE ~ split_chars
       )
     ) %>%
     dplyr::ungroup() %>%
     dplyr::group_by(line_id) %>%
-      dplyr::mutate(
-        res = dplyr::case_when(
-          rn == max(rn) ~ tagged_chr %>% paste("\n", sep = ""),
-          TRUE ~ tagged_chr
-        )
+    dplyr::mutate(
+      res = dplyr::case_when(
+        rn == max(rn) ~ tagged_chr %>% paste("\n", sep = ""),
+        TRUE ~ tagged_chr
       )
+    )
 
   out <- tbl$res %>%
     stringr::str_c(collapse = "")
@@ -180,15 +192,15 @@ multi_color <- function(txt = NULL,
     } else if (nchar(out) > 8170) {
       wl <- 8170
     } else {
-      wl <- nchar(out)
+      wl <- nchar(out) + 1
     }
     warn_op <- options(warning.length = wl)
     on.exit(options(warn_op))
   }
 
   switch(type,
-         message = message(out),
-         warning = warning(out),
-         string = out)
+    message = message(out),
+    warning = warning(out),
+    string = out
+  )
 }
-
