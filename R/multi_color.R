@@ -5,15 +5,17 @@
 #'
 #' @param txt (character) Some text to color.
 #' @param colors (character) A vector of colors, defaulting to
-#' c("red", "orange", "yellow", "green", "blue", "purple")
+#' c("red", "orange", "yellow", "green", "blue", "purple").
+#'
+#' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
+#' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
+#' are fair game.
 #' @param type (character) Message (default), warning, or string
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
 #' these colors in the order they appear in \code{colors}.
 #'
-#' Any colors in \code{colors()} or hex values (see \code{?rgb})
-#' are fair game.
 #'
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
@@ -49,6 +51,27 @@ multi_color <- function(txt = "hello world!",
   }
 
   if (length(colors) <= 1) stop("colors must be a vector of length > 1")
+
+  good_color <- function(clr) {
+    if (clr %in% colors() ||
+        substr(clr, 1, 1) == "#") {
+       return(TRUE)
+    } else {
+       return(FALSE)
+    }
+  }
+
+  color_validity <-
+    purrr::map(colors, good_color)
+
+  if (!all(color_validity)) {
+
+    bad_colors <-
+      colors[which(color_validity == FALSE)]
+
+    stop(glue::glue("All colors must be R color strings or hex values. \\
+        {bad_colors} cannot be used."))
+  }
 
   get_open_close <- function(c) {
     if (crayon:::is_r_color(c)) {
