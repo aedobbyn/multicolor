@@ -5,7 +5,7 @@ context("multicolor")
 test_that("baseline works", {
   expect_error(
     suppressMessages(
-      multi_color()
+      multi_color(TRUE)
     )
   )
 

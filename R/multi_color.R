@@ -21,6 +21,8 @@
 #' text if type is "message" or "warning"
 #'
 #' @examples
+#' multi_color()
+#'
 #' multi_color("ahoy")
 #'
 #' multi_color(colors = c(rgb(0.1, 0.2, 0.5),
@@ -52,20 +54,11 @@ multi_color <- function(txt = "hello world!",
 
   if (length(colors) <= 1) stop("colors must be a vector of length > 1")
 
-  good_color <- function(clr) {
-    if (clr %in% colors() ||
-        substr(clr, 1, 1) == "#") {
-       return(TRUE)
-    } else {
-       return(FALSE)
-    }
-  }
-
   color_validity <-
-    purrr::map(colors, good_color)
+    purrr::map_lgl(colors, crayon:::is_r_color) # Checks whether a color
+  # is color string or a valid hex string (with crayon:::hash_color_regex)
 
   if (!all(color_validity)) {
-
     bad_colors <-
       colors[which(color_validity == FALSE)]
 

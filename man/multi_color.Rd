@@ -11,7 +11,11 @@ multi_color(txt = "hello world!", colors = c("red", "orange", "yellow",
 \item{txt}{(character) Some text to color.}
 
 \item{colors}{(character) A vector of colors, defaulting to
-c("red", "orange", "yellow", "green", "blue", "purple")}
+c("red", "orange", "yellow", "green", "blue", "purple").
+
+Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
+colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
+are fair game.}
 
 \item{type}{(character) Message (default), warning, or string}
 
@@ -27,11 +31,10 @@ Multi-color text
 \details{
 This function evenly (ish) divides up your string into
 these colors in the order they appear in \code{colors}.
-
-Any colors in \code{colors()} or hex values (see \code{?rgb})
-are fair game.
 }
 \examples{
+multi_color()
+
 multi_color("ahoy")
 
 multi_color(colors = c(rgb(0.1, 0.2, 0.5),
