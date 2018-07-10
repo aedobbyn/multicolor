@@ -47,6 +47,6 @@ insert_rainbow <- function(clr) {
     rb_idx <- which(clr == "rainbow")
     clr[rb_idx] <- list(c("red", "orange", "yellow", "green", "blue", "purple"))
     clr <- unlist(clr)
-    return(clr)
   }
+  return(clr)
 }
