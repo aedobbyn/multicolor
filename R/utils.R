@@ -41,10 +41,12 @@ get_open_close <- function(c) {
 #' insert_rainbow(c("lightsteelblue", "rainbow", "lightsalmon"))
 
 insert_rainbow <- function(clr) {
-  if (any(clr == "rainbow")) {
+  if (inherits(clr, "crayon")) {
+    return(clr)
+  } else if (any(clr == "rainbow")) {
     rb_idx <- which(clr == "rainbow")
     clr[rb_idx] <- list(c("red", "orange", "yellow", "green", "blue", "purple"))
     clr <- unlist(clr)
+    return(clr)
   }
-  return(clr)
 }
