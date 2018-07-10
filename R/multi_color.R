@@ -56,8 +56,6 @@ multi_color <- function(txt = "hello world!",
     stop("type must be one of message or string")
   }
 
-  # browser()
-
   colors <- insert_rainbow(colors)
 
   if (length(colors) <= 1) stop("colors must be a vector of length > 1")
@@ -73,21 +71,6 @@ multi_color <- function(txt = "hello world!",
 
     stop(glue::glue("All colors must be R color strings or hex values.
         The input(s) {bad_colors} cannot be used."))
-  }
-
-  # Grab the color opening and closing tags
-  get_open_close <- function(c) {
-    if (crayon:::is_r_color(c)) {
-      o_c <- crayon:::style_from_r_color(c,
-        bg = FALSE, num_colors = 1, grey = FALSE
-      )
-    } else if (!crayon:::is_r_color(c)) {
-      o_c <- crayon:::style_from_rgb(c,
-        bg = FALSE, num_colors = 1, grey = FALSE
-      )
-    }
-    out <- tibble::as_tibble(o_c)
-    return(o_c)
   }
 
   # Number each color in the order they're given
@@ -167,6 +150,7 @@ multi_color <- function(txt = "hello world!",
     by_line %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
+      # Split into individual characters
       split_chars = line %>% stringr::str_split("")
     ) %>%
     tidyr::unnest(split_chars) %>%
@@ -244,14 +228,14 @@ multi_color <- function(txt = "hello world!",
 
 
 
-#' Multi-color text
+#' Multi-colour text
 #'
 #' @importFrom magrittr %>%
 #' @export
 #'
 #' @param txt (character) Some text to color.
 #' @param colors (character) A vector of colors, defaulting to
-#' c("red", "orange", "yellow", "green", "blue", "purple").
+#' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
@@ -267,18 +251,25 @@ multi_color <- function(txt = "hello world!",
 #' text if type is "message" or "warning"
 #'
 #' @examples
-#' multi_colour()
+#' multi_color()
 #'
-#' multi_colour("ahoy")
+#' multi_color("ahoy")
 #'
-#' multi_colour(colors = c(rgb(0.1, 0.2, 0.5),
+# multi_color("taste the rainbow",
+#             c("rainbow", "cyan", "cyan", "rainbow"))
+#' multi_color("taste the rainbow",
+#'             c("mediumpurple",
+#'               "rainbow",
+#'              "cyan3"))
+#'
+#' multi_color(colors = c(rgb(0.1, 0.2, 0.5),
 #'                        "yellow",
 #'                        rgb(0.2, 0.9, 0.1)))
 #'
-#' multi_colour(
+#' multi_color(
 #'   cowsay::animals[["buffalo"]],
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 #'
-#' multi_colour(cowsay:::rms, sample(colors(), 10))
+#' multi_color(cowsay:::rms, sample(colors(), 10))
 
 multi_colour <- multi_color

@@ -2,7 +2,7 @@
 % Please edit documentation in R/multi_color.R
 \name{multi_colour}
 \alias{multi_colour}
-\title{Multi-color text}
+\title{Multi-colour text}
 \usage{
 multi_colour(txt = "hello world!", colors = "rainbow", type = "message",
   ...)
@@ -11,7 +11,7 @@ multi_colour(txt = "hello world!", colors = "rainbow", type = "message",
 \item{txt}{(character) Some text to color.}
 
 \item{colors}{(character) A vector of colors, defaulting to
-c("red", "orange", "yellow", "green", "blue", "purple").
+"rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 
 Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
 colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
@@ -26,24 +26,29 @@ A string if \code{type} is "string", or colored
 text if type is "message" or "warning"
 }
 \description{
-Multi-color text
+Multi-colour text
 }
 \details{
 This function evenly (ish) divides up your string into
 these colors in the order they appear in \code{colors}.
 }
 \examples{
-multi_colour()
+multi_color()
 
-multi_colour("ahoy")
+multi_color("ahoy")
 
-multi_colour(colors = c(rgb(0.1, 0.2, 0.5),
+multi_color("taste the rainbow",
+            c("mediumpurple",
+              "rainbow",
+             "cyan3"))
+
+multi_color(colors = c(rgb(0.1, 0.2, 0.5),
                        "yellow",
                        rgb(0.2, 0.9, 0.1)))
 
-multi_colour(
+multi_color(
   cowsay::animals[["buffalo"]],
   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 
-multi_colour(cowsay:::rms, sample(colors(), 10))
+multi_color(cowsay:::rms, sample(colors(), 10))
 }
