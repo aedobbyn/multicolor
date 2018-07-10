@@ -27,10 +27,19 @@ test_that("baseline works", {
     )
   )
 
+#   expect_equal(
+#     suppressMessages(
+#       msg <- testthat::capture_error(multi_color(colors = c("seafoamgreen",
+#                              "green"))) # bad colors
+#     ),
+#   'Error in multi_color(colors = c("seafoamgreen", "green")): All colors must be R color strings or hex values.
+# The input(s) seafoamgreen cannot be used.'
+#   )
+
   expect_error(
     suppressMessages(
       multi_color(colors = c("seafoamgreen",
-                             "foamgreen")) # bad colors
+                            "green")) # bad colors
     )
   )
 
@@ -41,7 +50,7 @@ test_that("baseline works", {
   )
 })
 
-test_that("colors(), including grays, and rbg work", {
+test_that("colors(), including grays, rainbow, and rbg work", {
 
   expect_silent(
     suppressMessages(
@@ -50,6 +59,20 @@ test_that("colors(), including grays, and rbg work", {
                     rgb(0.1, 0.3, 0.5),
                     rgb(0.6, 0.4, 0.2),
                     "gray3", "#666666"))
+    )
+  )
+
+  expect_silent(
+    suppressMessages(
+      multi_color("asdfjkl;asdfjk;", colors = "rainbow")
+    )
+  )
+
+  # Multiple of the same colors
+  expect_silent(
+    suppressMessages(
+      multi_color("asdfjkl;asdfjk;",
+                  colors = c("rainbow", "blue"))
     )
   )
 

@@ -56,11 +56,11 @@ multi_color <- function(txt = "hello world!",
     stop("type must be one of message or string")
   }
 
-  if (length(colors) <= 1) stop("colors must be a vector of length > 1")
-
-  browser()
+  # browser()
 
   colors <- insert_rainbow(colors)
+
+  if (length(colors) <= 1) stop("colors must be a vector of length > 1")
 
   color_validity <-
     purrr::map_lgl(colors, crayon:::is_r_color) # Checks whether a color
