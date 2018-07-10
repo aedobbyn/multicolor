@@ -5,7 +5,7 @@
 #'
 #' @param txt (character) Some text to color.
 #' @param colors (character) A vector of colors, defaulting to
-#' c("red", "orange", "yellow", "green", "blue", "purple").
+#' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
@@ -25,6 +25,13 @@
 #'
 #' multi_color("ahoy")
 #'
+# multi_color("taste the rainbow",
+#             c("rainbow", "cyan", "cyan", "rainbow"))
+#' multi_color("taste the rainbow",
+#'             c("mediumpurple",
+#'               "rainbow",
+#'              "cyan3"))
+#'
 #' multi_color(colors = c(rgb(0.1, 0.2, 0.5),
 #'                        "yellow",
 #'                        rgb(0.2, 0.9, 0.1)))
@@ -36,10 +43,7 @@
 #' multi_color(cowsay:::rms, sample(colors(), 10))
 
 multi_color <- function(txt = "hello world!",
-                        colors = c(
-                          "red", "orange", "yellow",
-                          "green", "blue", "purple"
-                        ),
+                        colors = "rainbow",
                         type = "message",
                         ...) {
   if (!is.character(txt)) stop("txt must be of class character.")
@@ -53,6 +57,10 @@ multi_color <- function(txt = "hello world!",
   }
 
   if (length(colors) <= 1) stop("colors must be a vector of length > 1")
+
+  browser()
+
+  colors <- insert_rainbow(colors)
 
   color_validity <-
     purrr::map_lgl(colors, crayon:::is_r_color) # Checks whether a color
@@ -83,15 +91,12 @@ multi_color <- function(txt = "hello world!",
     return(out)
   }
 
-  color_list <-
-    purrr::map(colors, get_open_close)
+  # browser()
 
   color_df <-
-    color_list %>%
-    purrr::flatten() %>%
-    tibble::as_tibble() %>%
+    purrr::map_dfc(colors, get_open_close) %>%
+    tidyr::unnest() %>%
     tidyr::gather("color", "tag") %>%
-    tidyr::unnest(tag) %>%
     dplyr::group_by(color) %>%
     dplyr::mutate(
       tag_num = dplyr::row_number()

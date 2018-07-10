@@ -4,14 +4,14 @@
 \alias{multi_color}
 \title{Multi-color text}
 \usage{
-multi_color(txt = "hello world!", colors = c("red", "orange", "yellow",
-  "green", "blue", "purple"), type = "message", ...)
+multi_color(txt = "hello world!", colors = "rainbow", type = "message",
+  ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
 
 \item{colors}{(character) A vector of colors, defaulting to
-c("red", "orange", "yellow", "green", "blue", "purple").
+"rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 
 Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
 colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
@@ -36,6 +36,11 @@ these colors in the order they appear in \code{colors}.
 multi_color()
 
 multi_color("ahoy")
+
+multi_color("taste the rainbow",
+            c("mediumpurple",
+              "rainbow",
+             "cyan3"))
 
 multi_color(colors = c(rgb(0.1, 0.2, 0.5),
                        "yellow",

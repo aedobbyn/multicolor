@@ -4,8 +4,8 @@
 \alias{multi_colour}
 \title{Multi-color text}
 \usage{
-multi_colour(txt = "hello world!", colors = c("red", "orange", "yellow",
-  "green", "blue", "purple"), type = "message", ...)
+multi_colour(txt = "hello world!", colors = "rainbow", type = "message",
+  ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
