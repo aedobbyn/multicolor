@@ -21,6 +21,19 @@ test_that("baseline works", {
     )
   )
 
+  expect_error(
+    suppressMessages(
+      multi_color(colors = "blue") # need more than 1 color
+    )
+  )
+
+  expect_error(
+    suppressMessages(
+      multi_color(colors = c("seafoamgreen",
+                             "foamgreen")) # bad colors
+    )
+  )
+
   expect_silent(
     suppressMessages(
       multi_color("one fine day")

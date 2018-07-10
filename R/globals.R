@@ -2,13 +2,16 @@
 globalVariables(
   c(
     ".",
+    "char",
     "color",
     "color_fun",
+    "full",
     "line_id",
-    "lines",
+    "line",
     "n_char",
-    "rn",
     "split_chars",
-    "styled"
+    "styled",
+    "tag",
+    "tag_num"
   )
 )
