@@ -69,11 +69,11 @@ test_that("colors(), including grays, rainbow, and rbg work", {
   )
 
   # Multiple of the same colors
-  expect_silent(
-    suppressMessages(
+  expect_equal(
       multi_color("asdfjkl;asdfjk;",
-                  colors = c("rainbow", "blue"))
-    )
+                  colors =c("rainbow", "purple", "purple", "rainbow"),
+                  type = "string"),
+      "\033[31mas\033[39m\033[33md\033[33mf\033[32mj\033[34mk\033[35ml\033[35m;\033[35ma\033[31ms\033[33md\033[33mf\033[32mj\033[34mk\033[35m;\n"
   )
 
 })

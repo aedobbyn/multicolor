@@ -86,18 +86,24 @@ multi_color <- function(txt = "hello world!",
         bg = FALSE, num_colors = 1, grey = FALSE
       )
     }
-    out <- list(o_c)
-    names(out) <- c
-    return(out)
+    out <- tibble::as_tibble(o_c)
+    return(o_c)
   }
 
-  # browser()
+  # Number each color in the order they're given
+  color_dict <-
+    tibble::tibble(
+      color = colors,
+      color_num = 1:length(colors)
+    )
 
-  color_df <-
-    purrr::map_dfc(colors, get_open_close) %>%
-    tidyr::unnest() %>%
-    tidyr::gather("color", "tag") %>%
-    dplyr::group_by(color) %>%
+  color_df <- color_dict %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      tag = get_open_close(color) %>% list()
+    ) %>%
+    tidyr::unnest(tag) %>%
+    dplyr::group_by(color_num) %>%
     dplyr::mutate(
       tag_num = dplyr::row_number()
     ) %>%
@@ -110,12 +116,7 @@ multi_color <- function(txt = "hello world!",
     ) %>%
     dplyr::select(-tag_num)
 
-  # Number each color in the order they're given
-  color_dict <-
-    tibble::tibble(
-      color = colors,
-      color_num = 1:length(colors)
-    )
+
 
   # Get tibble with one row per line and their n characters
   by_line <-
@@ -162,7 +163,7 @@ multi_color <- function(txt = "hello world!",
     ) %>%
     dplyr::select(-char)
 
-  tbl <-
+  tbl_1 <-
     by_line %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
@@ -172,10 +173,13 @@ multi_color <- function(txt = "hello world!",
     dplyr::group_by(line_id) %>%
     dplyr::mutate(
       char_num = dplyr::row_number()
-    ) %>%
+    )
+
+  tbl_2 <-
+    tbl_1 %>%
     # Assign colors by char position
     dplyr::left_join(color_char_dict, by = "char_num") %>%
-    dplyr::group_by(color, line_id) %>%
+    dplyr::group_by(color_num, line_id) %>%
     # Add a new column for putting the open and close tags in the right spot
     # based on the min and max character for each color, for each line
     dplyr::mutate(
@@ -185,10 +189,13 @@ multi_color <- function(txt = "hello world!",
         char_color_num == max(char_color_num) ~ "close",
         TRUE ~ NA_character_
       )
-    ) %>%
+    )
+
+  tbl_3 <-
+    tbl_2 %>%
     # Add in the color tags
     dplyr::left_join(color_df,
-      by = c("color", "tag_type")
+      by = c("color", "color_num", "tag_type")
     ) %>%
     dplyr::ungroup() %>%
     dplyr::rowwise() %>%
@@ -212,7 +219,7 @@ multi_color <- function(txt = "hello world!",
       )
     )
 
-  out <- tbl$res %>%
+  out <- tbl_3$res %>%
     stringr::str_c(collapse = "")
 
   # Set warning length so it's not truncated
