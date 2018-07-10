@@ -4,6 +4,7 @@ globalVariables(
     ".",
     "char",
     "color",
+    "color_num",
     "color_fun",
     "full",
     "line_id",

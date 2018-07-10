@@ -95,3 +95,21 @@ test_that("integration with cowsay", {
     )
   )
 })
+
+
+test_that("utils", {
+
+  # Rainbow
+  expect_equal(
+    insert_rainbow(c("lightsteelblue", "rainbow", "lightsalmon")),
+    c("lightsteelblue", "red", "orange", "yellow",
+      "green", "blue", "purple", "lightsalmon")
+  )
+
+  # Tags
+  expect_equal(
+    get_open_close("steelblue2"),
+    list(open = "\033[90m", close = "\033[39m")
+  )
+
+})

@@ -25,7 +25,21 @@ get_open_close <- function(c) {
   return(o_c)
 }
 
-# Change "rainbow" into c("red", "orange", "yellow", "green", "blue", "purple")
+
+#' Insert Rainbow
+#'
+#' Take the string "rainbow" and replace it with c("red", "orange", "yellow", "green", "blue", "purple")
+#'
+#' @param clr
+#'
+#' @return A character vector of color names.
+#' @export
+#'
+#' @examples
+#'
+#' insert_rainbow("rainbow")
+#' insert_rainbow(c("lightsteelblue", "rainbow", "lightsalmon"))
+
 insert_rainbow <- function(clr) {
   if (any(clr == "rainbow")) {
     rb_idx <- which(clr == "rainbow")
