@@ -113,7 +113,7 @@ multi_color <- function(txt = "hello world!",
     )
 
   # Get tibble with one row per line and their n characters
-  whose_line <-
+  by_line <-
     tibble::tibble(
       full = txt
     ) %>%
@@ -131,7 +131,7 @@ multi_color <- function(txt = "hello world!",
 
   # Find the line with the max number of characters
   max_char <-
-    whose_line %>%
+    by_line %>%
     dplyr::filter(n_char == max(n_char)) %>%
     dplyr::pull(line) %>%
     dplyr::first()
@@ -158,7 +158,7 @@ multi_color <- function(txt = "hello world!",
     dplyr::select(-char)
 
   tbl <-
-    whose_line %>%
+    by_line %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
       split_chars = line %>% stringr::str_split("")
