@@ -7,7 +7,7 @@
 insert_rainbow(clr)
 }
 \arguments{
-\item{clr}{}
+\item{clr}{(character) A vector of one or more colors.}
 }
 \value{
 A character vector of color names.

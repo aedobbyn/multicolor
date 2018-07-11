@@ -3,7 +3,6 @@ globalVariables(
   c(
     ".",
     "char",
-    "clr",
     "color",
     "color_num",
     "color_fun",

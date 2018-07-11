@@ -30,7 +30,7 @@ get_open_close <- function(c) {
 #'
 #' Take the string "rainbow" and replace it with c("red", "orange", "yellow", "green", "blue", "purple")
 #'
-#' @param clr
+#' @param clr (character) A vector of one or more colors.
 #'
 #' @return A character vector of color names.
 #' @export
