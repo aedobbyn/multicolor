@@ -22,10 +22,8 @@ get_open_close <- function(c) {
     o_c <- crayon:::style_from_r_color(c,
       bg = FALSE, num_colors = num_colors, grey = FALSE
     )
-  } else if (!crayon:::is_r_color(c)) {
-    o_c <- crayon:::style_from_rgb(c,
-      bg = FALSE, num_colors = num_colors, grey = FALSE
-    )
+  } else {
+    stop("Don't know how to handle non-R color.")
   }
   out <- tibble::as_tibble(o_c)
   return(o_c)

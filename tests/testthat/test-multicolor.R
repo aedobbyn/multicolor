@@ -100,12 +100,17 @@ test_that("integration with cowsay", {
   )
 
   expect_silent(
-    suppressWarnings(cowsay::say(
-      what = "there is no trycatch",
-      by = "yoda",
+    suppressWarnings(multi_color(
+      txt = cowsay::animals[["yoda"]],
       type = "warning",
-      what_color = "steelblue",
-      by_color = c("rainbow", "rainbow")
+      colors = c("rainbow", "rainbow")
+    ))
+  )
+
+  expect_silent(
+    suppressWarnings(multi_color(
+      txt = "small text",
+      type = "warning"
     ))
   )
 
@@ -131,6 +136,11 @@ test_that("utils", {
     )
   )
 
+  expect_equal(
+    crayon::blue,
+    insert_rainbow(crayon::blue)
+  )
+
   # Tags
   expect_equal(
     get_open_close("steelblue2"),
@@ -141,4 +151,5 @@ test_that("utils", {
     get_open_close(rgb(0.2, 0.4, 0.6)),
     list(open = "\033[38;5;67m", close = "\033[39m")
   )
+
 })
