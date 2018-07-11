@@ -4,3 +4,5 @@
 ^README-.*\.png$
 ^LICENSE\.md$
 ^\.travis\.yml$
+^codecov\.yml$
+^appveyor\.yml$
