@@ -12,13 +12,19 @@ NULL
 
 # Grab the color opening and closing tags for a given color
 get_open_close <- function(c) {
+  if (c == "white") {
+    num_colors <- 1
+  } else {
+    num_colors <- 256
+  }
+
   if (crayon:::is_r_color(c)) {
     o_c <- crayon:::style_from_r_color(c,
-      bg = FALSE, num_colors = 256, grey = FALSE
+      bg = FALSE, num_colors = num_colors, grey = FALSE
     )
   } else if (!crayon:::is_r_color(c)) {
     o_c <- crayon:::style_from_rgb(c,
-      bg = FALSE, num_colors = 256, grey = FALSE
+      bg = FALSE, num_colors = num_colors, grey = FALSE
     )
   }
   out <- tibble::as_tibble(o_c)
