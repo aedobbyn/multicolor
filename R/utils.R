@@ -14,11 +14,11 @@ NULL
 get_open_close <- function(c) {
   if (crayon:::is_r_color(c)) {
     o_c <- crayon:::style_from_r_color(c,
-                                       bg = FALSE, num_colors = 1, grey = FALSE
+      bg = FALSE, num_colors = 256, grey = FALSE
     )
   } else if (!crayon:::is_r_color(c)) {
     o_c <- crayon:::style_from_rgb(c,
-                                   bg = FALSE, num_colors = 1, grey = FALSE
+      bg = FALSE, num_colors = 256, grey = FALSE
     )
   }
   out <- tibble::as_tibble(o_c)
