@@ -39,8 +39,10 @@ multi_color("Hello world")
 
 </p>
 
-If you want the bare string back with color encodings, use `type =
-"string"`.
+If you want the bare string back with color encodings attached, use
+`type = "string"`.
+
+Ask [important questions](https://youtu.be/B759dzymyoc?t=14s):
 
 ``` r
 multi_color("Why are avocado pits so big?",
