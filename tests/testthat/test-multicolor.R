@@ -152,4 +152,9 @@ test_that("utils", {
     list(open = "\033[38;5;67m", close = "\033[39m")
   )
 
+  expect_equal(
+    get_open_close("white"),
+    list(open = "\033[37m", close = "\033[39m")
+  )
+
 })
