@@ -17,6 +17,12 @@ test_that("baseline works", {
 
   expect_error(
     suppressMessages(
+      multi_color(colors = crayon::black)
+    )
+  )
+
+  expect_error(
+    suppressMessages(
       multi_color(type = "foo")
     )
   )
@@ -79,15 +85,27 @@ test_that("colors(), including grays, rainbow, and rbg work", {
       colors = c("rainbow", "purple", "purple", "rainbow"),
       type = "string"
     ),
-    "\033[31mas\033[39m\033[33md\033[33mf\033[32mj\033[34mk\033[35ml\033[35m;\033[35ma\033[31ms\033[33md\033[33mf\033[32mj\033[34mk\033[35m;\n"
+    "\033[38;5;196mas\033[39m\033[38;5;214md\033[38;5;226mf\033[38;5;46mj\033[38;5;21mk\033[38;5;129ml\033[38;5;129m;\033[38;5;129ma\033[38;5;196ms\033[38;5;214md\033[38;5;226mf\033[38;5;46mj\033[38;5;21mk\033[38;5;129m;\n"
   )
 })
 
 test_that("integration with cowsay", {
   expect_silent(
-    suppressMessages(cowsay::say( # what = "I'm a rare Irish buffalo",
-      txt = "buffalo", what_color = "pink",
+    suppressMessages(cowsay::say(
+      what = "I'm a rare Irish buffalo",
+      by = "buffalo",
+      what_color = "pink",
       by_color = c("green", "white", "orange")
+    ))
+  )
+
+  expect_silent(
+    suppressWarnings(cowsay::say(
+      what = "there is no trycatch",
+      by = "yoda",
+      type = "warning",
+      what_color = "steelblue",
+      by_color = c("rainbow", "rainbow")
     ))
   )
 
@@ -116,6 +134,11 @@ test_that("utils", {
   # Tags
   expect_equal(
     get_open_close("steelblue2"),
-    list(open = "\033[90m", close = "\033[39m")
+    list(open = "\033[38;5;117m", close = "\033[39m")
+  )
+
+  expect_equal(
+    get_open_close(rgb(0.2, 0.4, 0.6)),
+    list(open = "\033[38;5;67m", close = "\033[39m")
   )
 })
