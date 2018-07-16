@@ -10,6 +10,17 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+
+on_windows <- function() {
+  os <- tolower(Sys.info()[["sysname"]])
+
+  if ("windows" %in% os) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
+
 # Grab the color opening and closing tags for a given color
 get_open_close <- function(c) {
   if (c == "white") {

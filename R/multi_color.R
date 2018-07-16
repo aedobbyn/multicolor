@@ -56,6 +56,10 @@ multi_color <- function(txt = "hello world!",
     stop("type must be one of message or string")
   }
 
+  if (on_windows() && type == "warning") {
+    stop("Cannot use type of warning if on Windows")
+  }
+
   colors <- insert_rainbow(colors)
 
   if (length(colors) <= 1) stop("colors must be a vector of length > 1")
@@ -219,11 +223,18 @@ multi_color <- function(txt = "hello world!",
     on.exit(options(warn_op))
   }
 
-  switch(type,
-    message = message(out),
-    warning = warning(out),
-    string = out
-  )
+  if (on_windows()) {
+    switch(type,
+           message = suppressWarnings(message(out)),
+           string = suppressWarnings(out)
+    )
+  } else {
+    switch(type,
+           message = message(out),
+           warning = warning(out),
+           string = out
+    )
+  }
 }
 
 
