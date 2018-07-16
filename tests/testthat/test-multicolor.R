@@ -79,14 +79,14 @@ test_that("colors(), including grays, rainbow, and rbg work", {
     )
   )
 
-  # Multiple of the same colors
-  expect_equal(
-    multi_color("asdfjkl;asdfjk;",
-      colors = c("rainbow", "purple", "purple", "rainbow"),
-      type = "string"
-    ),
-    "\033[31ma\033[39m\033[31ms\033[39m\033[38;5;214md\033[39m\033[33mf\033[39m\033[32mj\033[39m\033[34mk\033[39m\033[38;5;129ml\033[39m\033[38;5;129m;\033[39m\033[38;5;129ma\033[39m\033[31ms\033[39m\033[38;5;214md\033[39m\033[33mf\033[39m\033[32mj\033[39m\033[34mk\033[39m\033[38;5;129m;\033[39m\n"
-  )
+  # # Multiple of the same colors
+  # expect_equal(
+  #   multi_color("asdfjkl;asdfjk;",
+  #     colors = c("rainbow", "purple", "purple", "rainbow"),
+  #     type = "string"
+  #   ),
+  #   "\033[31ma\033[39m\033[31ms\033[39m\033[38;5;214md\033[39m\033[33mf\033[39m\033[32mj\033[39m\033[34mk\033[39m\033[38;5;129ml\033[39m\033[38;5;129m;\033[39m\033[38;5;129ma\033[39m\033[31ms\033[39m\033[38;5;214md\033[39m\033[33mf\033[39m\033[32mj\033[39m\033[34mk\033[39m\033[38;5;129m;\033[39m\n"
+  # )
 })
 
 test_that("integration with cowsay", {
