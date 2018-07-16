@@ -43,3 +43,10 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+branches:
+  # whitelist
+  only:
+    - master
+    - dev
+    - every-character
