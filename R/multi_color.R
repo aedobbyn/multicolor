@@ -225,14 +225,14 @@ multi_color <- function(txt = "hello world!",
 
   if (on_windows()) {
     switch(type,
-           message = suppressWarnings(message(out)),
-           string = suppressWarnings(out)
+      message = suppressWarnings(message(out)),
+      string = suppressWarnings(out)
     )
   } else {
     switch(type,
-           message = message(out),
-           warning = warning(out),
-           string = out
+      message = message(out),
+      warning = warning(out),
+      string = out
     )
   }
 }

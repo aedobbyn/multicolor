@@ -100,6 +100,20 @@ test_that("integration with cowsay", {
   )
 
   expect_silent(
+    suppressMessages(
+      cowsay::say("I'm not crying, you're crying",
+        what_color = "green", # green,
+        by_color = colors()
+      )
+    )
+  )
+})
+
+
+testthat("Windows is skipped", {
+  skip_on_os("windows")
+
+  expect_silent(
     suppressWarnings(multi_color(
       txt = cowsay::animals[["yoda"]],
       type = "warning",
@@ -112,15 +126,6 @@ test_that("integration with cowsay", {
       txt = "small text",
       type = "warning"
     ))
-  )
-
-  expect_silent(
-    suppressMessages(
-      cowsay::say("I'm not crying, you're crying",
-        what_color = "green", # green,
-        by_color = colors()
-      )
-    )
   )
 })
 
@@ -156,5 +161,4 @@ test_that("utils", {
     get_open_close("white"),
     list(open = "\033[37m", close = "\033[39m")
   )
-
 })
