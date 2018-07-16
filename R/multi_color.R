@@ -73,159 +73,89 @@ multi_color <- function(txt = "hello world!",
         The input(s) {bad_colors} cannot be used."))
   }
 
-  # Number each color in the order they're given
-  color_dict <-
-    tibble::tibble(
-      color = colors,
-      color_num = 1:length(colors)
-    )
-
-  color_df <- color_dict %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      tag = get_open_close(color) %>% list()
-    ) %>%
-    tidyr::unnest(tag) %>%
-    dplyr::group_by(color_num) %>%
-    dplyr::mutate(
-      tag_num = dplyr::row_number()
-    ) %>%
-    dplyr::mutate(
-      tag_type = dplyr::case_when(
-        tag_num == 1 ~ "open",
-        tag_num == 2 ~ "close",
-        TRUE ~ NA_character_
+    color_dict <-
+      tibble::tibble(
+        color = colors,
+        num = 1:length(colors)
       )
-    ) %>%
-    dplyr::select(-tag_num)
 
-
-
-  # Get tibble with one row per line and their n characters
-  by_line <-
-    tibble::tibble(
-      full = txt
-    ) %>%
-    dplyr::mutate(
-      line = txt %>% stringr::str_split("\\n")
-    ) %>%
-    tidyr::unnest(line) %>%
-    dplyr::mutate(
-      n_char = nchar(line)
-    ) %>%
-    dplyr::mutate(
-      line_id = dplyr::row_number() # Add UUID
-    ) %>%
-    dplyr::select(-full)
-
-  # Find the line with the max number of characters
-  max_char <-
-    by_line %>%
-    dplyr::filter(n_char == max(n_char)) %>%
-    dplyr::pull(line) %>%
-    dplyr::first()
-
-  # Cut the longest line into roughly equal buckets
-  max_assigned <-
-    cut(seq(nchar(max_char)), length(colors),
-      include.lowest = TRUE,
-      dig.lab = 0
-    ) %>%
-    as.numeric() %>%
-    round()
-
-  # Assign a color for every possible character index based on the longest line
-  color_char_dict <-
-    tibble::tibble(color_num = max_assigned) %>%
-    dplyr::left_join(color_dict, by = "color_num") %>%
-    dplyr::mutate(
-      char = max_char %>%
-        stringr::str_split("") %>%
-        .[[1]],
-      char_num = dplyr::row_number()
-    ) %>%
-    dplyr::select(-char)
-
-  tbl_1 <-
-    by_line %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      # Split into individual characters
-      split_chars = line %>% stringr::str_split("")
-    ) %>%
-    tidyr::unnest(split_chars) %>%
-    dplyr::group_by(line_id) %>%
-    dplyr::mutate(
-      char_num = dplyr::row_number()
-    )
-
-  tbl_2 <-
-    tbl_1 %>%
-    # Assign colors by char position
-    dplyr::left_join(color_char_dict, by = "char_num") %>%
-    dplyr::group_by(color_num, line_id) %>%
-    # Add a new column for putting the open and close tags in the right spot
-    # based on the min and max character for each color, for each line
-    dplyr::mutate(
-      char_color_num = dplyr::row_number(),
-      tag_type = dplyr::case_when(
-        char_color_num == 1 ~ "open",
-        char_color_num == max(char_color_num) ~ "close",
-        TRUE ~ NA_character_
+    whose_line <-
+      tibble::tibble(
+        full = txt
+      ) %>%
+      dplyr::mutate(
+        lines = txt %>% stringr::str_split("\\n")
+      ) %>%
+      tidyr::unnest(lines) %>%
+      dplyr::mutate(
+        n_char = nchar(lines)
       )
-    )
 
-  tbl_3 <-
-    tbl_2 %>%
-    # Add in the color tags
-    dplyr::left_join(color_df,
-      by = c("color", "color_num", "tag_type")
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::rowwise() %>%
-    # Put open tags before the character and close tags after
-    dplyr::mutate(
-      tagged_chr = dplyr::case_when(
-        tag_type == "open" ~
-        stringr::str_c(tag, split_chars, collapse = ""),
-        tag_type == "close" ~
-        stringr::str_c(split_chars, tag, collapse = ""),
-        TRUE ~ split_chars
+    # Find the line with the max number of characters
+    max_char <-
+      whose_line %>%
+      dplyr::filter(n_char == max(n_char)) %>%
+      dplyr::pull(lines) %>%
+      dplyr::first()
+
+    # Cut into roughly equal buckets
+    max_assigned <-
+      cut(seq(nchar(max_char)), length(colors),
+          include.lowest = TRUE,
+          dig.lab = 0) %>%
+      as.numeric() %>%
+      round()
+
+    # Assign a color for every possible character index based on the longest line
+    dict <-
+      tibble::tibble(num = max_assigned) %>%
+      dplyr::left_join(color_dict, by = "num") %>%
+      dplyr::mutate(
+        char = max_char %>%
+          stringr::str_split("") %>% .[[1]],
+        rn = dplyr::row_number()
       )
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(line_id) %>%
-    # Add a newline after every line
-    dplyr::mutate(
-      res = dplyr::case_when(
-        char_num == max(char_num) ~ tagged_chr %>% paste("\n", sep = ""),
-        TRUE ~ tagged_chr
+
+    tbl <-
+      whose_line %>%
+      dplyr::select(lines) %>%
+      dplyr::mutate(line_id = dplyr::row_number()) %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(
+        num = seq(nchar(lines)) %>% list(),
+        split_chars = lines %>% stringr::str_split("")
+      ) %>%
+      tidyr::unnest(split_chars) %>%
+      dplyr::group_by(line_id) %>%
+      dplyr::mutate(
+        rn = dplyr::row_number()
+      ) %>%
+      # Assign colors by char position
+      dplyr::left_join(dict, by = "rn") %>%
+      dplyr::select(-lines) %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(
+        # Save the function in a list because we can't store a function in a col
+        color_fun = crayon::make_style(color) %>% list(),
+        styled = color_fun(split_chars)
+      ) %>%
+      dplyr::ungroup() %>%
+      dplyr::group_by(line_id) %>%
+      # Re-add a newline at the end of the last character of every line
+      dplyr::mutate(
+        res = ifelse(rn == max(rn),
+                     styled %>% paste("\n", sep = ""),
+                     styled)
       )
-    )
 
-  out <- tbl_3$res %>%
-    stringr::str_c(collapse = "")
+    out <- tbl$res %>%
+      stringr::str_c(collapse = "")
 
-  # Set warning length so it's not truncated
-  if (type == "warning") {
-    if (nchar(out) < 100) {
-      wl <- 100
-    } else if (nchar(out) > 8170) {
-      wl <- 8170
-    } else {
-      wl <- nchar(out) + 1
-    }
-    warn_op <- options(warning.length = wl)
-    on.exit(options(warn_op))
+    switch(type,
+           message = message(out),
+           warning = warning(out),
+           string = out)
   }
-
-  switch(type,
-    message = message(out),
-    warning = warning(out),
-    string = out
-  )
-}
-
 
 
 #' Multi-colour text
