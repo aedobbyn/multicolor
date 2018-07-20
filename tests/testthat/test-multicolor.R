@@ -110,8 +110,7 @@ test_that("integration with cowsay", {
 })
 
 
-test_that("Windows is skipped", {
-  skip_on_os("windows")
+test_that("warnings", {
 
   expect_silent(
     suppressWarnings(multi_color(
