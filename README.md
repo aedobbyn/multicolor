@@ -9,7 +9,9 @@ status](https://codecov.io/gh/aedobbyn/multicolor/branch/master/graph/badge.svg)
 
 Apply multiple colors to your messages and warnings. Built on the
 [`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely with
-[`cowsay`](https://github.com/sckott/cowsay).
+[`cowsay`](https://github.com/sckott/cowsay). [Bit of backstory and
+walkthrough of how it
+works](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/).
 
 ### Installation
 

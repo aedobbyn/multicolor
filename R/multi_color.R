@@ -104,7 +104,6 @@ multi_color <- function(txt = "hello world!",
     dplyr::select(-tag_num)
 
 
-
   # Get tibble with one row per line and their n characters
   by_line <-
     tibble::tibble(
