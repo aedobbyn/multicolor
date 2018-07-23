@@ -45,7 +45,6 @@
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
-                        newline_after_first_line = TRUE,
                         ...) {
   if (!is.character(txt)) stop("txt must be of class character.")
 
