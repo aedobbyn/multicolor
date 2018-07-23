@@ -41,6 +41,15 @@ get_open_close <- function(c) {
 }
 
 
+nix_newline <- function(s) {
+  ncs <- nchar(s)
+  if (substr(s, ncs, ncs) == "\n") {
+    s <- substr(s, 1, ncs - 1)  # A \n counts as one character
+  }
+  s
+}
+
+
 #' Insert Rainbow
 #'
 #' Take the string "rainbow" and replace it with c("red", "orange", "yellow", "green", "blue", "purple")

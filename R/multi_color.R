@@ -45,6 +45,7 @@
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
+                        newline_after_first_line = FALSE,
                         ...) {
   if (!is.character(txt)) stop("txt must be of class character.")
 
@@ -192,17 +193,31 @@ multi_color <- function(txt = "hello world!",
         TRUE ~ split_chars
       )
     ) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(line_id) %>%
+    dplyr::ungroup()
+
+  tbl_4 <-
     # Add a newline after every line
+    tbl_3 %>%
+    dplyr::group_by(line_id) %>%
     dplyr::mutate(
-      res = dplyr::case_when(
-        char_num == max(char_num) ~ tagged_chr %>% paste("\n", sep = ""),
-        TRUE ~ tagged_chr
+      newline = dplyr::case_when(
+        char_num == max(char_num) ~ "\n",
+        TRUE ~ ""
       )
     )
 
-  out <- tbl_3$res %>%
+  if (newline_after_first_line == FALSE) {
+    tbl_4[which(tbl_4$line_id == 1 && tbl_4$newline == "\n")]$newline <- ""
+  }
+
+  tbl_5 <-
+    tbl_4 %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      res = stringr::str_c(tagged_chr, newline, collapse = "")
+    )
+
+  out <- tbl_5$res %>%
     stringr::str_c(collapse = "")
 
   # Set warning length so it's not truncated
