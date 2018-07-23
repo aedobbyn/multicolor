@@ -5,7 +5,7 @@
 \title{Multi-color text}
 \usage{
 multi_color(txt = "hello world!", colors = "rainbow", type = "message",
-  newline_after_first_line = FALSE, ...)
+  newline_after_first_line = TRUE, ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
