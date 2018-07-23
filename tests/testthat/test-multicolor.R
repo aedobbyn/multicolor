@@ -83,7 +83,8 @@ test_that("colors(), including grays, rainbow, and rbg work", {
   expect_equal(
     multi_color("asdfjkl;asdfjk;",
       colors = c("rainbow", "purple", "purple", "rainbow"),
-      type = "string"
+      type = "string",
+      newline_after_first_line = TRUE
     ),
     "\033[38;5;196mas\033[39m\033[38;5;214md\033[38;5;226mf\033[38;5;46mj\033[38;5;21mk\033[38;5;129ml\033[38;5;129m;\033[38;5;129ma\033[38;5;196ms\033[38;5;214md\033[38;5;226mf\033[38;5;46mj\033[38;5;21mk\033[38;5;129m;\n"
   )

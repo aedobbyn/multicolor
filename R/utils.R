@@ -40,6 +40,23 @@ get_open_close <- function(c) {
   return(o_c)
 }
 
+nix_newline <- function(s) {
+  ncs <- nchar(s)
+  if (substr(s, ncs, ncs) == "\n") {
+    s <- substr(s, 1, ncs - 1)  # A \n counts as one character
+  }
+  s
+}
+
+nix_first_newline <- function(x) {
+  newline_ix <- x %>% stringr::str_locate("\n")
+  y <- substr(x, 1, newline_ix)
+  z <- y %>% nix_newline()
+
+  out <- stringr::str_c(z, substr(x, newline_ix + 1, nchar(x)))
+  out
+}
+
 
 #' Insert Rainbow
 #'

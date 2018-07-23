@@ -11,6 +11,8 @@
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string
+#' @param newline_after_first_line (logical) If a newline "\n" character exists at
+#' the end of first line of text, should it be removed?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -45,6 +47,7 @@
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
+                        newline_after_first_line = FALSE,
                         ...) {
   if (!is.character(txt)) stop("txt must be of class character.")
 
@@ -204,6 +207,10 @@ multi_color <- function(txt = "hello world!",
 
   out <- tbl_3$res %>%
     stringr::str_c(collapse = "")
+
+  if (newline_after_first_line == FALSE) {
+    out <- out %>% nix_first_newline()
+  }
 
   # Set warning length so it's not truncated
   if (type == "warning") {
