@@ -48,13 +48,35 @@ nix_newline <- function(s) {
   s
 }
 
-nix_first_newline <- function(x) {
-  newline_ix <- x %>% stringr::str_locate("\n")
-  y <- substr(x, 1, newline_ix)
-  z <- y %>% nix_newline()
+#' Remove the first instance of a newline from a string
+#'
+#' @param s (character) A string
+#'
+#' @return A string with the first instance of a newline removed.
+#' @export
+#'
+#' @examples
+#' nix_first_newline("onetwo\nthree\nfour")
+#'
+#' # Nothing to remove
+#' nix_first_newline("fivesixseven")
 
-  out <- stringr::str_c(z, substr(x, newline_ix + 1, nchar(x)))
-  out
+nix_first_newline <- function(s) {
+  newline_ix <- s %>%
+    stringr::str_locate("\n") %>%
+    purrr::as_vector() %>%
+    dplyr::first()
+
+  if (is.na(newline_ix)) {
+    return(s)
+  }
+
+  s_first <- substr(s, 1, newline_ix)
+  s_nixed <- s_first %>% nix_newline()
+
+  out <- stringr::str_c(s_nixed,
+            substr(s, newline_ix + 1, nchar(s)))
+  return(out)
 }
 
 
