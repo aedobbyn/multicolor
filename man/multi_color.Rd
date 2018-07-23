@@ -19,9 +19,6 @@ are fair game.}
 
 \item{type}{(character) Message (default), warning, or string}
 
-\item{newline_after_first_line}{(logical) If a newline "\n" character exists at
-the end of first line of text, should it be removed?}
-
 \item{...}{Further args.}
 }
 \value{

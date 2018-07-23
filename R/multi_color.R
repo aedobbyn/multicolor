@@ -11,8 +11,6 @@
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string
-#' @param newline_after_first_line (logical) If a newline "\n" character exists at
-#' the end of first line of text, should it be removed?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -208,7 +206,7 @@ multi_color <- function(txt = "hello world!",
   out <- tbl_3$res %>%
     stringr::str_c(collapse = "")
 
-  if (newline_after_first_line == FALSE) {
+  if (max(by_line$line_id) == 1) {
     out <- out %>% nix_first_newline()
   }
 
@@ -247,8 +245,6 @@ multi_color <- function(txt = "hello world!",
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string
-#' @param newline_after_first_line (logical) If a newline "\n" character exists at
-#' the end of first line of text, should it be removed?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
