@@ -33,14 +33,12 @@ test_that("baseline works", {
     )
   )
 
-  #   expect_equal(
-  #     suppressMessages(
-  #       msg <- testthat::capture_error(multi_color(colors = c("seafoamgreen",
-  #                              "green"))) # bad colors
-  #     ),
-  #   'Error in multi_color(colors = c("seafoamgreen", "green")): All colors must be R color strings or hex values.
-  # The input(s) seafoamgreen cannot be used.'
-  #   )
+  expect_error(
+    suppressMessages(
+      multi_color(colors = c("seafoamgreen",
+                             "green")) # bad colors
+    )
+  )
 
   expect_error(
     suppressMessages(
@@ -51,10 +49,14 @@ test_that("baseline works", {
     )
   )
 
-  expect_silent(
-    suppressMessages(
-      multi_color("one fine day")
-    )
+  expect_equal(
+    multi_color("one fine day", type = "string"),
+    "\033[38;5;196mon\033[39m\033[38;5;214me \033[39m\033[38;5;226mfi\033[39m\033[38;5;46mne\033[39m\033[38;5;21m d\033[39m\033[38;5;129may\033[39m"
+  )
+
+  expect_equal(
+    multi_color("doowap \n do do doooowap \n digga dig dig da doooo wap \n do do dooooooo", type = "string"),
+    "\033[38;5;196mdoowa\033[39m\033[38;5;214mp \033[39m\n\033[38;5;196m do d\033[39m\033[38;5;214mo doo\033[39m\033[38;5;226moowa\033[39m\033[38;5;46mp \033[39m\n\033[38;5;196m digg\033[39m\033[38;5;214ma dig\033[39m\033[38;5;226m dig\033[39m\033[38;5;46m da d\033[39m\033[38;5;21moooo\033[39m\033[38;5;129m wap \033[39m\n\033[38;5;196m do d\033[39m\033[38;5;214mo doo\033[39m\033[38;5;226moooo\033[39m\033[38;5;46mo\n"
   )
 })
 
@@ -160,4 +162,20 @@ test_that("utils", {
     get_open_close("white"),
     list(open = "\033[37m", close = "\033[39m")
   )
+})
+
+
+test_that("utils", {
+
+  expect_error(get_open_close("foo"))
+
+  expect_equal(nix_first_newline("foobar\nbaz"),
+               "foobarbaz")
+
+  expect_equal(nix_first_newline("foobar"),
+               "foobar")
+
+  skip_on_os("windows")
+  expect_equal(FALSE, on_windows())
+
 })
