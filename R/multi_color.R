@@ -61,7 +61,7 @@ multi_color <- function(txt = "hello world!",
   if (length(colors) <= 1) stop("colors must be a vector of length > 1")
 
   color_validity <-
-    purrr::map_lgl(colors, crayon:::is_r_color) # Checks whether a color
+    purrr::map_lgl(colors, crayon_is_r_color) # Checks whether a color
   # is color string or a valid hex string (with crayon:::hash_color_regex)
 
   if (!all(color_validity)) {

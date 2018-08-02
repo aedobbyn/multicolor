@@ -21,6 +21,11 @@ on_windows <- function() {
   }
 }
 
+# Internal crayon functions
+crayon_style_from_r_color <- get("style_from_r_color", asNamespace("crayon"))
+
+crayon_is_r_color <- get("is_r_color", asNamespace("crayon"))
+
 # Grab the color opening and closing tags for a given color
 get_open_close <- function(c) {
   if (c == "white") {
@@ -29,8 +34,8 @@ get_open_close <- function(c) {
     num_colors <- 256
   }
 
-  if (crayon:::is_r_color(c)) {
-    o_c <- crayon:::style_from_r_color(c,
+  if (crayon_is_r_color(c)) {
+    o_c <- crayon_style_from_r_color(c,
       bg = FALSE, num_colors = num_colors, grey = FALSE
     )
   } else {
