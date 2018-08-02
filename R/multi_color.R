@@ -7,7 +7,7 @@
 #' @param colors (character) A vector of colors, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
-#' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-suported
+#' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string
