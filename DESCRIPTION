@@ -1,10 +1,10 @@
 Package: multicolor
 Type: Package
-Title: multicolor
+Title: Multicolor your Console Output
 Version: 0.1.0
 Author: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
 Maintainer: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
-Description: Add multiple colors to text.
+Description: Add multiple colors to text that is printed to the console.
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -26,5 +26,4 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
-VignetteBuilder: knitr
 RoxygenNote: 6.0.1
