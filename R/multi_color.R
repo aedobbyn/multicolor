@@ -45,6 +45,7 @@
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
+                        direction = "vertical",
                         ...) {
   if (!is.character(txt)) stop("txt must be of class character.")
 
@@ -117,92 +118,126 @@ multi_color <- function(txt = "hello world!",
     ) %>%
     dplyr::select(-full)
 
-  # Find the line with the max number of characters
-  max_char <-
-    by_line %>%
-    dplyr::filter(n_char == max(n_char)) %>%
-    dplyr::pull(line) %>%
-    dplyr::first()
+  if (direction == "horizontal") {
+    out <-
+      by_line %>%
+      dplyr::mutate(
+        color_num = line_id %>%
+          cut(length(colors),
+                        include.lowest = TRUE,
+                        dig.lab = 0
+        ) %>%
+          as.numeric() %>%
+          round()
+      ) %>%
+      dplyr::left_join(color_df, by = "color_num") %>%
+      dplyr::rowwise() %>%
+      # Put open tags before the character and close tags after
+      dplyr::mutate(
+        tagged_chr = dplyr::case_when(
+          tag_type == "open" ~
+            stringr::str_c(tag, line, collapse = ""),
+          tag_type == "close" ~
+            stringr::str_c(line, tag, collapse = ""),
+          TRUE ~ line
+        )
+      ) %>%
+      dplyr::ungroup() %>%
+      dplyr::group_by(line_id) %>%
+      # Add a newline after every line
+      dplyr::mutate(
+        res = tagged_chr %>% paste("\n", sep = "")
+      ) %>%
+      dplyr::distinct(line_id, .keep_all = TRUE)
 
-  # Cut the longest line into roughly equal buckets
-  max_assigned <-
-    cut(seq(nchar(max_char)), length(colors),
-      include.lowest = TRUE,
-      dig.lab = 0
-    ) %>%
-    as.numeric() %>%
-    round()
+  } else if (direction == "vertical") {
+    # Find the line with the max number of characters
+    max_char <-
+      by_line %>%
+      dplyr::filter(n_char == max(n_char)) %>%
+      dplyr::pull(line) %>%
+      dplyr::first()
 
-  # Assign a color for every possible character index based on the longest line
-  color_char_dict <-
-    tibble::tibble(color_num = max_assigned) %>%
-    dplyr::left_join(color_dict, by = "color_num") %>%
-    dplyr::mutate(
-      char = max_char %>%
-        stringr::str_split("") %>%
-        .[[1]],
-      char_num = dplyr::row_number()
-    ) %>%
-    dplyr::select(-char)
+    # Cut the longest line into roughly equal buckets
+    max_assigned <-
+      cut(seq(nchar(max_char)), length(colors),
+          include.lowest = TRUE,
+          dig.lab = 0
+      ) %>%
+      as.numeric() %>%
+      round()
 
-  tbl_1 <-
-    by_line %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
-      # Split into individual characters
-      split_chars = line %>% stringr::str_split("")
-    ) %>%
-    tidyr::unnest(split_chars) %>%
-    dplyr::group_by(line_id) %>%
-    dplyr::mutate(
-      char_num = dplyr::row_number()
-    )
+    # Assign a color for every possible character index based on the longest line
+    color_char_dict <-
+      tibble::tibble(color_num = max_assigned) %>%
+      dplyr::left_join(color_dict, by = "color_num") %>%
+      dplyr::mutate(
+        char = max_char %>%
+          stringr::str_split("") %>%
+          .[[1]],
+        char_num = dplyr::row_number()
+      ) %>%
+      dplyr::select(-char)
 
-  tbl_2 <-
-    tbl_1 %>%
-    # Assign colors by char position
-    dplyr::left_join(color_char_dict, by = "char_num") %>%
-    dplyr::group_by(color_num, line_id) %>%
-    # Add a new column for putting the open and close tags in the right spot
-    # based on the min and max character for each color, for each line
-    dplyr::mutate(
-      char_color_num = dplyr::row_number(),
-      tag_type = dplyr::case_when(
-        char_color_num == 1 ~ "open",
-        char_color_num == max(char_color_num) ~ "close",
-        TRUE ~ NA_character_
+    tbl_1 <-
+      by_line %>%
+      dplyr::rowwise() %>%
+      dplyr::mutate(
+        # Split into individual characters
+        split_chars = line %>% stringr::str_split("")
+      ) %>%
+      tidyr::unnest(split_chars) %>%
+      dplyr::group_by(line_id) %>%
+      dplyr::mutate(
+        char_num = dplyr::row_number()
       )
-    )
 
-  tbl_3 <-
-    tbl_2 %>%
-    # Add in the color tags
-    dplyr::left_join(color_df,
-      by = c("color", "color_num", "tag_type")
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::rowwise() %>%
-    # Put open tags before the character and close tags after
-    dplyr::mutate(
-      tagged_chr = dplyr::case_when(
-        tag_type == "open" ~
-        stringr::str_c(tag, split_chars, collapse = ""),
-        tag_type == "close" ~
-        stringr::str_c(split_chars, tag, collapse = ""),
-        TRUE ~ split_chars
+    tbl_2 <-
+      tbl_1 %>%
+      # Assign colors by char position
+      dplyr::left_join(color_char_dict, by = "char_num") %>%
+      dplyr::group_by(color_num, line_id) %>%
+      # Add a new column for putting the open and close tags in the right spot
+      # based on the min and max character for each color, for each line
+      dplyr::mutate(
+        char_color_num = dplyr::row_number(),
+        tag_type = dplyr::case_when(
+          char_color_num == 1 ~ "open",
+          char_color_num == max(char_color_num) ~ "close",
+          TRUE ~ NA_character_
+        )
       )
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(line_id) %>%
-    # Add a newline after every line
-    dplyr::mutate(
-      res = dplyr::case_when(
-        char_num == max(char_num) ~ tagged_chr %>% paste("\n", sep = ""),
-        TRUE ~ tagged_chr
-      )
-    )
 
-  out <- tbl_3$res %>%
+    out <-
+      tbl_2 %>%
+      # Add in the color tags
+      dplyr::left_join(color_df,
+                       by = c("color", "color_num", "tag_type")
+      ) %>%
+      dplyr::ungroup() %>%
+      dplyr::rowwise() %>%
+      # Put open tags before the character and close tags after
+      dplyr::mutate(
+        tagged_chr = dplyr::case_when(
+          tag_type == "open" ~
+            stringr::str_c(tag, split_chars, collapse = ""),
+          tag_type == "close" ~
+            stringr::str_c(split_chars, tag, collapse = ""),
+          TRUE ~ split_chars
+        )
+      ) %>%
+      dplyr::ungroup() %>%
+      dplyr::group_by(line_id) %>%
+      # Add a newline after every line
+      dplyr::mutate(
+        res = dplyr::case_when(
+          char_num == max(char_num) ~ tagged_chr %>% paste("\n", sep = ""),
+          TRUE ~ tagged_chr
+        )
+      )
+  }
+
+  out <- out$res %>%
     stringr::str_c(collapse = "")
 
   if (max(by_line$line_id) == 1) {
