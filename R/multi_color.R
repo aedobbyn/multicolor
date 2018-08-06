@@ -112,11 +112,21 @@ multi_color <- function(txt = "hello world!",
     tidyr::unnest(line) %>%
     dplyr::mutate(
       n_char = nchar(line)
-    ) %>%
+    )
+
+  # If the first line is an empty string, nix it
+  if (by_line$line[1] == "") {
+    by_line <-
+      by_line[2:nrow(by_line), ]
+  }
+
+  by_line <- by_line %>%
     dplyr::mutate(
       line_id = dplyr::row_number() # Add UUID
     ) %>%
     dplyr::select(-full)
+
+
 
   if (direction == "horizontal") {
     out <-
@@ -131,23 +141,8 @@ multi_color <- function(txt = "hello world!",
           round()
       ) %>%
       dplyr::left_join(color_df, by = "color_num") %>%
-      dplyr::rowwise() %>%
-      # Put open tags before the character and close tags after
-      dplyr::mutate(
-        tagged_chr = dplyr::case_when(
-          tag_type == "open" ~
-            stringr::str_c(tag, line, collapse = ""),
-          tag_type == "close" ~
-            stringr::str_c(line, tag, collapse = ""),
-          TRUE ~ line
-        )
-      ) %>%
-      dplyr::ungroup() %>%
-      dplyr::group_by(line_id) %>%
-      # Add a newline after every line
-      dplyr::mutate(
-        res = tagged_chr %>% paste("\n", sep = "")
-      ) %>%
+      add_clr_tags() %>%
+      add_newlines() %>%
       dplyr::distinct(line_id, .keep_all = TRUE)
 
   } else if (direction == "vertical") {
@@ -215,24 +210,14 @@ multi_color <- function(txt = "hello world!",
                        by = c("color", "color_num", "tag_type")
       ) %>%
       dplyr::ungroup() %>%
-      dplyr::rowwise() %>%
-      # Put open tags before the character and close tags after
-      dplyr::mutate(
-        tagged_chr = dplyr::case_when(
-          tag_type == "open" ~
-            stringr::str_c(tag, split_chars, collapse = ""),
-          tag_type == "close" ~
-            stringr::str_c(split_chars, tag, collapse = ""),
-          TRUE ~ split_chars
-        )
-      ) %>%
+      add_clr_tags() %>%
       dplyr::ungroup() %>%
       dplyr::group_by(line_id) %>%
       # Add a newline after every line
       dplyr::mutate(
         res = dplyr::case_when(
-          char_num == max(char_num) ~ tagged_chr %>% paste("\n", sep = ""),
-          TRUE ~ tagged_chr
+          char_num == max(char_num) ~ tagged %>% paste("\n", sep = ""),
+          TRUE ~ tagged
         )
       )
   }

@@ -53,6 +53,31 @@ nix_newline <- function(s) {
   s
 }
 
+add_clr_tags <- function(tbl) {
+  tbl %>%
+    dplyr::rowwise() %>%
+    # Put open tags before the character and close tags after
+    dplyr::mutate(
+      tagged = dplyr::case_when(
+        tag_type == "open" ~
+          stringr::str_c(tag, line, collapse = ""),
+        tag_type == "close" ~
+          stringr::str_c(line, tag, collapse = ""),
+        TRUE ~ line
+      )
+    )
+}
+
+add_newlines <- function(tbl) {
+  tbl %>%
+    dplyr::ungroup() %>%
+    dplyr::group_by(line_id) %>%
+    # Add a newline after every line
+    dplyr::mutate(
+      res = tagged %>% paste("\n", sep = "")
+    )
+}
+
 #' Remove the first instance of a newline from a string
 #'
 #' @param s (character) A string
