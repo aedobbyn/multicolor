@@ -43,6 +43,16 @@
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 #'
 #' multi_color(cowsay:::rms, sample(colors(), 10))
+#'
+#' # Mystery Bulgarian animal
+#' multi_color(things[[sample(length(things), 1)]],
+#'             c("white", "darkgreen", "darkred"),
+#'             direction = "horizontal")
+#'
+#' # Mystery Italian animal
+#' multi_color(things[[sample(length(things), 1)]],
+#'             c("darkgreen", "white", "darkred"),
+#'             direction = "vertical")
 
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
@@ -60,8 +70,9 @@ multi_color <- function(txt = "hello world!",
   }
 
   colors <- insert_rainbow(colors)
+  n_colors <- length(colors)
 
-  if (length(colors) <= 1) stop("colors must be a vector of length > 1")
+  if (n_colors <= 1) stop("colors must be a vector of length > 1")
 
   color_validity <-
     purrr::map_lgl(colors, crayon_is_r_color) # Checks whether a color
@@ -80,7 +91,7 @@ multi_color <- function(txt = "hello world!",
   color_dict <-
     tibble::tibble(
       color = colors,
-      color_num = 1:length(colors)
+      color_num = 1:n_colors
     )
 
   color_df <- color_dict %>%
@@ -128,19 +139,12 @@ multi_color <- function(txt = "hello world!",
     ) %>%
     dplyr::select(-full)
 
-
-
   if (direction == "horizontal") {
     out <-
       by_line %>%
       dplyr::mutate(
         color_num = line_id %>%
-          cut(length(colors),
-                        include.lowest = TRUE,
-                        dig.lab = 0
-        ) %>%
-          as.numeric() %>%
-          round()
+          cut_into_colors(n_colors)
       ) %>%
       dplyr::left_join(color_df, by = "color_num") %>%
       add_clr_tags() %>%
@@ -157,12 +161,8 @@ multi_color <- function(txt = "hello world!",
 
     # Cut the longest line into roughly equal buckets
     max_assigned <-
-      cut(seq(nchar(max_char)), length(colors),
-          include.lowest = TRUE,
-          dig.lab = 0
-      ) %>%
-      as.numeric() %>%
-      round()
+      seq(nchar(max_char)) %>%
+      cut_into_colors(n_colors)
 
     # Assign a color for every possible character index based on the longest line
     color_char_dict <-

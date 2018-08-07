@@ -37,6 +37,14 @@ test_that("baseline works", {
     suppressMessages(
       multi_color(colors = c("seafoamgreen",
                              "green")) # bad colors
+    ),
+
+    expect_error(
+      suppressMessages(
+        multi_color(colors = c("maroon4",  # no maroon5. conspiracy?
+                               "bisque2"),
+                    direction = "one")  # bad direction
+      )
     )
   )
 
@@ -71,6 +79,16 @@ test_that("colors(), including grays, rainbow, and rbg work", {
           rgb(0.6, 0.4, 0.2),
           "gray3", "#666666"
         )
+      )
+    )
+  )
+
+  expect_silent(
+    suppressMessages(
+      multi_color(
+        "foooooooooooooooooo",
+          sample(colors(), 6),  # Horizontal can pick one of even even number of colors if text is one line
+        direction = "horizontal"
       )
     )
   )

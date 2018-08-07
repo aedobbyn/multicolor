@@ -53,8 +53,18 @@ nix_newline <- function(s) {
   s
 }
 
-add_clr_tags <- function(tbl) {
-  tbl %>%
+cut_into_colors <- function(x, n_buckets) {
+  x %>%
+    cut(n_buckets,
+        include.lowest = TRUE,
+        dig.lab = 0
+    ) %>%
+    as.numeric() %>%
+    round()
+}
+
+add_clr_tags <- function(df) {
+  df %>%
     dplyr::rowwise() %>%
     # Put open tags before the character and close tags after
     dplyr::mutate(
