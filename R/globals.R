@@ -13,6 +13,7 @@ globalVariables(
     "split_chars",
     "styled",
     "tag",
-    "tag_num"
+    "tag_num",
+    "tagged"
   )
 )

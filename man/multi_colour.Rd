@@ -5,7 +5,7 @@
 \title{Multi-colour text}
 \usage{
 multi_colour(txt = "hello world!", colors = "rainbow", type = "message",
-  ...)
+  direction = "vertical", ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
@@ -18,6 +18,9 @@ colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 are fair game.}
 
 \item{type}{(character) Message (default), warning, or string}
+
+\item{direction}{(character) How should the colors be spread? One of
+"horizontal" or "vertical".}
 
 \item{...}{Further args.}
 }

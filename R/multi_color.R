@@ -11,6 +11,8 @@
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string
+#' @param direction (character) How should the colors be spread? One of
+#' "horizontal" or "vertical".
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -210,7 +212,17 @@ multi_color <- function(txt = "hello world!",
                        by = c("color", "color_num", "tag_type")
       ) %>%
       dplyr::ungroup() %>%
-      add_clr_tags() %>%
+      dplyr::rowwise() %>%
+      # Put open tags before the character and close tags after
+      dplyr::mutate(
+        tagged = dplyr::case_when(
+          tag_type == "open" ~
+            stringr::str_c(tag, split_chars, collapse = ""),
+          tag_type == "close" ~
+            stringr::str_c(split_chars, tag, collapse = ""),
+          TRUE ~ split_chars
+        )
+      ) %>%
       dplyr::ungroup() %>%
       dplyr::group_by(line_id) %>%
       # Add a newline after every line
@@ -264,6 +276,8 @@ multi_color <- function(txt = "hello world!",
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string
+#' @param direction (character) How should the colors be spread? One of
+#' "horizontal" or "vertical".
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
