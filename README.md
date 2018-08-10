@@ -75,6 +75,9 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
 
 ### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
+All `cowsay` animals are exported in `multicolor::things`, but to get
+the animals to speak, you need `cowsay`.
+
 ``` r
 library(cowsay)
 
@@ -87,6 +90,22 @@ say(what = "holygrail",
 <p align="left">
 
 <img src="./man/img/yoda.jpg" alt="yoda" height="300px">
+
+</p>
+
+The default is to color vertically, but horizontal is also an option. If
+you want to make a Dutch shark, you can set the `direction` param to
+“horizontal”.
+
+``` r
+multi_color(things[["shark"]], 
+            colors = c("darkred", "white", "darkblue"),
+            direction = "horizontal")
+```
+
+<p align="left">
+
+<img src="./man/img/dutch_shark.jpg" alt="dutch_shark" height="400px">
 
 </p>
 
