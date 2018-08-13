@@ -10,6 +10,19 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+use_color <- function() {
+  # adapted from https://stackoverflow.com/questions/12389158/check-if-r-is-running-in-rstudio
+  # see also: .Platform$GUI
+  is_r_gui <- Sys.getenv("R_GUI_APP_VERSION") != ""
+
+  can_color <- TRUE
+  if (is_r_gui) {
+    can_color <- FALSE
+    message("Envoronment is RGUI, so colors cannot be applied. Please use another application, such as RStudio or a terminal.")
+  }
+  invisible(can_color)
+}
+
 on_windows <- function() {
   os <- tolower(Sys.info()[["sysname"]])
 
