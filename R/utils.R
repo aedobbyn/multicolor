@@ -13,6 +13,7 @@ NULL
 
 # adapted from https://stackoverflow.com/questions/12389158/check-if-r-is-running-in-rstudio
 is_r_gui <- Sys.getenv("R_GUI_APP_VERSION") != ""
+# is_r_gui <- .Platform$GUI == "AQUA"
 
 use_color <- function() {
   can_color <- TRUE
