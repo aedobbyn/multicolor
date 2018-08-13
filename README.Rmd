@@ -29,6 +29,7 @@ Apply multiple colors to your messages and warnings. Built on the [`crayon`](htt
 devtools::install_github("aedobbyn/multicolor")
 ```
 
+Note: this package cannot be run from the R GUI. RStudio or any terminal work fine.
 
 ## Usage
 

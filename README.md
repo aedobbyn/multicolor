@@ -21,6 +21,9 @@ works](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/).
 devtools::install_github("aedobbyn/multicolor")
 ```
 
+Note: this package cannot be run from the R GUI. RStudio or any terminal
+work fine.
+
 ## Usage
 
 ``` r
