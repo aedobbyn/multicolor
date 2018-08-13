@@ -35,15 +35,21 @@ test_that("baseline works", {
 
   expect_error(
     suppressMessages(
-      multi_color(colors = c("seafoamgreen",
-                             "green")) # bad colors
+      multi_color(colors = c(
+        "seafoamgreen",
+        "green"
+      )) # bad colors
     ),
 
     expect_error(
       suppressMessages(
-        multi_color(colors = c("maroon4",  # no maroon5. conspiracy?
-                               "bisque2"),
-                    direction = "one")  # bad direction
+        multi_color(
+          colors = c(
+            "maroon4", # no maroon5. conspiracy?
+            "bisque2"
+          ),
+          direction = "one"
+        ) # bad direction
       )
     )
   )
@@ -87,7 +93,7 @@ test_that("colors(), including grays, rainbow, and rbg work", {
     suppressMessages(
       multi_color(
         "foooooooooooooooooo",
-          sample(colors(), 6),  # Horizontal can pick one of even even number of colors if text is one line
+        sample(colors(), 6), # Horizontal can pick one of even even number of colors if text is one line
         direction = "horizontal"
       )
     )
@@ -131,7 +137,6 @@ test_that("integration with cowsay", {
 
 
 test_that("warnings", {
-
   expect_silent(
     suppressWarnings(multi_color(
       txt = cowsay::animals[["yoda"]],
@@ -184,16 +189,18 @@ test_that("utils", {
 
 
 test_that("utils", {
-
   expect_error(get_open_close("foo"))
 
-  expect_equal(nix_first_newline("foobar\nbaz"),
-               "foobarbaz")
+  expect_equal(
+    nix_first_newline("foobar\nbaz"),
+    "foobarbaz"
+  )
 
-  expect_equal(nix_first_newline("foobar"),
-               "foobar")
+  expect_equal(
+    nix_first_newline("foobar"),
+    "foobar"
+  )
 
   skip_on_os("windows")
   expect_equal(FALSE, on_windows())
-
 })

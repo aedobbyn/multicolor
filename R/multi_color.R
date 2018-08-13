@@ -60,7 +60,6 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
-
   if (use_color() == FALSE) return(message(txt))
 
   if (!is.character(txt)) stop("txt must be of class character.")
@@ -154,7 +153,6 @@ multi_color <- function(txt = "hello world!",
       add_clr_tags() %>%
       add_newlines() %>%
       dplyr::distinct(line_id, .keep_all = TRUE)
-
   } else if (direction == "vertical") {
     # Find the line with the max number of characters
     max_char <-
@@ -213,7 +211,7 @@ multi_color <- function(txt = "hello world!",
       tbl_2 %>%
       # Add in the color tags
       dplyr::left_join(color_df,
-                       by = c("color", "color_num", "tag_type")
+        by = c("color", "color_num", "tag_type")
       ) %>%
       dplyr::ungroup() %>%
       dplyr::rowwise() %>%
@@ -221,9 +219,9 @@ multi_color <- function(txt = "hello world!",
       dplyr::mutate(
         tagged = dplyr::case_when(
           tag_type == "open" ~
-            stringr::str_c(tag, split_chars, collapse = ""),
+          stringr::str_c(tag, split_chars, collapse = ""),
           tag_type == "close" ~
-            stringr::str_c(split_chars, tag, collapse = ""),
+          stringr::str_c(split_chars, tag, collapse = ""),
           TRUE ~ split_chars
         )
       ) %>%

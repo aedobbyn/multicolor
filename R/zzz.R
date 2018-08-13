@@ -1,4 +1,4 @@
 
-.onAttach <- function(...){
+.onAttach <- function(...) {
   use_color()
 }

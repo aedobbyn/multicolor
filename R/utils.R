@@ -60,7 +60,7 @@ get_open_close <- function(c) {
 nix_newline <- function(s) {
   ncs <- nchar(s)
   if (substr(s, ncs, ncs) == "\n") {
-    s <- substr(s, 1, ncs - 1)  # A \n counts as one character
+    s <- substr(s, 1, ncs - 1) # A \n counts as one character
   }
   s
 }
@@ -68,8 +68,8 @@ nix_newline <- function(s) {
 cut_into_colors <- function(x, n_buckets) {
   x %>%
     cut(n_buckets,
-        include.lowest = TRUE,
-        dig.lab = 0
+      include.lowest = TRUE,
+      dig.lab = 0
     ) %>%
     as.numeric() %>%
     round()
@@ -82,9 +82,9 @@ add_clr_tags <- function(df) {
     dplyr::mutate(
       tagged = dplyr::case_when(
         tag_type == "open" ~
-          stringr::str_c(tag, line, collapse = ""),
+        stringr::str_c(tag, line, collapse = ""),
         tag_type == "close" ~
-          stringr::str_c(line, tag, collapse = ""),
+        stringr::str_c(line, tag, collapse = ""),
         TRUE ~ line
       )
     )
@@ -126,8 +126,10 @@ nix_first_newline <- function(s) {
   s_first <- substr(s, 1, newline_ix)
   s_nixed <- s_first %>% nix_newline()
 
-  out <- stringr::str_c(s_nixed,
-            substr(s, newline_ix + 1, nchar(s)))
+  out <- stringr::str_c(
+    s_nixed,
+    substr(s, newline_ix + 1, nchar(s))
+  )
   return(out)
 }
 
