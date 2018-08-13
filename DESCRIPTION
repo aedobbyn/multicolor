@@ -1,6 +1,6 @@
 Package: multicolor
 Type: Package
-Title: Multicolor your Console Output
+Title: Add Multiple Colors to your Console Output
 Version: 0.1.0
 Author: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
 Maintainer: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
