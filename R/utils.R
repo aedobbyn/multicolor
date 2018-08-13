@@ -20,7 +20,7 @@ use_color <- function() {
     can_color <- FALSE
     message("Envoronment is RGUI, so colors cannot be applied. Please use another application, such as RStudio or a terminal.")
   }
-  can_color
+  invisible(can_color)
 }
 
 on_windows <- function() {
