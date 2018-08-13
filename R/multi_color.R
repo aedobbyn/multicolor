@@ -18,6 +18,7 @@
 #' @details This function evenly (ish) divides up your string into
 #' these colors in the order they appear in \code{colors}.
 #'
+#' It cannot be used with RGUI (R.app on some systems).
 #'
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
@@ -59,6 +60,9 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
+
+  if (use_color() == FALSE) return(txt)
+
   if (!is.character(txt)) stop("txt must be of class character.")
 
   if (!any(is.character(colors))) {
@@ -283,6 +287,7 @@ multi_color <- function(txt = "hello world!",
 #' @details This function evenly (ish) divides up your string into
 #' these colors in the order they appear in \code{colors}.
 #'
+#' It cannot be used with RGUI (R.app on some systems).
 #'
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
@@ -308,5 +313,15 @@ multi_color <- function(txt = "hello world!",
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 #'
 #' multi_color(cowsay:::rms, sample(colors(), 10))
+#'
+#' # Mystery Bulgarian animal
+#' multi_color(things[[sample(length(things), 1)]],
+#'             c("white", "darkgreen", "darkred"),
+#'             direction = "horizontal")
+#'
+#' # Mystery Italian animal
+#' multi_color(things[[sample(length(things), 1)]],
+#'             c("darkgreen", "white", "darkred"),
+#'             direction = "vertical")
 
 multi_colour <- multi_color

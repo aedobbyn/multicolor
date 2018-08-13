@@ -34,6 +34,8 @@ Multi-colour text
 \details{
 This function evenly (ish) divides up your string into
 these colors in the order they appear in \code{colors}.
+
+It cannot be used with RGUI (R.app on some systems).
 }
 \examples{
 multi_color()
@@ -54,4 +56,14 @@ multi_color(
   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 
 multi_color(cowsay:::rms, sample(colors(), 10))
+
+# Mystery Bulgarian animal
+multi_color(things[[sample(length(things), 1)]],
+            c("white", "darkgreen", "darkred"),
+            direction = "horizontal")
+
+# Mystery Italian animal
+multi_color(things[[sample(length(things), 1)]],
+            c("darkgreen", "white", "darkred"),
+            direction = "vertical")
 }
