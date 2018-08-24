@@ -47,6 +47,14 @@ multi_color("Hello world")
   <img src="./man/img/hello_world.jpg" alt="hello_world" height="25px">
 </p>
 
+Or a more fun example, contributed by @hcortinajust:
+
+<p align="left">
+  <img src="./man/img/plasma_daemon.png" alt="hello_world" height="600px">
+</p>
+
+**Options**
+
 If you want the bare string back with color encodings attached, use `type = "string"`.
 
 Ask [important questions](https://youtu.be/B759dzymyoc?t=14s): 
