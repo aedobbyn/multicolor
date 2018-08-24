@@ -45,7 +45,7 @@ multi_color("Hello world")
 
 </p>
 
-Or a more fun example, contributed by @hcortinajust:
+Or a more fun example, contributed by @cortinah:
 
 <p align="left">
 

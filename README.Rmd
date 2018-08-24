@@ -47,7 +47,7 @@ multi_color("Hello world")
   <img src="./man/img/hello_world.jpg" alt="hello_world" height="25px">
 </p>
 
-Or a more fun example, contributed by @hcortinajust:
+Or a more fun example, contributed by @cortinah:
 
 <p align="left">
   <img src="./man/img/plasma_daemon.png" alt="hello_world" height="600px">
