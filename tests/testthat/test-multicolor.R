@@ -2,6 +2,8 @@ library(crayon)
 
 context("multicolor")
 
+skip_if_not(use_color())
+
 test_that("baseline works", {
   expect_error(
     suppressMessages(
@@ -136,22 +138,22 @@ test_that("integration with cowsay", {
 })
 
 
-test_that("warnings", {
-  expect_silent(
-    suppressWarnings(multi_color(
-      txt = cowsay::animals[["yoda"]],
-      type = "warning",
-      colors = c("rainbow", "rainbow")
-    ))
-  )
-
-  expect_silent(
-    suppressWarnings(multi_color(
-      txt = "small text",
-      type = "warning"
-    ))
-  )
-})
+# test_that("warnings", {
+#   expect_silent(
+#     suppressWarnings(multi_color(
+#       txt = cowsay::animals[["yoda"]],
+#       type = "warning",
+#       colors = c("rainbow", "rainbow")
+#     ))
+#   )
+#
+#   expect_silent(
+#     suppressWarnings(multi_color(
+#       txt = "small text",
+#       type = "warning"
+#     ))
+#   )
+# })
 
 
 test_that("utils", {
@@ -200,7 +202,4 @@ test_that("utils", {
     nix_first_newline("foobar"),
     "foobar"
   )
-
-  skip_on_os("windows")
-  expect_equal(FALSE, on_windows())
 })

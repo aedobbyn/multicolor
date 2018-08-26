@@ -15,16 +15,7 @@ use_color <- function() {
   if (!can_color) {
     message("Colors cannot be applied in this environment. Please use another application, such as RStudio or a color-enabled terminal.")
   }
-}
-
-on_windows <- function() {
-  os <- tolower(Sys.info()[["sysname"]])
-
-  if ("windows" %in% os) {
-    TRUE
-  } else {
-    FALSE
-  }
+  can_color
 }
 
 # Internal crayon functions
