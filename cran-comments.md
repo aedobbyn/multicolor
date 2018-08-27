@@ -8,7 +8,7 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
-* A check for RGUI environment was added on load, and whenever the multi_color function is called.
+* A check for environments that cannot add was added on load, and whenever the multi_color function is called.
 
 ## Reverse dependencies
 
