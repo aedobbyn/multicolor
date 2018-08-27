@@ -5,25 +5,39 @@ status](https://travis-ci.org/aedobbyn/multicolor.svg?branch=master)](https://tr
 status](https://codecov.io/gh/aedobbyn/multicolor/branch/master/graph/badge.svg)](https://codecov.io/github/aedobbyn/multicolor?branch=master)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/aedobbyn/multicolor?branch=master&svg=true)](https://ci.appveyor.com/project/aedobbyn/multicolor)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/multicolor)](https://cran.r-project.org/package=multicolor)
+[![rstudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/multicolor)](https://github.com/metacran/cranlogs.app)
 
 # multicolor 🎨 <img src="./man/img/egret.jpg" alt="egret" height="225px" align="right">
 
-Apply multiple colors to your messages and warnings. Built on the
-[`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely with
-[`cowsay`](https://github.com/sckott/cowsay). [Bit of backstory and
-walkthrough of how it
-works](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/).
+Apply multiple colors to your messages, warnings, and errors. Built on
+the [`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely
+with [`cowsay`](https://github.com/sckott/cowsay). The [blog
+post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has
+a bit of backstory and walkthrough of how it works.
 
 ### Installation
 
+Stable, from CRAN:
+
 ``` r
-# install.packages("devtools")
+install.packages("multicolor")
+```
+
+or the development version from GitHub:
+
+``` r
 devtools::install_github("aedobbyn/multicolor")
 ```
 
-Note: this package cannot be run from the R GUI. RStudio or any terminal
-should work fine. If coloring isn’t possible, you’ll get a warning on
-load.
+*Note*: colors cannot be applied in the R GUI and certain other
+environments. RStudio or any terminal should work fine. If coloring
+isn’t possible, you’ll get a warning on load and when `multi_color`
+evaluates. The `type` argument will auto-set to `"string"`. To check how
+these environments are determined, see `multicolor:::use_color`. If
+using `multicolor` in another package, you might consider inserting a
+replacement for the case when this evaluates to `FALSE`.
 
 ## Usage
 
@@ -31,10 +45,9 @@ load.
 library(multicolor)
 ```
 
-Supply a character vector of colors to `colors`. Defaults to
+Supply a character vector of colors to `colors`. This defaults to
 `"rainbow"`, i.e., `c("red", "orange", "yellow", "green", "blue",
-"purple")`. The text supplied will be divided into even(ish) vertical
-chunks of those colors.
+"purple")`.
 
 ``` r
 multi_color("Hello world")
@@ -42,11 +55,11 @@ multi_color("Hello world")
 
 <p align="left">
 
-<img src="./man/img/hello_world.jpg" alt="hello_world" height="25px">
+<img src="./man/img/hello_world.jpg" alt="hello_world" height="22px">
 
 </p>
 
-Or a more fun example, contributed by @cortinah:
+A more fun example, contributed by @cortinah:
 
 <p align="left">
 
@@ -54,26 +67,32 @@ Or a more fun example, contributed by @cortinah:
 
 </p>
 
-**Options**
+#### Options
 
-If you want the bare string back with color encodings attached, use
-`type = "string"`.
+The text supplied will be divided into even(ish) chunks of those colors.
 
-Ask [important questions](https://youtu.be/B759dzymyoc?t=14s):
+The default **`direction`** is vertical, but horizontal is also an
+option by setting the `direction` param to “horizontal”.
+
+The default **`type`** messages the result. If you want the bare string
+back with color encodings attached, use `type = "string"`, which looks
+like:
 
 ``` r
 multi_color("Why are avocado pits so big?",
   type = "string")
 ```
 
-<p align="center">
+<p align="left">
 
-<img src="./man/img/avocado_q.jpg" alt="avocado_q" height="40px">
+<img src="./man/img/avocado_q.jpg" alt="avocado_q" height="37px">
 
 </p>
 
-The default is to message the
-result.
+So you can ask
+<a href="https://youtu.be/B759dzymyoc?t=14s" target="_blank">important
+questions</a> ☝️and answer them
+colorfully:
 
 ``` r
 multi_color("The wild avocado grows in subtropical jungles, so the new sprout has to get several feet tall before it can share sunlight (to make food) with its neighbors. Until it grows out of their shadows, it relies on nutrients in the seed, so it'd better be big.",
@@ -81,19 +100,17 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
                    sample(10, 1)))
 ```
 
-<p align="center">
+<p align="left">
 
-<img src="./man/img/avocado_a.jpg" alt="avocado_a" height="60px">
+<img src="./man/img/avocado_a.jpg" alt="avocado_a" height="55px">
 
 </p>
-
-The default is to color vertically, but horizontal is also an option by
-setting the `direction` param to “horizontal”.
 
 ### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
 All `cowsay` animals are exported in `multicolor::things`, but to get
-the animals to speak, you need `cowsay`.
+the animals to speak, you need
+[`cowsay`](https://github.com/sckott/cowsay).
 
 ``` r
 library(cowsay)
@@ -141,7 +158,7 @@ tryCatch(log("foo"), error = function(e) message(my_msg))
 
 <p align="left">
 
-<img src="./man/img/rms_error.jpg" alt="rms" height="400px">
+<img src="./man/img/rms_error.jpg" alt="rms" height="380px">
 
 </p>
 
@@ -160,8 +177,8 @@ say(what =
 
 <p align="left">
 
-<img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="200px">
+<img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="210px">
 
 </p>
 
-That’s it\! PRs & bug reports v welcome.
+That’s it\! PRs & bug reports v welcome. 🎨
