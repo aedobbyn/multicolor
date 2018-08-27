@@ -67,7 +67,7 @@ multi_color("Why are avocado pits so big?",
 
 <p align="center">
 
-<img src="./man/img/avocado_q_2.jpg" alt="avocado_q" height="20px">
+<img src="./man/img/avocado_q.jpg" alt="avocado_q" height="40px">
 
 </p>
 
@@ -82,7 +82,7 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
 
 <p align="center">
 
-<img src="./man/img/avocado_a.jpg" alt="avocado_a" height="70px">
+<img src="./man/img/avocado_a.jpg" alt="avocado_a" height="60px">
 
 </p>
 
@@ -143,8 +143,8 @@ And with character:
 my_msg <- 
   say(what = "Error: something went horribly wrong",
     by = "rms",
-    what_color = "orange",
-    by_color = c("red", "red", "orange", "red", "red", "orange", "red", "red"),
+    what_color = viridisLite::magma(5)[3],
+    by_color = viridisLite::magma(10),
     type = "string")
 
 e <- simpleError(my_msg)
@@ -164,12 +164,12 @@ this_option <- "bar"
 say(what = 
       glue::glue("Aha, I see you set {this_variable} to {this_option}. Excellent choice."),
     by = "owl",
-    what_color = c("salmon2", "springgreen4"),
+    what_color = c("turquoise3", "peachpuff3", "seagreen3"),
     by_color = c("turquoise3", "peachpuff3", "seagreen3"))
 ```
 
 <p align="left">
 
-<img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="250px">
+<img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="200px">
 
 </p>

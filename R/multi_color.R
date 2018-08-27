@@ -60,7 +60,7 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
-  if (use_color() == FALSE) return(message(txt))
+  if (use_color() == FALSE) stop(call. = FALSE)
 
   if (!is.character(txt)) stop("txt must be of class character.")
 
