@@ -97,28 +97,12 @@ library(cowsay)
 say(what = "holygrail", 
     by = "yoda",
     what_color = "olivedrab",
-    by_color = c("tomato1", "saddlebrown", "springgreen4", "turquoise2"))
+    by_color = colors()[which(grepl("green", colors()))])
 ```
 
 <p align="left">
 
-<img src="./man/img/yoda.jpg" alt="yoda" height="300px">
-
-</p>
-
-The default is to color vertically, but horizontal is also an option. If
-you want to make a Dutch shark, you can set the `direction` param to
-“horizontal”.
-
-``` r
-multi_color(things[["shark"]], 
-            colors = c("darkred", "white", "darkblue"),
-            direction = "horizontal")
-```
-
-<p align="left">
-
-<img src="./man/img/dutch_shark.jpg" alt="dutch_shark" height="400px">
+<img src="./man/img/yoda.jpg" alt="yoda" height="460px">
 
 </p>
 
@@ -157,6 +141,24 @@ tryCatch(log("foo"), error = function(e) message(my_msg))
 
 </p>
 
+The default is to color vertically, but horizontal is also an option. If
+you want to make a Dutch shark, you can set the `direction` param to
+“horizontal”.
+
+``` r
+multi_color(things[["shark"]], 
+            colors = c("darkred", "white", "blue"),
+            direction = "horizontal")
+```
+
+<p align="left">
+
+<img src="./man/img/dutch_shark_old.jpg" alt="dutch_shark_old" height="300px">
+
+</p>
+
+Or just use for things you want to message your user.
+
 ``` r
 this_variable <- "foo"
 this_option <- "bar"
@@ -173,3 +175,5 @@ say(what =
 <img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="200px">
 
 </p>
+
+That’s it\! PRs & bug reports v welcome.
