@@ -61,6 +61,11 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
+
+  if (!type %in% c("message", "warning", "string")) {
+    stop("type must be one of message or string")
+  }
+
   if (use_color() == FALSE) {
     message("Auto-setting type to string.")
     type <- "string"
@@ -70,10 +75,6 @@ multi_color <- function(txt = "hello world!",
 
   if (!any(is.character(colors))) {
     stop("All multi colors must be of class character.")
-  }
-
-  if (!type %in% c("message", "warning", "string")) {
-    stop("type must be one of message or string")
   }
 
   colors <- insert_rainbow(colors)
