@@ -22,7 +22,8 @@ devtools::install_github("aedobbyn/multicolor")
 ```
 
 Note: this package cannot be run from the R GUI. RStudio or any terminal
-work fine.
+should work fine. If coloring isn’t possible, you’ll get a warning on
+load.
 
 ## Usage
 
@@ -86,6 +87,9 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
 
 </p>
 
+The default is to color vertically, but horizontal is also an option by
+setting the `direction` param to “horizontal”.
+
 ### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
 All `cowsay` animals are exported in `multicolor::things`, but to get
@@ -141,23 +145,7 @@ tryCatch(log("foo"), error = function(e) message(my_msg))
 
 </p>
 
-The default is to color vertically, but horizontal is also an option. If
-you want to make a Dutch shark, you can set the `direction` param to
-“horizontal”.
-
-``` r
-multi_color(things[["shark"]], 
-            colors = c("darkred", "white", "blue"),
-            direction = "horizontal")
-```
-
-<p align="left">
-
-<img src="./man/img/dutch_shark_old.jpg" alt="dutch_shark_old" height="300px">
-
-</p>
-
-Or just use for things you want to message your user.
+Or just send messages to your users that they’ll want to read.
 
 ``` r
 this_variable <- "foo"
@@ -166,8 +154,8 @@ this_option <- "bar"
 say(what = 
       glue::glue("Aha, I see you set {this_variable} to {this_option}. Excellent choice."),
     by = "owl",
-    what_color = c("turquoise3", "peachpuff3", "seagreen3"),
-    by_color = c("turquoise3", "peachpuff3", "seagreen3"))
+    what_color = c("seagreen3", "turquoise3", "seagreen3"),
+    by_color = c("turquoise3", "seagreen3", "turquoise3"))
 ```
 
 <p align="left">
