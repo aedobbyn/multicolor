@@ -23,7 +23,7 @@
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
 #'
-#' @examples
+#' @examples \dontrun{
 #' multi_color()
 #'
 #' multi_color("ahoy")
@@ -54,6 +54,7 @@
 #' multi_color(things[[sample(length(things), 1)]],
 #'             c("darkgreen", "white", "darkred"),
 #'             direction = "vertical")
+#' }
 
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",

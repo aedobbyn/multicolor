@@ -38,6 +38,7 @@ these colors in the order they appear in \code{colors}.
 It cannot be used with RGUI (R.app on some systems).
 }
 \examples{
+\dontrun{
 multi_color()
 
 multi_color("ahoy")
@@ -66,4 +67,5 @@ multi_color(things[[sample(length(things), 1)]],
 multi_color(things[[sample(length(things), 1)]],
             c("darkgreen", "white", "darkred"),
             direction = "vertical")
+}
 }
