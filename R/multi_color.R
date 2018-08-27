@@ -61,7 +61,10 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
-  if (use_color() == FALSE) stop(call. = FALSE)
+  if (use_color() == FALSE) {
+    message("Auto-setting type to string.")
+    type <- "string"
+  }
 
   if (!is.character(txt)) stop("txt must be of class character.")
 
