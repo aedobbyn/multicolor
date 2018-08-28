@@ -61,7 +61,6 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
-
   if (!type %in% c("message", "warning", "string")) {
     stop("type must be one of message or string")
   }

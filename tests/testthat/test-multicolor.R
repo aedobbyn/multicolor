@@ -139,22 +139,26 @@ test_that("integration with cowsay", {
 })
 
 
-# test_that("warnings", {
-#   expect_silent(
-#     suppressWarnings(multi_color(
-#       txt = cowsay::animals[["yoda"]],
-#       type = "warning",
-#       colors = c("rainbow", "rainbow")
-#     ))
-#   )
-#
-#   expect_silent(
-#     suppressWarnings(multi_color(
-#       txt = "small text",
-#       type = "warning"
-#     ))
-#   )
-# })
+test_that("warnings", {
+  expect_silent(
+    suppressMessages(
+      suppressWarnings(multi_color(
+        txt = cowsay::animals[["yoda"]],
+        type = "warning",
+        colors = c("rainbow", "rainbow")
+      ))
+    )
+  )
+
+  expect_silent(
+    suppressMessages(
+      suppressWarnings(multi_color(
+        txt = "small text",
+        type = "warning"
+      ))
+    )
+  )
+})
 
 
 test_that("utils", {
