@@ -91,8 +91,8 @@ multi_color("Why are avocado pits so big?",
 
 So you can ask
 <a href="https://youtu.be/B759dzymyoc?t=14s" target="_blank">important
-questions</a> ☝️and answer them
-colorfully:
+questions</a> ☝️and answer them colorfully
+👇:
 
 ``` r
 multi_color("The wild avocado grows in subtropical jungles, so the new sprout has to get several feet tall before it can share sunlight (to make food) with its neighbors. Until it grows out of their shadows, it relies on nutrients in the seed, so it'd better be big.",

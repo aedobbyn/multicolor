@@ -80,7 +80,7 @@ multi_color("Why are avocado pits so big?",
   <img src="./man/img/avocado_q.jpg" alt="avocado_q" height="37px">
 </p>
 
-So you can ask <a href="https://youtu.be/B759dzymyoc?t=14s" target="_blank">important questions</a> `r emo::ji("index_pointing_up")`and answer them colorfully:
+So you can ask <a href="https://youtu.be/B759dzymyoc?t=14s" target="_blank">important questions</a> `r emo::ji("index_pointing_up")`and answer them colorfully `r emo::ji("point_down")`:
 
 ```{r}
 multi_color("The wild avocado grows in subtropical jungles, so the new sprout has to get several feet tall before it can share sunlight (to make food) with its neighbors. Until it grows out of their shadows, it relies on nutrients in the seed, so it'd better be big.",
