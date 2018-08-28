@@ -139,7 +139,7 @@ test_that("integration with cowsay", {
 })
 
 
-test_that("warnings", {
+test_that("warnings don't get truncated", {
   expect_silent(
     suppressMessages(
       suppressWarnings(multi_color(
@@ -154,6 +154,18 @@ test_that("warnings", {
     suppressMessages(
       suppressWarnings(multi_color(
         txt = "small text",
+        type = "warning"
+      ))
+    )
+  )
+
+  long_text <- rep("lorem ipsum", 681) %>% # longer than max warning length
+    stringr::str_c(collapse = " ")
+
+  expect_silent(
+    suppressMessages(
+      suppressWarnings(multi_color(
+        txt = long_text,
         type = "warning"
       ))
     )
