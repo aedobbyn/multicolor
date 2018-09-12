@@ -61,8 +61,8 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         ...) {
-  if (!type %in% c("message", "warning", "string")) {
-    stop("type must be one of message or string")
+  if (!type %in% c("message", "warning", "string", "crawl")) {
+    stop("type must be one of message, string, or crawl")
   }
 
   if (use_color() == FALSE) {
@@ -263,6 +263,7 @@ multi_color <- function(txt = "hello world!",
   switch(type,
     message = message(out),
     warning = warning(out),
+    crawl = cat(out),
     string = out
   )
 }

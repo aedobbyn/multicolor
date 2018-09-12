@@ -20,10 +20,11 @@ Imports:
     purrr,
     stringr,
     tibble (>= 1.2),
-    tidyr
+    tidyr,
+    viridisLite
 Suggests: 
     covr,
     knitr,
     rmarkdown,
     testthat
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
