@@ -1,5 +1,6 @@
 #' Multi-color crawling text (works on single lines of text only)
 #'
+#' @import stringr
 #' @export
 #'
 #' @param txt (character) Some text to color, stripped of line breaks
