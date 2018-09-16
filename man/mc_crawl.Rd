@@ -31,7 +31,7 @@ Multi-color crawling text (works on single lines of text only)
 }
 \details{
 This function requires as many colors as there are characters in your string and
-prints them one at a time.
+prints them one at a time. Provided colors will be recycled if needed.
 
 It cannot be used with RGUI (R.app on some systems).
 }

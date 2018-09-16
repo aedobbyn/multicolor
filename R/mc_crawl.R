@@ -1,6 +1,5 @@
 #' Multi-color crawling text (works on single lines of text only)
 #'
-#' @import stringr
 #' @export
 #'
 #' @param txt (character) Some text to color, stripped of line breaks
@@ -15,7 +14,7 @@
 #' @param ... Further args.
 #'
 #' @details This function requires as many colors as there are characters in your string and
-#' prints them one at a time.
+#' prints them one at a time. Provided colors will be recycled if needed.
 #'
 #' It cannot be used with RGUI (R.app on some systems).
 #'
@@ -40,11 +39,15 @@
 
 mc_crawl <- function(txt='hello world!', colors=NA, dir= -1, pause=0,...) {
 
-    if (is.na(colors)) colors <- viridisLite::plasma(str_length(txt)+1, direction = dir,begin=0.3)
+  if (use_color() == FALSE) stop("Colors cannot be applied in this environment. Please use another application, such as RStudio or a color-enabled terminal.")
 
-    for (i in 1:(stringr::str_length(txt))) {
+  if (anyNA(colors)) colors <- viridisLite::plasma(stringr::str_length(txt)+1, direction = dir,begin=0.3)
+
+  colors <- rep(colors,length.out=stringr::str_length(txt)+1)
+
+  for (i in 1:(stringr::str_length(txt))) {
     multi_color(stringr::str_sub(txt,i,i), colors=colors[ (1+((i-1) %% (length(colors)))):(2+((i-1) %% (length(colors))))],
                 type='crawl',...)
-      Sys.sleep(pause)
+    Sys.sleep(pause)
   }
 }
