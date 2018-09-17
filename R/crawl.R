@@ -44,7 +44,6 @@
 #' }
 
 crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, viridis_dir = -1, pause = 0.05, ...) {
-  if (use_color() == FALSE) stop("Colors cannot be applied in this environment. Please use another application, such as RStudio or a color-enabled terminal.")
 
   if (!is.character(txt) || length(txt) != 1) {
     stop("txt must be a character vector of length 1.")
@@ -54,10 +53,18 @@ crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, vi
 
   if (is.null(colors)) colors <- viridisLite::plasma(stringr::str_length(txt), direction = viridis_dir, begin = 0.3)
 
-  vec <- multi_color(txt, colors = colors, direction = "vertical", recycle_chars = recycle_chars, type = "crawl", ...)
+  if (use_color() == FALSE) {
+    message("Colors cannot be applied in this environment. Please use another application, such as RStudio or a color-enabled terminal.")
+    for (i in seq(nchar(txt))) {
+      cat(substr(txt, i, i))
+      Sys.sleep(pause)
+    }
+  } else {
+    vec <- multi_color(txt, colors = colors, direction = "vertical", recycle_chars = recycle_chars, type = "crawl", ...)
 
-  for (i in seq_along(vec)) {
-    cat(vec[i])
-    Sys.sleep(pause)
+    for (i in seq_along(vec)) {
+      cat(vec[i])
+      Sys.sleep(pause)
+    }
   }
 }
