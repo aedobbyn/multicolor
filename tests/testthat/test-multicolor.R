@@ -2,8 +2,8 @@ library(crayon)
 
 context("multicolor")
 
-# skip_if_not(use_color())
-skip_on_os("windows")
+skip_if_not(use_color())
+# skip_on_os("windows")
 
 test_that("baseline works", {
   expect_error(
