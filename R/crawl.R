@@ -56,26 +56,10 @@ crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, vi
 
   if (is.null(colors)) colors <- viridisLite::plasma(stringr::str_length(txt) + 1, direction = viridis_dir, begin = 0.3)
 
-  # colors <- insert_rainbow(colors)
+  vec <- multi_color(txt, colors = colors, direction = "vertical", type = "crawl", ...)
 
-  # if (recycle_chars) colors <- rep(colors, length.out = stringr::str_length(txt) + 1)
-
-  # txt <- multi_color(txt, colors = colors, direction = "vertical", type = "string", ...) %>%
-  #   stringr::str_split(";") %>% purrr::as_vector()
-
-  txt <- multi_color(txt, colors = colors, direction = "vertical", type = "crawl", ...)
-
-  for (i in seq_along(txt)) {
-  # for (i in seq(nchar(txt))) {
-    # char <- stringr::str_sub(txt, i, i)
-    #
-    # wrap_character(char,
-    #   clr = colors[(1 + ((i - 1) %% (length(colors)))):(2 + ((i - 1) %% (length(colors))))]
-    # ) %>%
-    #   cat()
-
-    cat(txt[i])
-
+  for (i in seq_along(vec)) {
+    cat(vec[i])
     Sys.sleep(pause)
   }
 }

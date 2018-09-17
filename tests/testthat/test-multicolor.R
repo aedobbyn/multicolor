@@ -66,7 +66,7 @@ test_that("baseline works", {
     )
   )
 
-  expect_message(
+  expect_null(
     crawl(
       colors =
         "rainbow"

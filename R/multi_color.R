@@ -10,7 +10,7 @@
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, string or \code{\link{crawl}}.
+#' @param type (character) Message (default), warning, or string.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
@@ -65,7 +65,7 @@ multi_color <- function(txt = "hello world!",
                         recycle_chars = FALSE,
                         ...) {
   if (!type %in% c("message", "warning", "string", "crawl")) {
-    stop("type must be one of message, string, or crawl")
+    stop("type must be one of message, or string")
   }
 
   if (use_color() == FALSE) {
@@ -163,7 +163,6 @@ multi_color <- function(txt = "hello world!",
       add_clr_tags() %>%
       add_newlines() %>%
       dplyr::distinct(line_id, .keep_all = TRUE)
-
   } else if (direction == "vertical") {
     # Find the line with the max number of characters
     max_char <-
