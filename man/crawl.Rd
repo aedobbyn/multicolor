@@ -31,8 +31,8 @@ Defaults to -1, i.e. brighter to darker.}
 A string, printed in \code{colors} with \code{pause} seconds between printing each character.
 }
 \description{
-This function works on single lines of text only.
-It produces a gif-like representation of the text unfolding from left to right.
+This function crawls over \code{txt} producing a gif-like
+representation of the text unfolding from left to right.
 }
 \details{
 This function requires as many colors as there are characters in your string and
@@ -50,12 +50,8 @@ crawl("It was a dark and stormy night")
 crawl("Taste the rainbow", colors = "rainbow")
 
 options("keep.source = FALSE")
-cat("\\014")
-crawl('A long time ago in a galaxy far, far away...')
-cat('\\n')
-cat('\\n')
-crawl("It is a period of civil war. Rebel spaceships, striking from a hidden base,")
-cat('\\n')
-crawl('have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
+crawl('\\014 A long time ago in a galaxy far, far away...
+It is a period of civil war. Rebel spaceships, striking from a hidden base,
+have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
 }
 }

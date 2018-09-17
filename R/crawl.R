@@ -1,7 +1,7 @@
 #' Multi-color crawling text
 #'
-#' @description This function works on single lines of text only.
-#' It produces a gif-like representation of the text unfolding from left to right.
+#' @description This function crawls over \code{txt} producing a gif-like
+#' representation of the text unfolding from left to right.
 #'
 #' @export
 #'
@@ -14,7 +14,6 @@
 #' are fair game.
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
 #' should it apply to each individual character and be recycled?
-#'
 #' @param viridis_dir (numeric: -1 or 1) For Viridis colors, direction of colors to be applied.
 #' Defaults to -1, i.e. brighter to darker.
 #' @param pause (numeric) Seconds to pause between characters in seconds.
@@ -36,13 +35,9 @@
 #' crawl("Taste the rainbow", colors = "rainbow")
 #'
 #' options("keep.source = FALSE")
-#' cat("\014")
-#' crawl('A long time ago in a galaxy far, far away...')
-#' cat('\n')
-#' cat('\n')
-#' crawl("It is a period of civil war. Rebel spaceships, striking from a hidden base,")
-#' cat('\n')
-#' crawl('have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
+#' crawl('\014 A long time ago in a galaxy far, far away...
+#' It is a period of civil war. Rebel spaceships, striking from a hidden base,
+#' have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
 #' }
 
 crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, viridis_dir = -1, pause = 0.05, ...) {
