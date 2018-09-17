@@ -10,7 +10,7 @@
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, or string
+#' @param type (character) Message (default), warning, string or \code{\link{crawl}}.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param ... Further args.
@@ -70,7 +70,7 @@ multi_color <- function(txt = "hello world!",
     type <- "string"
   }
 
-  if (!is.character(txt)) stop("txt must be of class character.")
+  if (!is.character(txt) || length(txt) < 1) stop("txt must be of class character and >= length 1.")
 
   if (!any(is.character(colors))) {
     stop("All multi colors must be of class character.")
