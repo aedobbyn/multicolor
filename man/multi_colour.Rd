@@ -5,7 +5,8 @@
 \title{Multi-colour text}
 \usage{
 multi_colour(txt = "hello world!", colors = "rainbow",
-  type = "message", direction = "vertical", ...)
+  type = "message", direction = "vertical", recycle_chars = FALSE,
+  ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}

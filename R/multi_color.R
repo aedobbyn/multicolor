@@ -13,6 +13,8 @@
 #' @param type (character) Message (default), warning, string or \code{\link{crawl}}.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
+#' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
+#' should it apply to each individual character and be recycled?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -60,6 +62,7 @@ multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
                         direction = "vertical",
+                        recycle_chars = FALSE,
                         ...) {
   if (!type %in% c("message", "warning", "string", "crawl")) {
     stop("type must be one of message, string, or crawl")
@@ -77,9 +80,9 @@ multi_color <- function(txt = "hello world!",
   }
 
   colors <- insert_rainbow(colors)
-  n_colors <- length(colors)
+  n_colors_base <- length(colors)
 
-  if (n_colors <= 1) stop("colors must be a vector of length > 1")
+  if (n_colors_base <= 1) stop("colors must be a vector of length > 1")
 
   color_validity <-
     purrr::map_lgl(colors, crayon_is_r_color) # Checks whether a color
@@ -93,6 +96,9 @@ multi_color <- function(txt = "hello world!",
     stop(glue::glue("All colors must be R color strings or hex values.
         The input(s) {bad_colors} cannot be used."))
   }
+
+  if (recycle_chars) colors <- rep(colors, length.out = stringr::str_length(txt) + 1)
+  n_colors <- length(colors)
 
   # Number each color in the order they're given
   color_dict <-
@@ -157,6 +163,7 @@ multi_color <- function(txt = "hello world!",
       add_clr_tags() %>%
       add_newlines() %>%
       dplyr::distinct(line_id, .keep_all = TRUE)
+
   } else if (direction == "vertical") {
     # Find the line with the max number of characters
     max_char <-
@@ -238,6 +245,12 @@ multi_color <- function(txt = "hello world!",
           TRUE ~ tagged
         )
       )
+
+    if (type == "crawl") {
+      out <- out %>%
+        dplyr::pull("res")
+      return(out)
+    }
   }
 
   out <- out$res %>%
@@ -263,7 +276,6 @@ multi_color <- function(txt = "hello world!",
   switch(type,
     message = message(out),
     warning = warning(out),
-    crawl = cat(out),
     string = out
   )
 }

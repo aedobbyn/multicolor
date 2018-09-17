@@ -5,7 +5,8 @@
 \title{Multi-color text}
 \usage{
 multi_color(txt = "hello world!", colors = "rainbow",
-  type = "message", direction = "vertical", ...)
+  type = "message", direction = "vertical", recycle_chars = FALSE,
+  ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
@@ -21,6 +22,9 @@ are fair game.}
 
 \item{direction}{(character) How should the colors be spread? One of
 "horizontal" or "vertical".}
+
+\item{recycle_chars}{(logical) Should the vector of colors supplied apply to the entire string or
+should it apply to each individual character and be recycled?}
 
 \item{...}{Further args.}
 }

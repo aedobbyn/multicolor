@@ -66,13 +66,19 @@ test_that("baseline works", {
     )
   )
 
+  expect_message(
+    crawl(
+      colors =
+        "rainbow"
+    )
+  )
+
   expect_error(
     crawl(colors = c(
       "seafoamgreen",
       "green"
     )) # bad colors
   )
-
 
   expect_error(
     crawl(pause = -1) # invalid time between chars

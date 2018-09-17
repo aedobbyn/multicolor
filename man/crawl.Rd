@@ -4,23 +4,26 @@
 \alias{crawl}
 \title{Multi-color crawling text}
 \usage{
-crawl(txt = "hello world!", colors = NULL, viridis_dir = -1,
-  pause = 0, ...)
+crawl(txt = "hello world!", colors = NULL, recycle_chars = FALSE,
+  viridis_dir = -1, pause = 0.05, ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color, stripped of line breaks}
 
-\item{colors}{(character) A vector of colors, defaulting to
+\item{colors}{(character) A vector of colors to color each individual character, defaulting to
 the Viridis Plasma palette.
 
 Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 are fair game.}
 
+\item{recycle_chars}{(logical) Should the vector of colors supplied apply to the entire string or
+should it apply to each individual character and be recycled?}
+
 \item{viridis_dir}{(numeric: -1 or 1) For Viridis colors, direction of colors to be applied.
 Defaults to -1, i.e. brighter to darker.}
 
-\item{pause}{(numeric) Seconds to pause between characters in seconds. Defaults to 0.}
+\item{pause}{(numeric) Seconds to pause between characters in seconds.}
 
 \item{...}{Further args.}
 }
