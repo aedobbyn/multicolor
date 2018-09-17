@@ -66,35 +66,6 @@ test_that("baseline works", {
     )
   )
 
-  # expect_null(
-  #   crawl(
-  #     colors =
-  #       "rainbow"
-  #   )
-  # )
-
-  expect_error(
-    crawl(colors = c(
-      "seafoamgreen",
-      "green"
-    )) # bad colors
-  )
-
-  expect_error(
-    crawl(pause = -1) # invalid time between chars
-  )
-
-  expect_error(
-    crawl(viridis_dir = 0) # invalid color direction
-  )
-
-  expect_error(
-    crawl(colors = c(
-      "seafoamgreen",
-      "green"
-    )) # bad colors
-  )
-
   expect_equal(
     multi_color("one fine day", type = "string"),
     "\033[38;5;196mon\033[39m\033[38;5;214me \033[39m\033[38;5;226mfi\033[39m\033[38;5;46mne\033[39m\033[38;5;21m d\033[39m\033[38;5;129may\033[39m"
@@ -249,5 +220,31 @@ test_that("utils", {
   expect_equal(
     nix_first_newline("foobar"),
     "foobar"
+  )
+})
+
+
+test_that("crawl works", {
+  skip_on(use_color() == FALSE)
+  expect_error(
+    crawl(colors = c(
+      "seafoamgreen",
+      "green"
+    )) # bad colors
+  )
+
+  expect_error(
+    crawl(pause = -1) # invalid time between chars
+  )
+
+  expect_error(
+    crawl(viridis_dir = 0) # invalid color direction
+  )
+
+  expect_error(
+    crawl(colors = c(
+      "seafoamgreen",
+      "green"
+    )) # bad colors
   )
 })
