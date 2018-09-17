@@ -31,12 +31,13 @@ Defaults to -1, i.e. brighter to darker.}
 A string, printed in \code{colors} with \code{pause} seconds between printing each character.
 }
 \description{
-This function crawls over \code{txt} producing a gif-like
+This function crawls over \code{txt} producing an animated gif-like
 representation of the text unfolding from left to right.
 }
 \details{
 This function requires as many colors as there are characters in your string and
-prints them one at a time. Provided colors will be recycled if needed.
+prints them one at a time. Provided colors will be recycled in single-color equal-sized chunks if \code{recycle_char} is FALSE and
+character-by-character if \code{recycle_char} is TRUE.
 
 It cannot be used with RGUI (R.app on some systems) or other environments that do not support
 colored text. See \code{multicolor:::use_color} for more info.
@@ -48,6 +49,8 @@ crawl()
 crawl("It was a dark and stormy night")
 
 crawl("Taste the rainbow", colors = "rainbow")
+
+crawl(things[[3]], colors = c("purple", "cyan"), recycle_chars = TRUE, pause = 0.01)
 
 options("keep.source = FALSE")
 crawl('\\014 A long time ago in a galaxy far, far away...
