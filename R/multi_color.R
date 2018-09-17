@@ -10,9 +10,11 @@
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, or string
+#' @param type (character) Message (default), warning, or string.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
+#' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
+#' should it apply to each individual character and be recycled?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -60,9 +62,10 @@ multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
                         direction = "vertical",
+                        recycle_chars = FALSE,
                         ...) {
   if (!type %in% c("message", "warning", "string", "crawl")) {
-    stop("type must be one of message, string, or crawl")
+    stop("type must be one of message, or string")
   }
 
   if (use_color() == FALSE) {
@@ -70,16 +73,16 @@ multi_color <- function(txt = "hello world!",
     type <- "string"
   }
 
-  if (!is.character(txt)) stop("txt must be of class character.")
+  if (!is.character(txt) || length(txt) < 1) stop("txt must be of class character and >= length 1.")
 
   if (!any(is.character(colors))) {
     stop("All multi colors must be of class character.")
   }
 
   colors <- insert_rainbow(colors)
-  n_colors <- length(colors)
+  n_colors_base <- length(colors)
 
-  if (n_colors <= 1) stop("colors must be a vector of length > 1")
+  if (n_colors_base <= 1) stop("colors must be a vector of length > 1")
 
   color_validity <-
     purrr::map_lgl(colors, crayon_is_r_color) # Checks whether a color
@@ -93,6 +96,9 @@ multi_color <- function(txt = "hello world!",
     stop(glue::glue("All colors must be R color strings or hex values.
         The input(s) {bad_colors} cannot be used."))
   }
+
+  if (recycle_chars) colors <- rep(colors, length.out = stringr::str_length(txt) + 1)
+  n_colors <- length(colors)
 
   # Number each color in the order they're given
   color_dict <-
@@ -238,6 +244,12 @@ multi_color <- function(txt = "hello world!",
           TRUE ~ tagged
         )
       )
+
+    if (type == "crawl") {
+      out <- out %>%
+        dplyr::pull("res")
+      return(out)
+    }
   }
 
   out <- out$res %>%
@@ -263,7 +275,6 @@ multi_color <- function(txt = "hello world!",
   switch(type,
     message = message(out),
     warning = warning(out),
-    crawl = cat(out),
     string = out
   )
 }

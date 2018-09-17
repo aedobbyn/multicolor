@@ -20,11 +20,11 @@ Imports:
     purrr,
     stringr,
     tibble (>= 1.2),
-    tidyr,
-    viridisLite
+    tidyr
 Suggests: 
     covr,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    viridisLite
 RoxygenNote: 6.1.0
