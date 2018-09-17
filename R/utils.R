@@ -24,15 +24,15 @@ crayon_style_from_r_color <- get("style_from_r_color", asNamespace("crayon"))
 crayon_is_r_color <- get("is_r_color", asNamespace("crayon"))
 
 # Grab the color opening and closing tags for a given color
-get_open_close <- function(clr) {
-  if (length(clr) == 1 && clr == "white") {
+get_open_close <- function(c) {
+  if (c == "white") {
     num_colors <- 1
   } else {
     num_colors <- 256
   }
 
-  if (crayon_is_r_color(clr)) {
-    o_c <- crayon_style_from_r_color(clr,
+  if (crayon_is_r_color(c)) {
+    o_c <- crayon_style_from_r_color(c,
       bg = FALSE, num_colors = num_colors, grey = FALSE
     )
   } else {
@@ -40,12 +40,6 @@ get_open_close <- function(clr) {
   }
   out <- tibble::as_tibble(o_c)
   return(o_c)
-}
-
-wrap_character <- function(x, clr) {
-  o_c <- get_open_close(clr)
-
-  stringr::str_c(o_c$open, x, o_c$close, collapse = "")
 }
 
 nix_newline <- function(s) {
