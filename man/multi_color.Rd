@@ -5,7 +5,8 @@
 \title{Multi-color text}
 \usage{
 multi_color(txt = "hello world!", colors = "rainbow",
-  type = "message", direction = "vertical", ...)
+  type = "message", direction = "vertical", recycle_chars = FALSE,
+  ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
@@ -17,10 +18,13 @@ Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-sup
 colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 are fair game.}
 
-\item{type}{(character) Message (default), warning, or string}
+\item{type}{(character) Message (default), warning, or string.}
 
 \item{direction}{(character) How should the colors be spread? One of
 "horizontal" or "vertical".}
+
+\item{recycle_chars}{(logical) Should the vector of colors supplied apply to the entire string or
+should it apply to each individual character and be recycled?}
 
 \item{...}{Further args.}
 }
