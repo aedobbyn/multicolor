@@ -9,24 +9,27 @@ multi_colour(txt = "hello world!", colors = "rainbow",
   ...)
 }
 \arguments{
-\item{txt}{(character) Some text to color.}
+\item{txt}{(character) Some text to colour.}
 
-\item{colors}{(character) A vector of colors, defaulting to
+\item{colors}{(character) A vector of colours, defaulting to
 "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 
 Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
-colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
+colours. Any colours in \code{colors()} or hex values (see \code{?rgb})
 are fair game.}
 
-\item{type}{(character) Message (default), warning, or string}
+\item{type}{(character) Message (default), warning, or string.}
 
-\item{direction}{(character) How should the colors be spread? One of
+\item{direction}{(character) How should the colours be spread? One of
 "horizontal" or "vertical".}
+
+\item{recycle_chars}{(logical) Should the vector of colours supplied apply to the entire string or
+should it apply to each individual character and be recycled?}
 
 \item{...}{Further args.}
 }
 \value{
-A string if \code{type} is "string", or colored
+A string if \code{type} is "string", or coloured
 text if type is "message" or "warning"
 }
 \description{
@@ -34,37 +37,39 @@ Multi-colour text
 }
 \details{
 This function evenly (ish) divides up your string into
-these colors in the order they appear in \code{colors}.
+these colours in the order they appear in \code{colors}.
 
 It cannot be used with RGUI (R.app on some systems).
 }
 \examples{
-multi_color()
+\dontrun{
+multi_colour()
 
-multi_color("ahoy")
+multi_colour("ahoy")
 
-multi_color("taste the rainbow",
+multi_colour("taste the rainbow",
             c("mediumpurple",
               "rainbow",
              "cyan3"))
 
-multi_color(colors = c(rgb(0.1, 0.2, 0.5),
+multi_colour(colors = c(rgb(0.1, 0.2, 0.5),
                        "yellow",
                        rgb(0.2, 0.9, 0.1)))
 
-multi_color(
+multi_colour(
   cowsay::animals[["buffalo"]],
   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 
-multi_color(cowsay:::rms, sample(colors(), 10))
+multi_colour(cowsay:::rms, sample(colors(), 10))
 
 # Mystery Bulgarian animal
-multi_color(things[[sample(length(things), 1)]],
+multi_colour(things[[sample(length(things), 1)]],
             c("white", "darkgreen", "darkred"),
             direction = "horizontal")
 
 # Mystery Italian animal
-multi_color(things[[sample(length(things), 1)]],
+multi_colour(things[[sample(length(things), 1)]],
             c("darkgreen", "white", "darkred"),
             direction = "vertical")
+}
 }
