@@ -34,6 +34,8 @@
 #'
 #' crawl("Taste the rainbow", colors = "rainbow")
 #'
+#' crawl(things[[3]], colors = c("purple", "cyan"), recycle_chars = TRUE, pause = 0.01)
+#'
 #' options("keep.source = FALSE")
 #' crawl('\014 A long time ago in a galaxy far, far away...
 #' It is a period of civil war. Rebel spaceships, striking from a hidden base,
@@ -49,9 +51,9 @@ crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, vi
 
   if (!is.numeric(pause) || pause < 0) stop("pause must be a number > 0.")
 
-  if (is.null(colors)) colors <- viridisLite::plasma(stringr::str_length(txt) + 1, direction = viridis_dir, begin = 0.3)
+  if (is.null(colors)) colors <- viridisLite::plasma(stringr::str_length(txt), direction = viridis_dir, begin = 0.3)
 
-  vec <- multi_color(txt, colors = colors, direction = "vertical", type = "crawl", ...)
+  vec <- multi_color(txt, colors = colors, direction = "vertical", recycle_chars = recycle_chars, type = "crawl", ...)
 
   for (i in seq_along(vec)) {
     cat(vec[i])
