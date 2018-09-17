@@ -66,6 +66,37 @@ test_that("baseline works", {
     )
   )
 
+  expect_error(
+    suppressMessages(
+      mc_crawl(colors = c(
+        "seafoamgreen",
+        "green"
+      )) # bad colors
+    )
+  )
+
+
+  expect_error(
+    suppressMessages(
+      mc_crawl(pause=-1) # invalid time between chars
+    )
+  )
+
+  expect_error(
+    suppressMessages(
+      mc_crawl(dir=0) # invalid color direction
+    )
+  )
+
+  expect_error(
+    suppressMessages(
+      mc_crawl(colors = c(
+        "seafoamgreen",
+        "green"
+      )) # bad colors
+    )
+  )
+
   expect_equal(
     multi_color("one fine day", type = "string"),
     "\033[38;5;196mon\033[39m\033[38;5;214me \033[39m\033[38;5;226mfi\033[39m\033[38;5;46mne\033[39m\033[38;5;21m d\033[39m\033[38;5;129may\033[39m"
@@ -107,6 +138,8 @@ test_that("colors(), including grays, rainbow, and rbg work", {
       multi_color("asdfjkl;asdfjk;", colors = "rainbow")
     )
   )
+
+
 
   # Multiple of the same colors
   expect_equal(

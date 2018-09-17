@@ -2,6 +2,7 @@
 
 export("%>%")
 export(insert_rainbow)
+export(mc_crawl)
 export(multi_color)
 export(multi_colour)
 export(nix_first_newline)
