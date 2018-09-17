@@ -66,33 +66,35 @@ test_that("baseline works", {
     )
   )
 
-  # expect_null(
-  #   crawl(
-  #     colors =
-  #       "rainbow"
-  #   )
-  # )
+  expect_error(
+    suppressMessages(
+      mc_crawl(colors = c(
+        "seafoamgreen",
+        "green"
+      )) # bad colors
+    )
+  )
+
 
   expect_error(
-    crawl(colors = c(
-      "seafoamgreen",
-      "green"
-    )) # bad colors
+    suppressMessages(
+      mc_crawl(pause=-1) # invalid time between chars
+    )
   )
 
   expect_error(
-    crawl(pause = -1) # invalid time between chars
+    suppressMessages(
+      mc_crawl(dir=0) # invalid color direction
+    )
   )
 
   expect_error(
-    crawl(viridis_dir = 0) # invalid color direction
-  )
-
-  expect_error(
-    crawl(colors = c(
-      "seafoamgreen",
-      "green"
-    )) # bad colors
+    suppressMessages(
+      mc_crawl(colors = c(
+        "seafoamgreen",
+        "green"
+      )) # bad colors
+    )
   )
 
   expect_equal(
