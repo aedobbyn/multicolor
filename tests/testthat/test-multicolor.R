@@ -1,8 +1,8 @@
 library(crayon)
+library(testthat)
 
 context("multicolor")
 
-# skip_if_not(use_color())
 skip_on_os("windows")
 
 test_that("baseline works", {
@@ -225,7 +225,9 @@ test_that("utils", {
 
 
 test_that("crawl works", {
-  skip_on(use_color() == FALSE)
+  expect_output(crawl())
+
+  skip_if_not(use_color())
   expect_error(
     crawl(colors = c(
       "seafoamgreen",
