@@ -63,7 +63,7 @@ multi_color("Hello world")
 If you want to unveil your creation slowly (as @cortinah's whale gif above), use **`crawl`**. You can vary the speed with the `pause` argument. 
 
 <p align="left">
-  <img src="./man/img/chicken.gif" alt="chicken">
+  <img src="./man/img/green_chicken_hd.gif" alt="chicken">
 </p>
 
 #### Options

@@ -16,8 +16,6 @@
 #' should it apply to each individual character and be recycled?
 #' @param direction (character) How should the colours be spread? One of
 #' "horizontal" or "vertical".
-#' @param viridis_dir (numeric: -1 or 1) For Viridis colors, direction of colors to be applied.
-#' Defaults to -1, i.e. brighter to darker.
 #' @param pause (numeric) Seconds to pause between characters in seconds.
 #' @param ... Further args.
 #'
@@ -42,14 +40,13 @@
 #' options("keep.source = FALSE")
 #' crawl('\014 A long time ago in a galaxy far, far away...
 #' It is a period of civil war. Rebel spaceships, striking from a hidden base,
-#' have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
+#' have won their first victory against the evil Galactic Empire.')
 #' }
 
 crawl <- function(txt = "hello world!",
                   colors = NULL,
                   recycle_chars = FALSE,
                   direction = "vertical",
-                  viridis_dir = -1,
                   pause = 0.05,
                   ...) {
   if (!is.character(txt) || length(txt) != 1) {
@@ -58,7 +55,7 @@ crawl <- function(txt = "hello world!",
 
   if (!is.numeric(pause) || pause < 0) stop("pause must be a number > 0.")
 
-  if (is.null(colors)) colors <- viridisLite::plasma(stringr::str_length(txt), direction = viridis_dir, begin = 0.3)
+  if (is.null(colors)) colors <- viridisLite::plasma(stringr::str_length(txt), direction = -1, begin = 0.3)
 
   if (use_color() == FALSE) {
     message("Colors cannot be applied in this environment. Please use another application, such as RStudio or a color-enabled terminal.")

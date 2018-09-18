@@ -71,7 +71,7 @@ argument.
 
 <p align="left">
 
-<img src="./man/img/chicken.gif" alt="chicken">
+<img src="./man/img/green_chicken_hd.gif" alt="chicken">
 
 </p>
 

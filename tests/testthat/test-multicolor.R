@@ -240,10 +240,6 @@ test_that("crawl works", {
   )
 
   expect_error(
-    crawl(viridis_dir = 0) # invalid color direction
-  )
-
-  expect_error(
     crawl(colors = c(
       "seafoamgreen",
       "green"

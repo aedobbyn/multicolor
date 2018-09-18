@@ -5,7 +5,7 @@
 \title{Multi-color crawling text}
 \usage{
 crawl(txt = "hello world!", colors = NULL, recycle_chars = FALSE,
-  direction = "vertical", viridis_dir = -1, pause = 0.05, ...)
+  direction = "vertical", pause = 0.05, ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color, stripped of line breaks}
@@ -22,9 +22,6 @@ should it apply to each individual character and be recycled?}
 
 \item{direction}{(character) How should the colours be spread? One of
 "horizontal" or "vertical".}
-
-\item{viridis_dir}{(numeric: -1 or 1) For Viridis colors, direction of colors to be applied.
-Defaults to -1, i.e. brighter to darker.}
 
 \item{pause}{(numeric) Seconds to pause between characters in seconds.}
 
@@ -58,6 +55,6 @@ crawl(things[[3]], colors = c("purple", "cyan"), recycle_chars = TRUE, pause = 0
 options("keep.source = FALSE")
 crawl('\\014 A long time ago in a galaxy far, far away...
 It is a period of civil war. Rebel spaceships, striking from a hidden base,
-have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
+have won their first victory against the evil Galactic Empire.')
 }
 }
