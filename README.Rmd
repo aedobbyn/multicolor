@@ -60,15 +60,22 @@ multi_color("Hello world")
   <img src="./man/img/hello_world.jpg" alt="hello_world" height="22px">
 </p>
 
-The whale example, contributed by @cortinah, was made using the `crawl` function.
+If you want to unveil your creation slowly (as @cortinah's whale gif above), use **`crawl`**. You can vary the speed with the `pause` argument. 
+
+<p align="left">
+  <img src="./man/img/chicken.gif" alt="chicken">
+</p>
+
+#### Options
+
+The text supplied will be divided into even(ish) chunks of those colors when **`recycle_chars`** is false. If it's true, each color will apply to a single character, and the `colors` vector will be recycled over the lenght of the input string supplied.
+
+Any character vector of R colors or hex values are fair game.
 
 <p align="left">
   <img src="./man/img/plasma_daemon.png" alt="hello_world" height="600px">
 </p>
 
-#### Options
-
-The text supplied will be divided into even(ish) chunks of those colors. 
 
 The default **`direction`** is vertical, but horizontal is also an option by setting the `direction` param to "horizontal".
 
