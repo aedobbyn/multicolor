@@ -17,6 +17,12 @@ with [`cowsay`](https://github.com/sckott/cowsay). The [blog
 post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has
 a bit of backstory and walkthrough of how it works.
 
+<p align="left">
+
+<img src="./man/img/whale.gif" alt="whale">
+
+</p>
+
 ### Installation
 
 Stable, from CRAN:

@@ -14,6 +14,8 @@
 #' are fair game.
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
 #' should it apply to each individual character and be recycled?
+#' @param direction (character) How should the colours be spread? One of
+#' "horizontal" or "vertical".
 #' @param viridis_dir (numeric: -1 or 1) For Viridis colors, direction of colors to be applied.
 #' Defaults to -1, i.e. brighter to darker.
 #' @param pause (numeric) Seconds to pause between characters in seconds.
@@ -43,8 +45,13 @@
 #' have won their first victory against the evil Galactic Empire.', viridis_dir = 1)
 #' }
 
-crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, viridis_dir = -1, pause = 0.05, ...) {
-
+crawl <- function(txt = "hello world!",
+                  colors = NULL,
+                  recycle_chars = FALSE,
+                  direction = "vertical",
+                  viridis_dir = -1,
+                  pause = 0.05,
+                  ...) {
   if (!is.character(txt) || length(txt) != 1) {
     stop("txt must be a character vector of length 1.")
   }
@@ -60,7 +67,7 @@ crawl <- function(txt = "hello world!", colors = NULL, recycle_chars = FALSE, vi
       Sys.sleep(pause)
     }
   } else {
-    vec <- multi_color(txt, colors = colors, direction = "vertical", recycle_chars = recycle_chars, type = "crawl", ...)
+    vec <- multi_color(txt, colors = colors, direction = direction, recycle_chars = recycle_chars, type = "crawl", ...)
 
     for (i in seq_along(vec)) {
       cat(vec[i])

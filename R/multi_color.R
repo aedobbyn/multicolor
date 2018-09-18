@@ -163,6 +163,12 @@ multi_color <- function(txt = "hello world!",
       add_clr_tags() %>%
       add_newlines() %>%
       dplyr::distinct(line_id, .keep_all = TRUE)
+
+    if (type == "crawl") {
+      out <- out %>%
+        dplyr::pull("res")
+      return(out)
+    }
   } else if (direction == "vertical") {
     # Find the line with the max number of characters
     max_char <-

@@ -24,6 +24,10 @@ knitr::opts_chunk$set(
 
 Apply multiple colors to your messages, warnings, and errors. Built on the [`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely with [`cowsay`](https://github.com/sckott/cowsay). The [blog post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has a bit of backstory and walkthrough of how it works.
 
+<p align="left">
+  <img src="./man/img/whale.gif" alt="whale">
+</p>
+
 ### Installation 
 
 Stable, from CRAN:
@@ -56,7 +60,7 @@ multi_color("Hello world")
   <img src="./man/img/hello_world.jpg" alt="hello_world" height="22px">
 </p>
 
-A more fun example, contributed by @cortinah:
+The whale example, contributed by @cortinah, was made using the `crawl` function.
 
 <p align="left">
   <img src="./man/img/plasma_daemon.png" alt="hello_world" height="600px">

@@ -5,7 +5,7 @@
 \title{Multi-color crawling text}
 \usage{
 crawl(txt = "hello world!", colors = NULL, recycle_chars = FALSE,
-  viridis_dir = -1, pause = 0.05, ...)
+  direction = "vertical", viridis_dir = -1, pause = 0.05, ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color, stripped of line breaks}
@@ -19,6 +19,9 @@ are fair game.}
 
 \item{recycle_chars}{(logical) Should the vector of colors supplied apply to the entire string or
 should it apply to each individual character and be recycled?}
+
+\item{direction}{(character) How should the colours be spread? One of
+"horizontal" or "vertical".}
 
 \item{viridis_dir}{(numeric: -1 or 1) For Viridis colors, direction of colors to be applied.
 Defaults to -1, i.e. brighter to darker.}
