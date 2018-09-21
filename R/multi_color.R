@@ -130,10 +130,9 @@ multi_color <- function(txt = "hello world!",
     dplyr::pull(line) %>%
     dplyr::first()
 
-  # if (recycle_chars) colors <- rep(colors, length.out = stringr::str_length(txt))
   if (recycle_chars) {
     if (direction == "horizontal") {
-      colors <- rep(colors, length.out = nrow(by_line))  # colors %>% stringr::str_split("\\n") %>% purrr::as_vector() %>% length()
+      colors <- rep(colors, length.out = nrow(by_line))
     } else if (direction == "vertical") {
       colors <- rep(colors, length.out = nchar(max_char))
     }
