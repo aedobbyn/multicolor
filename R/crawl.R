@@ -17,7 +17,7 @@
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param pause (numeric) Seconds to pause between characters in seconds.
-#' @param ... Further args passed to \link{code{multi_color}}.
+#' @param ... Further args passed to \code{\link{multi_color}}.
 #'
 #' @details This function requires as many colors as there are characters in your string and
 #' prints them one at a time.
@@ -38,10 +38,11 @@
 #'
 #' crawl("Taste the rainbow", colors = "rainbow")
 #'
-#' crawl(things[[14]], colors = c("purple", "cyan"), direction = "horizontal", recycle_chars = TRUE, pause = 0.01)
+#' crawl(things[[14]], colors = c("purple", "cyan"),
+#'   direction = "horizontal", recycle_chars = TRUE, pause = 0.01)
 #'
 #' options("keep.source = FALSE")
-#' crawl('\014 A long time ago in a galaxy far, far away...
+#' crawl('\014A long time ago in a galaxy far, far away...
 #' It is a period of civil war. Rebel spaceships, striking from a hidden base,
 #' have won their first victory against the evil Galactic Empire.')
 #' }

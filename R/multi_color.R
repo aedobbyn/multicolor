@@ -305,18 +305,19 @@ multi_color <- function(txt = "hello world!",
 #' @param colors (character) A vector of colours, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
-#' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
+#' Must all be \href{https://github.com/r-lib/crayon#256-colours}{\code{crayon}}-supported
 #' colours. Any colours in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
 #' @param type (character) Message (default), warning, or string.
 #' @param direction (character) How should the colours be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colours supplied apply to the entire string or
-#' should it apply to each individual character and be recycled?
+#' should it apply to each individual character (if \code{direction} is vertical)
+#' or line (if \code{direction} is horizontal), and be recycled?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
-#' these colours in the order they appear in \code{colors}.
+#' these colours in the order they appear in \code{colours}.
 #'
 #' It cannot be used with RGUI (R.app on some systems).
 #'
@@ -335,7 +336,7 @@ multi_color <- function(txt = "hello world!",
 #'               "rainbow",
 #'              "cyan3"))
 #'
-#' multi_colour(colors = c(rgb(0.1, 0.2, 0.5),
+#' multi_colour(colours = c(rgb(0.1, 0.2, 0.5),
 #'                        "yellow",
 #'                        rgb(0.2, 0.9, 0.1)))
 #'
@@ -343,7 +344,7 @@ multi_color <- function(txt = "hello world!",
 #'   cowsay::animals[["buffalo"]],
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
 #'
-#' multi_colour(cowsay:::rms, sample(colors(), 10))
+#' multi_colour(cowsay:::rms, sample(colours(), 10))
 #'
 #' # Mystery Bulgarian animal
 #' multi_colour(things[[sample(length(things), 1)]],
