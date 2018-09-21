@@ -24,7 +24,8 @@ are fair game.}
 "horizontal" or "vertical".}
 
 \item{recycle_chars}{(logical) Should the vector of colors supplied apply to the entire string or
-should it apply to each individual character and be recycled?}
+should it apply to each individual character (if \code{direction} is vertical)
+or line (if \code{direction} is horizontal), and be recycled?}
 
 \item{...}{Further args.}
 }
