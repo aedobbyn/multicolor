@@ -14,7 +14,8 @@
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
-#' should it apply to each individual character and be recycled?
+#' should it apply to each individual character (if \code{direction} is vertical)
+#' or line (if \code{direction} is horizontal), and be recycled?
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -97,7 +98,47 @@ multi_color <- function(txt = "hello world!",
         The input(s) {bad_colors} cannot be used."))
   }
 
-  if (recycle_chars) colors <- rep(colors, length.out = stringr::str_length(txt) + 1)
+  # Get tibble with one row per line and their n characters
+  by_line <-
+    tibble::tibble(
+      full = txt
+    ) %>%
+    dplyr::mutate(
+      line = txt %>% stringr::str_split("\\n")
+    ) %>%
+    tidyr::unnest(line) %>%
+    dplyr::mutate(
+      n_char = nchar(line)
+    )
+
+  # If the first line is an empty string, nix it
+  if (by_line$line[1] == "") {
+    by_line <-
+      by_line[2:nrow(by_line), ]
+  }
+
+  by_line <- by_line %>%
+    dplyr::mutate(
+      line_id = dplyr::row_number() # Add UUID
+    ) %>%
+    dplyr::select(-full)
+
+  # Find the line with the max number of characters
+  max_char <-
+    by_line %>%
+    dplyr::filter(n_char == max(n_char)) %>%
+    dplyr::pull(line) %>%
+    dplyr::first()
+
+  # if (recycle_chars) colors <- rep(colors, length.out = stringr::str_length(txt))
+  if (recycle_chars) {
+    if (direction == "horizontal") {
+      colors <- rep(colors, length.out = nrow(by_line))  # colors %>% stringr::str_split("\\n") %>% purrr::as_vector() %>% length()
+    } else if (direction == "vertical") {
+      colors <- rep(colors, length.out = nchar(max_char))
+    }
+  }
+
   n_colors <- length(colors)
 
   # Number each color in the order they're given
@@ -126,32 +167,6 @@ multi_color <- function(txt = "hello world!",
     ) %>%
     dplyr::select(-tag_num)
 
-
-  # Get tibble with one row per line and their n characters
-  by_line <-
-    tibble::tibble(
-      full = txt
-    ) %>%
-    dplyr::mutate(
-      line = txt %>% stringr::str_split("\\n")
-    ) %>%
-    tidyr::unnest(line) %>%
-    dplyr::mutate(
-      n_char = nchar(line)
-    )
-
-  # If the first line is an empty string, nix it
-  if (by_line$line[1] == "") {
-    by_line <-
-      by_line[2:nrow(by_line), ]
-  }
-
-  by_line <- by_line %>%
-    dplyr::mutate(
-      line_id = dplyr::row_number() # Add UUID
-    ) %>%
-    dplyr::select(-full)
-
   if (direction == "horizontal") {
     out <-
       by_line %>%
@@ -170,12 +185,6 @@ multi_color <- function(txt = "hello world!",
       return(out)
     }
   } else if (direction == "vertical") {
-    # Find the line with the max number of characters
-    max_char <-
-      by_line %>%
-      dplyr::filter(n_char == max(n_char)) %>%
-      dplyr::pull(line) %>%
-      dplyr::first()
 
     # Cut the longest line into roughly equal buckets
     max_assigned <-
