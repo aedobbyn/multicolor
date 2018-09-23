@@ -38,7 +38,7 @@
 #'
 #' crawl("Taste the rainbow", colors = "rainbow")
 #'
-#' crawl(things[[14]], colors = c("purple", "cyan"),
+#' crawl(things[["hypnotoad"]], colors = c("purple", "blue", "cyan"),
 #'   direction = "horizontal", recycle_chars = TRUE, pause = 0.01)
 #'
 #' options("keep.source = FALSE")
