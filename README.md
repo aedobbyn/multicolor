@@ -25,7 +25,7 @@ a bit of backstory and walkthrough of how it works.
 
 ### Installation
 
-Stable, from CRAN:
+Stable, from CRAN (does not include `crawl`):
 
 ``` r
 install.packages("multicolor")
@@ -38,12 +38,7 @@ devtools::install_github("aedobbyn/multicolor")
 ```
 
 *Note*: colors cannot be applied in the R GUI and certain other
-environments. RStudio or any terminal should work fine. If coloring
-isn’t possible, you’ll get a warning on load and when `multi_color`
-evaluates. The `type` argument will auto-set to `"string"`. To check how
-these environments are determined, see `multicolor:::use_color`. If
-using `multicolor` in another package, you might consider inserting a
-replacement for the case when this evaluates to `FALSE`.
+environments. RStudio or any terminal should work fine<sup>1</sup>.
 
 ## Usage
 
@@ -201,3 +196,10 @@ say(what =
 </p>
 
 That’s it\! PRs & bug reports v welcome. 🎨
+
+<sup>1</sup> If coloring isn’t possible, you’ll get a warning on load
+and every time `multi_color` evaluates. The `type` argument will
+auto-set to `"string"`. To check how these environments are determined,
+see `multicolor:::use_color`. If using `multicolor` in another package,
+you might consider inserting a replacement for the case when this
+evaluates to `FALSE`.
