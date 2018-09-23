@@ -69,10 +69,11 @@ crawl <- function(txt = "hello world!",
     }
   } else {
     vec <- multi_color(txt,
-                       colors = colors,
-                       direction = direction,
-                       recycle_chars = recycle_chars,
-                       type = "crawl", ...)
+      colors = colors,
+      direction = direction,
+      recycle_chars = recycle_chars,
+      type = "crawl", ...
+    )
 
     for (i in seq_along(vec)) {
       cat(vec[i])

@@ -197,6 +197,8 @@ say(what =
 
 That’s it\! PRs & bug reports v welcome. 🎨
 
+<br>
+
 <sup>1</sup> If coloring isn’t possible, you’ll get a warning on load
 and every time `multi_color` evaluates. The `type` argument will
 auto-set to `"string"`. To check how these environments are determined,
