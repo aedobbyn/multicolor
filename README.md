@@ -17,11 +17,11 @@ with [`cowsay`](https://github.com/sckott/cowsay). The [blog
 post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has
 a bit of backstory and walkthrough of how it works.
 
-<p align="left">
+<!-- <p align="left"> -->
 
-<img src="./man/img/whale.gif" alt="whale">
+<!--   <img src="./man/img/whale.gif" alt="whale"> -->
 
-</p>
+<!-- </p> -->
 
 ### Installation
 
@@ -64,11 +64,11 @@ If you want to unveil your creation slowly (as @cortinah’s whale gif
 above), use **`crawl`**. You can vary the speed with the `pause`
 argument.
 
-<p align="left">
+<!-- <p align="left"> -->
 
-<img src="./man/img/green_chicken_hd.gif" alt="chicken">
+<!--   <img src="./man/img/green_chicken_hd.gif" alt="chicken"> -->
 
-</p>
+<!-- </p> -->
 
 #### Options
 
