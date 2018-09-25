@@ -8,3 +8,7 @@
 0 errors | 0 warnings | 1 note
 
 * The note is Size of tarball: 28358982 bytes, which is likely due to the gif files that are used in the README.
+
+## Reverse dependencies
+
+Checked all reverse dependencies with devtools::revdep_check().
