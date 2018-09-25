@@ -7,7 +7,7 @@
 
 0 errors | 0 warnings | 1 note
 
-* The note is Size of tarball: 28358982 bytes, which is likely due to the gif files that are used in the README.
+* The note is related to the size of the package, which is likely due to the screenshot and gif files that are used in the README. I've removed some of these to keep the package smaller.
 
 ## Reverse dependencies
 
