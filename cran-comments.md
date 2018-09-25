@@ -7,8 +7,7 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
-* A check for environments that cannot add was added on load, and whenever the multi_color function is called.
+* Note: Size of tarball: 28358982 bytes, which is likely due to the gif files that are used in the README.
 
 ## Reverse dependencies
 
