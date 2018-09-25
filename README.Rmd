@@ -30,7 +30,7 @@ Apply multiple colors to your messages, warnings, and errors. Built on the [`cra
 
 ### Installation 
 
-Stable, from CRAN (does not include `crawl`):
+Stable, from CRAN:
 
 ```{r}
 install.packages("multicolor")

@@ -25,7 +25,7 @@ a bit of backstory and walkthrough of how it works.
 
 ### Installation
 
-Stable, from CRAN (does not include `crawl`):
+Stable, from CRAN:
 
 ``` r
 install.packages("multicolor")
