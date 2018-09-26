@@ -243,15 +243,7 @@ test_that("crawl works", {
   )
 
   expect_error(
-    suppressMessages(
-      mc_crawl(pause = -1) # invalid time between chars
-    )
-  )
-
-  expect_error(
-    suppressMessages(
-      mc_crawl(dir = 0) # invalid color direction
-    )
+    crawl(runif) # txt has to be character
   )
 
   expect_error(
