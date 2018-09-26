@@ -108,8 +108,6 @@ test_that("colors(), including grays, rainbow, and rbg work", {
     )
   )
 
-
-
   # Multiple of the same colors
   expect_equal(
     multi_color("asdfjkl;asdfjk;",
