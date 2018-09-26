@@ -228,14 +228,6 @@ test_that("utils", {
 test_that("crawl works", {
   expect_output(crawl())
 
-  skip_if_not(use_color())
-  expect_error(
-    crawl(colors = c(
-      "seafoamgreen",
-      "green"
-    )) # bad colors
-  )
-
   expect_error(
     crawl(pause = -1) # invalid time between chars
   )
@@ -244,6 +236,7 @@ test_that("crawl works", {
     crawl(runif) # txt has to be character
   )
 
+  skip_if_not(use_color())
   expect_error(
     crawl(colors = c(
       "seafoamgreen",
