@@ -67,7 +67,7 @@ crawl <- function(txt = "hello world!",
       cat(substr(txt, i, i))
       Sys.sleep(pause)
     }
-  } else {
+  } else { # nocov start
     vec <- multi_color(txt,
       colors = colors,
       direction = direction,
@@ -79,5 +79,5 @@ crawl <- function(txt = "hello world!",
       cat(vec[i])
       Sys.sleep(pause)
     }
-  }
+  } # nocov end
 }

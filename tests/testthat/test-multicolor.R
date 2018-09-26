@@ -147,7 +147,9 @@ test_that("warnings don't get truncated", {
       suppressWarnings(multi_color(
         txt = cowsay::animals[["yoda"]],
         type = "warning",
-        colors = c("rainbow", "rainbow")
+        colors = c("rainbow", "rainbow"),
+        recycle_chars = TRUE,
+        direction = "horizontal"
       ))
     )
   )
@@ -168,6 +170,7 @@ test_that("warnings don't get truncated", {
     suppressMessages(
       suppressWarnings(multi_color(
         txt = long_text,
+        recycle_chars = TRUE,
         type = "warning"
       ))
     )
@@ -237,6 +240,18 @@ test_that("crawl works", {
 
   expect_error(
     crawl(pause = -1) # invalid time between chars
+  )
+
+  expect_error(
+    suppressMessages(
+      mc_crawl(pause = -1) # invalid time between chars
+    )
+  )
+
+  expect_error(
+    suppressMessages(
+      mc_crawl(dir = 0) # invalid color direction
+    )
   )
 
   expect_error(

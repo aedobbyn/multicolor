@@ -274,7 +274,7 @@ multi_color <- function(txt = "hello world!",
   }
 
   # Set warning length so it's not truncated
-  if (type == "warning") {
+  if (type == "warning") { # nocov start
     if (nchar(out) < 100) {
       wl <- 100
     } else if (nchar(out) > 8170) {
@@ -284,11 +284,11 @@ multi_color <- function(txt = "hello world!",
     }
     warn_op <- options(warning.length = wl)
     on.exit(options(warn_op))
-  }
+  } # nocov end
 
   switch(type,
-    message = message(out),
-    warning = warning(out),
+    message = message(out), # nocov
+    warning = warning(out), # nocov
     string = out
   )
 }
