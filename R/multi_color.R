@@ -80,6 +80,10 @@ multi_color <- function(txt = "hello world!",
     stop("All multi colors must be of class character.")
   }
 
+  direction <- pmatch(direction, c("vertical","horizontal"))
+  if (is.na(direction)) stop("direction must be 'horizontal' or 'vertical'.")
+  direction <- ifelse(direction==1,"vertical","horizontal")
+
   colors <- insert_rainbow(colors)
   n_colors_base <- length(colors)
 
