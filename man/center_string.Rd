@@ -4,12 +4,12 @@
 \alias{center_string}
 \title{Center all lines of a string relative to console width.}
 \usage{
-center_string(string, removelastbreak = TRUE, display = FALSE)
+center_string(string, remove_last_break = TRUE, display = FALSE)
 }
 \arguments{
 \item{string}{(character) Some text to center within console.}
 
-\item{removelastbreak}{(logical) Set to TRUE to removes last line break, defaults to FALSE.}
+\item{remove_last_break}{(logical) Set to TRUE to remove last line break. Defaults to FALSE.}
 
 \item{display}{(logical) Returns string invisibly if FALSE (default), set to TRUE to display returned string}
 }
@@ -21,4 +21,9 @@ Center all lines of a string relative to console width.
 }
 \details{
 To removes last line break set \code{removelastbreak} to TRUE.
+}
+\examples{
+triangle_string(starwars_intro, display = TRUE) \%>\%
+  center_string() \%>\%
+  multi_color(direction = "horizontal", recycle_chars = TRUE)
 }

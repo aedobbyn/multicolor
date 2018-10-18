@@ -80,7 +80,7 @@ multi_color <- function(txt = "hello world!",
     stop("All multi colors must be of class character.")
   }
 
-  direction <- match.arg(direction, c("vertical","horizontal"))
+  direction <- match.arg(direction, c("vertical", "horizontal"))
   if (is.na(direction)) stop("direction must be 'horizontal' or 'vertical'.")
 
   colors <- insert_rainbow(colors)

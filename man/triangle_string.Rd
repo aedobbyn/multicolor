@@ -9,7 +9,7 @@ triangle_string(string, maxlen = 1, step = +1, display = FALSE)
 \arguments{
 \item{string}{(character) Some text to reshape into a triangle.}
 
-\item{maxlen}{(integer) width of top of triangle, defaults to 1, set larger than 1 for downward-pointing triangle}
+\item{maxlen}{(integer) Width of top of triangle. Defaults to 1. Set larger than 1 for downward-pointing triangle.}
 
 \item{step}{(integer) Number of characters to expand or contract triangle width per line (set to negative for downward-pointing triangle)}
 
@@ -24,4 +24,8 @@ Turn strings into triangle-shaped strings
 \details{
 Use positive step argument for upward pointing triangle
 and negative step and wider maxlen for downward pointing triangle.
+}
+\examples{
+triangle_string("hellooooooooooooooooooooooooooooooooooooooooooooooooooo world") \%>\%
+  multi_color()
 }
