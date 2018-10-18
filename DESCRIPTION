@@ -22,6 +22,7 @@ Imports:
     glue,
     magrittr,
     purrr,
+    stringi,
     stringr,
     tibble (>= 1.2),
     tidyr
