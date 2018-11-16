@@ -14,19 +14,15 @@ make_fake_words <- function(n_words = 10, letters_range = 2:20,
   pool <- letters
 
   out <-
-    purrr::map_chr(1:n_words, make_fake_word, pool = pool) %>%
-    stringr::str_c(collapse = " ")
+    purrr::map_chr(1:n_words, make_fake_word, pool = pool)
 
   if (n_punctuations > 0) {
     puncs <- sample(punctuation, n_punctuations)
     out <- out %>%
       c(puncs) %>%
       sample(size = length(.)) %>%
-      stringr::str_c(collapse = "")
+      stringr::str_c(collapse = " ")
   }
 
   out
 }
-
-
-make_fake_words()
