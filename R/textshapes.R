@@ -14,7 +14,7 @@
 #' triangle_string("hellooooooooooooooooooooooooooooooooooooooooooooooooooo world") %>%
 #'   multi_color()
 
-triangle_string <- function(string, maxlen = 1, step = +1, display = FALSE) {
+triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) {
   # if maxlen == 0 then stop, no more lines left
   if (maxlen == 0) return("\n")
 
