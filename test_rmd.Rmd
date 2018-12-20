@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+options(crayon.enabled=TRUE)
+library(multicolor)
+library(fansi)
+```
+
+```{r}
+sgr_to_html(multi_color('Hello, World', type='string'))
+
+cat('\n\n')
+
+sgr_to_html(
+multi_color("taste the rainbow",
+            c("mediumpurple",
+              "rainbow",
+             "cyan3"), type='string')
+             )
+```
+
+
