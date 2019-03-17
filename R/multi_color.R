@@ -254,10 +254,11 @@ multi_color <- function(txt = "hello world!",
       ) %>%
       dplyr::ungroup() %>%
       dplyr::group_by(line_id) %>%
-      # Add a newline after every line
+      # Add a close tag and newline after every line
+      # (Newline esp important when following text is not colored)
       dplyr::mutate(
         res = dplyr::case_when(
-          char_num == max(char_num) ~ tagged %>% paste("\n", sep = ""),
+          char_num == max(char_num) ~ tagged %>% paste(close_tag, "\n", sep = ""),
           TRUE ~ tagged
         )
       )

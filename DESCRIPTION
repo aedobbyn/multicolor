@@ -28,8 +28,9 @@ Imports:
     tidyr
 Suggests: 
     covr,
+    fansi,
     knitr,
     rmarkdown,
     testthat,
     viridisLite
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

@@ -23,6 +23,9 @@ crayon_style_from_r_color <- get("style_from_r_color", asNamespace("crayon"))
 
 crayon_is_r_color <- get("is_r_color", asNamespace("crayon"))
 
+# General close tag for ends of lines
+close_tag <- "\033[39m"
+
 # Grab the color opening and closing tags for a given color
 get_open_close <- function(clr) {
   if (length(clr) == 1 && clr == "white") {

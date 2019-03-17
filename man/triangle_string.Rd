@@ -4,7 +4,7 @@
 \alias{triangle_string}
 \title{Turn strings into triangle-shaped strings}
 \usage{
-triangle_string(string, maxlen = 1, step = +1, display = FALSE)
+triangle_string(string, maxlen = 1, step = 1, display = FALSE)
 }
 \arguments{
 \item{string}{(character) Some text to reshape into a triangle.}

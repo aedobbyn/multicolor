@@ -4,7 +4,7 @@
 \name{things}
 \alias{things}
 \title{Things}
-\format{An object of class \code{list} of length 42.}
+\format{An object of class \code{list} of length 43.}
 \usage{
 things
 }
