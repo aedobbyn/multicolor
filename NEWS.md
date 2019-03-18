@@ -1,3 +1,8 @@
+# multicolor 0.1.2
+
+* Support for `multicolor` in RMarkdown documents is adde with `type = "rmd"`
+* A colorful logo is messaged on startup
+
 # multicolor 0.1.1
 
 * `crawl()` allows for applying `multi_color` with pauses in between characters or lines

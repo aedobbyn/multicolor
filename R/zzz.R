@@ -1,5 +1,7 @@
 
 .onAttach <- function(...) {
-  use_color()
-  multicolor_logo()
+  if (!inside_knitr()) {
+    use_color()
+    multicolor_logo()
+  }
 }

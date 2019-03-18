@@ -4,7 +4,10 @@
 \alias{multicolor_logo}
 \title{The multicolor package logo}
 \usage{
-multicolor_logo()
+multicolor_logo(...)
+}
+\arguments{
+\item{...}{Arguments passed to \code{multi_color}.}
 }
 \description{
 The multicolor package logo

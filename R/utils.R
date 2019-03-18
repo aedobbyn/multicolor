@@ -18,10 +18,17 @@ use_color <- function() {
   can_color
 }
 
+inside_knitr <- function() {
+  isTRUE(getOption('knitr.in.progress'))
+}
+
 # Internal crayon functions
 crayon_style_from_r_color <- get("style_from_r_color", asNamespace("crayon"))
 
 crayon_is_r_color <- get("is_r_color", asNamespace("crayon"))
+
+# General close tag for ends of lines
+close_tag <- "\033[39m"
 
 # Grab the color opening and closing tags for a given color
 get_open_close <- function(clr) {

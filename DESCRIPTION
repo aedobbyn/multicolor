@@ -22,13 +22,17 @@ Imports:
     glue,
     magrittr,
     purrr,
+    stringi,
     stringr,
     tibble (>= 1.2),
     tidyr
 Suggests: 
     covr,
+    fansi,
     knitr,
     rmarkdown,
     testthat,
-    viridisLite
-RoxygenNote: 6.1.0
+    viridisLite,
+    wesanderson
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr

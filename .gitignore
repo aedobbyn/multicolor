@@ -1,6 +1,11 @@
+Meta
+doc
+inst/doc
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 Dockerfile
 revdep
+extra
+scratchpad.R

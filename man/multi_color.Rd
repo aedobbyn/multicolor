@@ -18,7 +18,7 @@ Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-sup
 colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 are fair game.}
 
-\item{type}{(character) Message (default), warning, or string.}
+\item{type}{(character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document} the chunk option \code{results = "asis"} should be used.}
 
 \item{direction}{(character) How should the colors be spread? One of
 "horizontal" or "vertical".}

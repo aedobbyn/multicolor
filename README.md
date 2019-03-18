@@ -39,6 +39,8 @@ devtools::install_github("aedobbyn/multicolor")
 
 *Note*: colors cannot be applied in the R GUI and certain other
 environments. RStudio or any terminal should work fine<sup>1</sup>.
+[RMarkdown](https://github.com/aedobbyn/multicolor/blob/dev/vignettes/rmd.Rmd)
+is also in play 👍.
 
 ## Usage
 
@@ -120,6 +122,10 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
 
 </p>
 
+You can use [`multicolor` in RMarkdown
+documents](https://github.com/aedobbyn/multicolor/blob/dev/vignettes/rmd.Rmd)
+with `type = "rmd"`.
+
 ### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
 All `cowsay` animals are exported in `multicolor::things`, but to get
@@ -199,9 +205,9 @@ That’s it\! PRs & bug reports v welcome. 🎨
 
 <br>
 
-<sup>1</sup> If coloring isn’t possible, you’ll get a warning on load
-and every time `multi_color` evaluates. The `type` argument will
-auto-set to `"string"`. To check how these environments are determined,
-see `multicolor:::use_color`. If using `multicolor` in another package,
-you might consider inserting a replacement for the case when this
-evaluates to `FALSE`.
+<sup>1</sup> If coloring isn’t possible, you’ll get a warning every time
+`multi_color` evaluates. The `type` argument will auto-set to
+`"string"`. To check how these environments are determined, see
+[`multicolor:::use_color`](https://github.com/aedobbyn/multicolor/blob/dev/R/utils.R#L13).
+If using `multicolor` in another package, you might consider inserting a
+replacement for the case when this evaluates to `FALSE`.
