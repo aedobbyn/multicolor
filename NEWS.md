@@ -1,6 +1,6 @@
 # multicolor 0.1.2
 
-* Support for `multicolor` in RMarkdown documents is adde with `type = "rmd"`
+* Support for `multicolor` in RMarkdown documents is added with `type = "rmd"`
 * Bug fix for overflow of the last color of a line when no color is applied to the next line (#12)
 * A colorful logo is messaged on startup
 

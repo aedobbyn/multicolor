@@ -68,7 +68,7 @@ If you want to unveil your creation slowly (as @cortinah's whale gif above), use
 
 #### Options
 
-The text supplied will be divided into even(ish) chunks of those colors when **`recycle_chars`** is false. If it's true, each color will apply to a single character, and the `colors` vector will be recycled over the lenght of the input string supplied.
+The text supplied will be divided into even(ish) chunks of those colors when **`recycle_chars`** is false. If it's true, each color will apply to a single character, and the `colors` vector will be recycled over the length of the input string supplied.
 
 Any character vector of R colors or hex values are fair game.
 
