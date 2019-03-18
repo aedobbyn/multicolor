@@ -7,7 +7,6 @@ Authors@R: c(
     person("Hernando", "Cortina", email = "hch@alum.mit.edu", role = c("aut"),
     comment = c(ORCID = "0000-0001-6790-4870"))
     )
-Maintainer: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
 Description: Add multiple colors to text that is printed to the console.
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
