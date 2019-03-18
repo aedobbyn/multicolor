@@ -1,7 +1,6 @@
 #' The multicolor package logo
 #'
 #' @param ... Arguments passed to \code{multi_color}.
-#' @param display_in_knitr Should the logo be displayed when \code{multicolor} is loaded in an RMarkdown document.
 #'
 #' @md
 #' @export
@@ -10,7 +9,7 @@
 
 multicolor_logo <- function(display_in_knitr = FALSE, ...) {
 
-  if (use_color() == FALSE || inside_knitr() && display_in_knitr == FALSE) {
+  if (use_color() == FALSE || inside_knitr()) {
     return(invisible)
   }
 

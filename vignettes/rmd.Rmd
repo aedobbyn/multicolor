@@ -47,10 +47,6 @@ type = "rmd")
 * `r multi_color("and", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
 * `r multi_color("anything else you might want", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
 
-```{r results="asis"}
-multicolor::multicolor_logo(type = "rmd", display_in_knitr = TRUE)
-```
-
 
 <br>
 <br>

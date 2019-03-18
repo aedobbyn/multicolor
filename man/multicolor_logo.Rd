@@ -4,7 +4,7 @@
 \alias{multicolor_logo}
 \title{The multicolor package logo}
 \usage{
-multicolor_logo(...)
+multicolor_logo(display_in_knitr = FALSE, ...)
 }
 \arguments{
 \item{...}{Arguments passed to \code{multi_color}.}
