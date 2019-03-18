@@ -15,11 +15,12 @@ Apply multiple colors to your messages, warnings, and errors. Built on
 the [`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely
 with [`cowsay`](https://github.com/sckott/cowsay). The [blog
 post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has
-a bit of backstory and walkthrough of how it works.
+a bit of backstory and walkthrough of how it
+works.
 
 <p align="left">
 
-<img src="./man/img/whale.gif" alt="whale">
+<img src="https://media.giphy.com/media/8YNM4kP4NnFrvkIhVM/giphy.gif" alt="whale" height="310px">
 
 </p>
 
@@ -68,7 +69,7 @@ argument.
 
 <p align="left">
 
-<img src="./man/img/green_chicken_hd.gif" alt="chicken">
+<img src="https://media.giphy.com/media/7Wsh1CNjLSS0ddgSnl/giphy.gif" height="310px" alt="chicken">
 
 </p>
 
@@ -77,7 +78,7 @@ argument.
 The text supplied will be divided into even(ish) chunks of those colors
 when **`recycle_chars`** is false. If it’s true, each color will apply
 to a single character, and the `colors` vector will be recycled over the
-lenght of the input string supplied.
+length of the input string supplied.
 
 Any character vector of R colors or hex values are fair game.
 
@@ -205,9 +206,10 @@ That’s it\! PRs & bug reports v welcome. 🎨
 
 <br>
 
-<sup>1</sup> If coloring isn’t possible, you’ll get a warning every time
-`multi_color` evaluates. The `type` argument will auto-set to
-`"string"`. To check how these environments are determined, see
+<sup>1</sup> If coloring isn’t possible, you’ll get a warning on load
+and every time `multi_color` evaluates. The `type` argument will
+auto-set to `"string"`. To check how these environments are determined,
+see
 [`multicolor:::use_color`](https://github.com/aedobbyn/multicolor/blob/dev/R/utils.R#L13).
 If using `multicolor` in another package, you might consider inserting a
 replacement for the case when this evaluates to `FALSE`.
