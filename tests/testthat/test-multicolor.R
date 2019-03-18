@@ -75,6 +75,11 @@ test_that("baseline works", {
     multi_color("doowap \n do do doooowap \n digga dig dig da doooo wap \n do do dooooooo", type = "string"),
     "\033[38;5;196mdoowa\033[39m\033[38;5;214mp \033[39m\033[39m\n\033[38;5;196m do d\033[39m\033[38;5;214mo doo\033[39m\033[38;5;226moowa\033[39m\033[38;5;46mp \033[39m\033[39m\n\033[38;5;196m digg\033[39m\033[38;5;214ma dig\033[39m\033[38;5;226m dig\033[39m\033[38;5;46m da d\033[39m\033[38;5;21moooo\033[39m\033[38;5;129m wap \033[39m\033[39m\n\033[38;5;196m do d\033[39m\033[38;5;214mo doo\033[39m\033[38;5;226moooo\033[39m\033[38;5;46mo\033[39m\n"
   )
+
+  expect_equal(
+    multi_color("Why should Caesar get to stomp around like a giant, while the rest of us try not to get smushed under his big feet? What's so great about Caesar? Brutus is just as cute as Caesar. Brutus is just as smart as Caesar. People totally like Brutus just as much as they like Caesar.", type = "rmd"),
+    "<span style='color: #FF0000;'>Why should Caesar get to stomp around like a g</span><span style='color: #FFAF00;'>iant, while the rest of us try not to get smus</span><span style='color: #FFFF00;'>hed under his big feet? What's so great about </span><span style='color: #00FF00;'>Caesar? Brutus is just as cute as Caesar. Bru</span><span style='color: #0000FF;'>tus is just as smart as Caesar. People totally</span><span style='color: #AF00FF;'> like Brutus just as much as they like Caesar.</span>"
+  )
 })
 
 test_that("colors(), including grays, rainbow, and rbg work", {
