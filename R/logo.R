@@ -7,7 +7,7 @@
 #' @examples
 #' multicolor_logo()
 
-multicolor_logo <- function(display_in_knitr = FALSE, ...) {
+multicolor_logo <- function(...) {
 
   if (use_color() == FALSE || inside_knitr()) {
     return(invisible)
