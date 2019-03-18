@@ -10,7 +10,7 @@
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, or string.
+#' @param type (character) "message" (the default), "warning", "string", "rmd", or "crawl". If "rmd" is used, the type of the RMarkdown document should be \code{html_document}.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
@@ -65,11 +65,11 @@ multi_color <- function(txt = "hello world!",
                         direction = "vertical",
                         recycle_chars = FALSE,
                         ...) {
-  if (!type %in% c("message", "warning", "string", "crawl")) {
+  if (!type %in% c("message", "warning", "string", "rmd", "crawl")) {
     stop("type must be one of message, or string")
   }
 
-  if (use_color() == FALSE) {
+  if (use_color() == FALSE && type != "rmd") {
     message("Auto-setting type to string.")
     type <- "string"
   }
@@ -290,9 +290,14 @@ multi_color <- function(txt = "hello world!",
     on.exit(options(warn_op))
   } # nocov end
 
+  if (type == "rmd") {
+    rmd <- out %>% fansi::sgr_to_html()
+  }
+
   switch(type,
     message = message(out), # nocov
     warning = warning(out), # nocov
+    rmd = rmd,
     string = out
   )
 }
