@@ -18,7 +18,7 @@ Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-sup
 colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 are fair game.}
 
-\item{type}{(character) "message" (the default), "warning", "string", "rmd", or "crawl". If "rmd" is used, the type of the RMarkdown document should be \code{html_document}.}
+\item{type}{(character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document}.}
 
 \item{direction}{(character) How should the colors be spread? One of
 "horizontal" or "vertical".}

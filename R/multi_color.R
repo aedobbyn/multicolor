@@ -10,7 +10,7 @@
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) "message" (the default), "warning", "string", "rmd", or "crawl". If "rmd" is used, the type of the RMarkdown document should be \code{html_document}.
+#' @param type (character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document}.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
