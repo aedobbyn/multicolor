@@ -1,0 +1,77 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(crayon.enabled = TRUE)
+```
+
+# `r multicolor::multi_color('multicolor', type = "rmd")` your RMarkdown HTML documents!
+
+<br>
+
+with `type = "rmd"`.
+
+<br>
+
+```{r}
+library(multicolor)
+```
+
+<br>
+
+## Color Chunk Output
+
+
+```{r, results="asis"} 
+multi_color("Brutus is just as smart as Caesar, people totally like Brutus just as much as they like Caesar, and when did it become okay for one person to be the boss of everybody because that's not what Rome is about! We should totally just STAB CAESAR!",
+
+colors = c(wesanderson::wes_palettes$GrandBudapest2, wesanderson::wes_palettes$GrandBudapest2),
+
+type = "rmd")
+```
+
+
+<br> 
+
+## `r multi_color("Header Output",  colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
+
+* `r multi_color("and", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
+* `r multi_color("anything else you might want", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
+
+<br>
+<br>
+
+## Deets
+
+In `multi_color`, setting `type` equal to `"rmd"` uses the [`fansi`](https://github.com/brodieG/fansi) package to produce HTML.
+
+<br>
+
+```{r message=FALSE}
+multi_color(type = "rmd")
+```
+
+<br>
+
+To display the colored text, the `knitr` option that should be applied to the chunk or document is the `results = "asis"` option.
+
+You can do this document-wide with:
+
+```{r eval=FALSE}
+knitr::opts_chunk$set(results = "asis")
+```
+
+The chunk containing this option can be hidden with the `echo = FALSE` option. More on [`knitr` options](https://yihui.name/knitr/options/).
+
+Another global option that should be set is:
+
+```{r, eval=FALSE}
+options(crayon.enabled = TRUE)
+```
+
+<br>
+
+
+`r emo::ji("blush")`
