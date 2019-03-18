@@ -28,6 +28,7 @@ Imports:
     tidyr
 Suggests: 
     covr,
+    emo,
     fansi,
     knitr,
     rmarkdown,
