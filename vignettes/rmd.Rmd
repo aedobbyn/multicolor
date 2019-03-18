@@ -80,6 +80,3 @@ options(crayon.enabled = TRUE)
 ```
 
 <br>
-
-
-`r emo::ji("smile")`
