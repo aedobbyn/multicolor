@@ -14,7 +14,7 @@
 #' triangle_string("hellooooooooooooooooooooooooooooooooooooooooooooooooooo world") %>%
 #'   multi_color()
 
-triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) {
+triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { #nocov start
   # if maxlen == 0 then stop, no more lines left
   if (maxlen == 0) return("\n")
 
@@ -30,7 +30,7 @@ triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) {
   ))
 
   ifelse(display, return(output), return(invisible(output)))
-}
+} # nocov end
 
 
 #' Center all lines of a string relative to console width.
@@ -49,7 +49,7 @@ triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) {
 #'   center_string() %>%
 #'   multi_color(direction = "horizontal", recycle_chars = TRUE)
 
-center_string <- function(string, remove_last_break = TRUE, display = FALSE) {
+center_string <- function(string, remove_last_break = TRUE, display = FALSE) { #nocov start
   width <- getOption("width")
   output <- ""
 
@@ -68,4 +68,4 @@ center_string <- function(string, remove_last_break = TRUE, display = FALSE) {
   }
 
   ifelse(display, return(output), return(invisible(output)))
-}
+} #nocov end

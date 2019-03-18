@@ -82,6 +82,7 @@ test_that("baseline works", {
   )
 })
 
+
 test_that("colors(), including grays, rainbow, and rbg work", {
   expect_silent(
     suppressMessages(
@@ -123,6 +124,7 @@ test_that("colors(), including grays, rainbow, and rbg work", {
   )
 })
 
+
 test_that("integration with cowsay", {
   expect_silent(
     suppressMessages(cowsay::say(
@@ -140,6 +142,13 @@ test_that("integration with cowsay", {
         by_color = colors()
       )
     )
+  )
+})
+
+
+test_that("logo", {
+  expect_message(
+    multicolor_logo()
   )
 })
 
