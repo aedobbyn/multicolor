@@ -78,7 +78,7 @@ test_that("baseline works", {
 
   expect_equal(
     multi_color("Why should Caesar get to stomp around like a giant, while the rest of us try not to get smushed under his big feet? What's so great about Caesar? Brutus is just as cute as Caesar. Brutus is just as smart as Caesar. People totally like Brutus just as much as they like Caesar.", type = "rmd"),
-    "<span style='color: #FF0000;'>Why should Caesar get to stomp around like a g</span><span style='color: #FFAF00;'>iant, while the rest of us try not to get smus</span><span style='color: #FFFF00;'>hed under his big feet? What's so great about </span><span style='color: #00FF00;'>Caesar? Brutus is just as cute as Caesar. Bru</span><span style='color: #0000FF;'>tus is just as smart as Caesar. People totally</span><span style='color: #AF00FF;'> like Brutus just as much as they like Caesar.</span>"
+    noquote("<span style='color: #FF0000;'>Why should Caesar get to stomp around like a g</span><span style='color: #FFAF00;'>iant, while the rest of us try not to get smus</span><span style='color: #FFFF00;'>hed under his big feet? What's so great about </span><span style='color: #00FF00;'>Caesar? Brutus is just as cute as Caesar. Bru</span><span style='color: #0000FF;'>tus is just as smart as Caesar. People totally</span><span style='color: #AF00FF;'> like Brutus just as much as they like Caesar.</span>")
   )
 })
 
