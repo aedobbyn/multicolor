@@ -8,7 +8,6 @@
 #' multicolor_logo()
 
 multicolor_logo <- function(...) {
-
   if (use_color() == FALSE || inside_knitr()) {
     return(invisible)
   }

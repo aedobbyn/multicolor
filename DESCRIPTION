@@ -1,6 +1,6 @@
 Package: multicolor
 Type: Package
-Title: Add Multiple Colors to your Console Output
+Title: Add Multiple Colors to your Console & RMarkdown Output
 Version: 0.1.2
 Authors@R: c(
     person("Amanda", "Dobbyn", email = "amanda.e.dobbyn@gmail.com", role = c("aut", "cre")),

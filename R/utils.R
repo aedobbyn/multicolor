@@ -19,7 +19,7 @@ use_color <- function() {
 }
 
 inside_knitr <- function() {
-  isTRUE(getOption('knitr.in.progress'))
+  isTRUE(getOption("knitr.in.progress"))
 }
 
 # Internal crayon functions

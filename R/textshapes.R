@@ -14,7 +14,7 @@
 #' triangle_string("hellooooooooooooooooooooooooooooooooooooooooooooooooooo world") %>%
 #'   multi_color()
 
-triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { #nocov start
+triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { # nocov start
   # if maxlen == 0 then stop, no more lines left
   if (maxlen == 0) return("\n")
 
@@ -25,8 +25,9 @@ triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { #no
   output <- rev(stringr::str_c(
     stringr::str_sub(string, 1, maxlen), "\n",
     triangle_string(stringr::str_sub(string, maxlen + 1, stringr::str_length(string)),
-                    maxlen = maxlen + step,
-                    step = step)
+      maxlen = maxlen + step,
+      step = step
+    )
   ))
 
   ifelse(display, return(output), return(invisible(output)))
@@ -49,7 +50,7 @@ triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { #no
 #'   center_string() %>%
 #'   multi_color(direction = "horizontal", recycle_chars = TRUE)
 
-center_string <- function(string, remove_last_break = TRUE, display = FALSE) { #nocov start
+center_string <- function(string, remove_last_break = TRUE, display = FALSE) { # nocov start
   width <- getOption("width")
   output <- ""
 
@@ -68,4 +69,4 @@ center_string <- function(string, remove_last_break = TRUE, display = FALSE) { #
   }
 
   ifelse(display, return(output), return(invisible(output)))
-} #nocov end
+} # nocov end
