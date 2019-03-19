@@ -291,7 +291,7 @@ multi_color <- function(txt = "hello world!",
   } # nocov end
 
   if (type == "rmd") {
-    rmd <- out %>% fansi::sgr_to_html()
+    rmd <- noquote(out) %>% fansi::sgr_to_html()
   }
 
   switch(type,
