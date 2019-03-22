@@ -291,7 +291,13 @@ multi_color <- function(txt = "hello world!",
   } # nocov end
 
   if (type == "rmd") {
-    rmd <- noquote(out) %>% fansi::sgr_to_html()
+    out <- stringr::str_c("<br>", out, collapse = "") %>%
+      stringr:::str_replace_all('  '," &nbsp; ") %>%
+      stringr::str_replace_all('\n',"<br>")
+
+    rmd <- noquote(out) %>%
+
+      fansi::sgr_to_html()
   }
 
   switch(type,

@@ -14,7 +14,25 @@ knitr::opts_chunk$set(
 options(crayon.enabled = TRUE)
 ```
 
+```{css}
+body {
+font-family: Monaco;
+font-size: 16pt;
+}
+```
+
+
 # `r multicolor::multi_color('multicolor', type = "rmd")` your RMarkdown HTML documents!
+
+
+```{r, results='asis'}
+library(magrittr)
+library(multicolor)
+"<br>" %>% stringr::str_c(multi_color(things$cat,type='rmd') %>% 
+  stringr:::str_replace_all('  '," &nbsp; ") %>% 
+  stringr::str_replace_all('\n',"<br>"), collapse = "")
+```
+
 
 <br>
 
