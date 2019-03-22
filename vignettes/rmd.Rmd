@@ -17,7 +17,7 @@ options(crayon.enabled = TRUE)
 ```{css}
 body {
 font-family: Monaco;
-font-size: 16pt;
+font-size: 12pt;
 }
 ```
 
@@ -26,11 +26,12 @@ font-size: 16pt;
 
 
 ```{r, results='asis'}
-library(magrittr)
 library(multicolor)
-"<br>" %>% stringr::str_c(multi_color(things$cat,type='rmd') %>% 
-  stringr:::str_replace_all('  '," &nbsp; ") %>% 
-  stringr::str_replace_all('\n',"<br>"), collapse = "")
+```
+
+
+```{r, results='asis'}
+multi_color(things$cat,type='rmd')
 ```
 
 
@@ -60,10 +61,10 @@ type = "rmd")
 
 <br> 
 
-## `r multi_color("Header Output",  colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
+## `r multi_color("Header Output",  colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
 
-* `r multi_color("and", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
-* `r multi_color("anything else you might want", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd")`
+* `r multi_color("and", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
+* `r multi_color("anything else you might want", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
 
 
 <br>

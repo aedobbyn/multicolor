@@ -16,6 +16,7 @@
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
 #' should it apply to each individual character (if \code{direction} is vertical)
 #' or line (if \code{direction} is horizontal), and be recycled?
+#' @param add_leading_newline Should a newline be added at the beginning of the text? Useful for \code{cowsay} animals when \code{type = "rmd"}.
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -64,6 +65,7 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         recycle_chars = FALSE,
+                        add_leading_newline = TRUE,
                         ...) {
   if (!type %in% c("message", "warning", "string", "rmd", "crawl")) {
     stop("type must be one of message, or string")
@@ -290,8 +292,12 @@ multi_color <- function(txt = "hello world!",
     on.exit(options(warn_op))
   } # nocov end
 
+  if (add_leading_newline) {
+    out <- stringr::str_c("\n", out, collapse = "")
+  }
+
   if (type == "rmd") {
-    out <- stringr::str_c("<br>", out, collapse = "") %>%
+    out <- out %>%
       stringr:::str_replace_all('  '," &nbsp; ") %>%
       stringr::str_replace_all('\n',"<br>")
 
