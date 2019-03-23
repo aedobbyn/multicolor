@@ -6,7 +6,7 @@
 \usage{
 multi_color(txt = "hello world!", colors = "rainbow",
   type = "message", direction = "vertical", recycle_chars = FALSE,
-  ...)
+  add_leading_newline = TRUE, ...)
 }
 \arguments{
 \item{txt}{(character) Some text to color.}
@@ -26,6 +26,8 @@ are fair game.}
 \item{recycle_chars}{(logical) Should the vector of colors supplied apply to the entire string or
 should it apply to each individual character (if \code{direction} is vertical)
 or line (if \code{direction} is horizontal), and be recycled?}
+
+\item{add_leading_newline}{Should a newline be added at the beginning of the text? Useful for \code{cowsay} animals when \code{type = "rmd"}.}
 
 \item{...}{Further args.}
 }

@@ -6,7 +6,7 @@
 \usage{
 multi_colour(txt = "hello world!", colors = "rainbow",
   type = "message", direction = "vertical", recycle_chars = FALSE,
-  ...)
+  add_leading_newline = TRUE, ...)
 }
 \arguments{
 \item{txt}{(character) Some text to colour.}
