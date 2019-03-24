@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -14,10 +14,10 @@ knitr::opts_chunk$set(
 options(crayon.enabled = TRUE)
 ```
 
-```{css}
-body {
-font-family: Monaco;
-font-size: 12pt;
+```{css, echo = FALSE}
+.cowsay {
+  font-family: Monaco;
+  font-size: .8em;
 }
 ```
 
@@ -30,8 +30,17 @@ library(multicolor)
 ```
 
 
+```{r}
+add_css <- function(txt, font_fam = "Monaco"){
+  
+  glue::glue("  <span style='font-family: {font_fam};'> {txt} </span>")
+  
+}
+```
+
+
 ```{r, results='asis'}
-multi_color(things$cat,type='rmd')
+add_css(multi_color(things$cat, type="rmd", add_leading_newline = TRUE))
 ```
 
 
@@ -41,21 +50,20 @@ with `type = "rmd"`.
 
 <br>
 
-```{r}
-library(multicolor)
-```
-
-<br>
-
 ## Color Chunk Output
 
 
 ```{r, results="asis"} 
-multi_color("Brutus is just as smart as Caesar, people totally like Brutus just as much as they like Caesar, and when did it become okay for one person to be the boss of everybody because that's not what Rome is about! We should totally just STAB CAESAR!",
+multi_color(
+  
+  "Brutus is just as smart as Caesar, people totally like Brutus just as much as they like Caesar, and when did it become okay for one person to be the boss of everybody because that's not what Rome is about! We should totally just STAB CAESAR!",
+  
+  colors = c(wesanderson::wes_palettes$GrandBudapest2, wesanderson::wes_palettes$GrandBudapest2),
+  
+  type = "rmd",
+  add_leading_newline = TRUE
 
-colors = c(wesanderson::wes_palettes$GrandBudapest2, wesanderson::wes_palettes$GrandBudapest2),
-
-type = "rmd")
+)
 ```
 
 
