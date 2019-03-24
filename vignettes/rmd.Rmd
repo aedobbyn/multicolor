@@ -30,19 +30,13 @@ library(multicolor)
 ```
 
 
-```{r}
-add_css <- function(txt, font_fam = "Monaco"){
-  
-  glue::glue("  <span style='font-family: {font_fam};'> {txt} </span>")
-  
-}
-```
-
+<div style='font-family: Monaco; font-size = 0.8em'>
 
 ```{r, results='asis'}
-add_css(multi_color(things$cat, type="rmd", add_leading_newline = TRUE))
+multi_color(things$cat, type="rmd", add_leading_newline = TRUE)
 ```
 
+</div>
 
 <br>
 
