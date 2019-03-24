@@ -206,12 +206,12 @@ say(what =
 visually interesting designs. `center_string` centers text strings
 within the console, while `triangle_string` can create upward and
 downward pointing triangles of varying width. These can be combined with
-`multi_color` to create visuals such as this:
+`multi_color` to create visuals such as these:
 
 ``` r
-triangle_string(ipsum, step=4, maxlen=11, display = TRUE) %>%
+triangle_string(ipsum, step = 4, maxlen = 11, display = TRUE) %>%
     center_string() %>%
-    multi_color(direction = "horizontal",viridis::plasma(n=6,direction = -1,begin = 0.3))
+    multi_color(direction = "horizontal", viridis::plasma(n = 6, direction = -1, begin = 0.3))
 ```
 
 <p align="left">
@@ -221,9 +221,9 @@ triangle_string(ipsum, step=4, maxlen=11, display = TRUE) %>%
 </p>
 
 ``` r
-triangle_string(ipsum, step=-4, maxlen=56, display = TRUE) %>%
+triangle_string(ipsum, step = -4, maxlen = 56, display = TRUE) %>%
     center_string() %>%
-    multi_color(direction = "horizontal",viridis::inferno(n=8,direction = -1,begin = 0.3))
+    multi_color(direction = "horizontal", viridis::inferno(n = 8, direction = -1, begin = 0.3))
 ```
 
 <p align="left">
