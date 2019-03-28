@@ -12,6 +12,10 @@ multicolor_logo(...)
 \description{
 The multicolor package logo
 }
+\details{
+This function displays the multicolor package logo
+in a randomly selected color palette from a pre-selected list of colors.
+}
 \examples{
 multicolor_logo()
 }

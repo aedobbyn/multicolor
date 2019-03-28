@@ -98,7 +98,7 @@ add_newlines <- function(tbl) {
     )
 }
 
-add_css <- function(txt, font_fam = "Monaco"){
+add_css <- function(txt, font_fam = "Monaco") {
   glue::glue("<div style='font-family: {font_fam};'> {txt} </div>")
 }
 
