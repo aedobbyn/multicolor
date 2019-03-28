@@ -298,7 +298,7 @@ multi_color <- function(txt = "hello world!",
 
   if (type == "rmd") {
     out <- out %>%
-      stringr:::str_replace_all("  ", " &nbsp; ") %>%
+      stringr::str_replace_all("  ", " &nbsp; ") %>%
       stringr::str_replace_all("\n", "<br>")
 
     rmd <- noquote(out) %>%
