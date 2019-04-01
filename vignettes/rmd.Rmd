@@ -33,7 +33,7 @@ library(multicolor)
 <div style='font-family: Monaco; font-size = 0.8em'>
 
 ```{r, results='asis'}
-multi_color(things$cat, type = "rmd", add_leading_newline = TRUE)
+multi_color(things$buffalo, type = "rmd", add_leading_newline = TRUE)
 ```
 
 </div>

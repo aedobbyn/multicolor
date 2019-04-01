@@ -300,7 +300,8 @@ multi_color <- function(txt = "hello world!",
     out <- out %>%
       stringr::str_replace_all("\u0020", "&nbsp;") %>%
       stringr::str_replace_all("\n", "<br>") %>%
-      stringr::str_replace_all("\u0060", "\u2018")
+      stringr::str_replace_all("\u0060", "\u2018") %>%
+      stringr::str_replace_all("_", "\u0332")
 
     rmd <- noquote(out) %>%
       fansi::sgr_to_html()
