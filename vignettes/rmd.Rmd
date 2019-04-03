@@ -6,28 +6,25 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-options(crayon.enabled = TRUE)
-```
-
 ```{r setup, include=FALSE}
 library(multicolor)
 
 options(crayon.enabled=TRUE)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE
+)
+
 knitr::knit_hooks$set(
-  
   mc_rmd = function(before, options, envir) {
     if (before) {
        return(paste("<div style='font-family: Monaco;'>"))
     } else {
        return(paste("</div>"))
     }
-} )
+  }
+)
 ```
 
 
@@ -39,13 +36,13 @@ library(multicolor)
 ```
 
 
-<div style='font-family: Monaco; font-size = 0.8em'>
 
 ```{r, results='asis', mc_rmd=TRUE}
-multi_color(things$buffalo, type = "rmd", add_leading_newline = TRUE)
+multi_color(things$buffalo, 
+            colors = palettes$grandbudapest, 
+            type = "rmd", 
+            add_leading_newline = TRUE)
 ```
-
-</div>
 
 <br>
 
@@ -53,28 +50,52 @@ with `type = "rmd"`.
 
 <br>
 
-## Color Chunk Output
+## Chunk Output
 
-
-```{r, results="asis"} 
+```{r, results="asis", mc_rmd=TRUE} 
 multi_color(
   
-  "Brutus is just as smart as Caesar, people totally like Brutus just as much as they like Caesar, and when did it become okay for one person to be the boss of everybody because that's not what Rome is about! We should totally just STAB CAESAR!",
+  " Brutus is just as smart as Caesar, \n people totally like Brutus just as much as they like Caesar, \n and when did it become okay for one person \n to be the boss of everybody because \n that's not what Rome is about! \n We should totally just STAB CAESAR!",
   
   colors = c(wesanderson::wes_palettes$GrandBudapest2, wesanderson::wes_palettes$GrandBudapest2),
   
   type = "rmd",
   add_leading_newline = TRUE
-
+  
 )
 ```
 
+<br>
+
+You can keep the output monospace by wrapping a chunk in, e.g.,
+
+`<div style='font-family: Monaco; font-size = 0.8em'></div>`.
+
+<br>
+
+Or use a [`knitr` hook](https://yihui.name/knitr/hooks/) such as 
+
+```{r, eval=FALSE}
+knitr::knit_hooks$set(
+  mc_rmd = function(before, options, envir) {
+    if (before) {
+       return(paste("<div style='font-family: Monaco;'>"))
+    } else {
+       return(paste("</div>"))
+    }
+  }
+)
+```
+
+which can be specified in the `chunk` options with `mc_rmd=TRUE`.
 
 <br> 
 
 ## `r multi_color("Header Output",  colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
 
-* `r multi_color("and", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
+is also fair game,
+
+* `r multi_color("as well as", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
 * `r multi_color("anything else you might want", colors = wesanderson::wes_palettes$Darjeeling1, type = "rmd", add_leading_newline = FALSE)`
 
 
