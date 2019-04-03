@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -14,11 +14,20 @@ knitr::opts_chunk$set(
 options(crayon.enabled = TRUE)
 ```
 
-```{css, echo = FALSE}
-.cowsay {
-  font-family: Monaco;
-  font-size: .8em;
-}
+```{r setup, include=FALSE}
+library(multicolor)
+
+options(crayon.enabled=TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::knit_hooks$set(
+  
+  mc_rmd = function(before, options, envir) {
+    if (before) {
+       return(paste("<div style='font-family: Monaco;'>"))
+    } else {
+       return(paste("</div>"))
+    }
+} )
 ```
 
 
@@ -32,7 +41,7 @@ library(multicolor)
 
 <div style='font-family: Monaco; font-size = 0.8em'>
 
-```{r, results='asis'}
+```{r, results='asis', mc_rmd=TRUE}
 multi_color(things$buffalo, type = "rmd", add_leading_newline = TRUE)
 ```
 

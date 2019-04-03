@@ -3,9 +3,11 @@
 #' @importFrom magrittr %>%
 #' @export
 #'
-#' @param txt (character) Some text to color.
+#' @param txt (character) Some text to color. \href{https://github.com/sckott/cowsay}\code{cowsay} animals are available in a list of \code{multicolor::things}, e.g. \code{things$cow}.
 #' @param colors (character) A vector of colors, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
+#'
+#' Several out-of-the-box palettes are available; see \code{multicolor::palettes}.
 #'
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
@@ -32,8 +34,8 @@
 #'
 #' multi_color("ahoy")
 #'
-# multi_color("taste the rainbow",
-#             c("rainbow", "cyan", "cyan", "rainbow"))
+#' multi_color("taste the rainbow",
+#'             c("rainbow", "cyan", "cyan", "rainbow"))
 #' multi_color("taste the rainbow",
 #'             c("mediumpurple",
 #'               "rainbow",
@@ -44,8 +46,11 @@
 #'                        rgb(0.2, 0.9, 0.1)))
 #'
 #' multi_color(
-#'   cowsay::animals[["buffalo"]],
+#'   things$buffalo,
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
+#'
+#' # Built-in color palette
+#' multi_color(things$cow, colors = palettes$lacroix)
 #'
 #' multi_color(cowsay:::rms, sample(colors(), 10))
 #'

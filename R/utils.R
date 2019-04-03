@@ -160,3 +160,22 @@ insert_rainbow <- function(clr) {
   }
   return(clr)
 }
+
+
+
+#' Out-of-the-box Color Palettes
+#'
+#' Take the string "rainbow" and replace it with c("red", "orange", "yellow", "green", "blue", "purple")
+#'
+#' @return A character vector of color values.
+#' @export
+#'
+#' @examples
+#'
+#' multi_color(things$cat, colors = palettes$lacroix)
+
+palettes <- list(
+  lacroix = c("#C70E7B", "#FC6882", "#007BC3", "#54BCD1", "#EF7C12", "#F4B95A", "#009F3F", "#8FDA04", "#AF6125", "#F4E3C7"),
+  magma = c("#FCFDBFFF", "#FDDEA0FF", "#FEBF84FF", "#FE9F6DFF", "#FA7F5EFF", "#F1605DFF", "#DE4968FF", "#C43C75FF", "#A8327DFF", "#8C2981FF"),
+  grandbudapest = c("#F1BB7B", "#F59E74", "#F9816D", "#FD6467", "#C74B4C", "#913232", "#5B1A18", "#833721", "#AC542C", "#D67236")
+)
