@@ -3,7 +3,7 @@
 #' @importFrom magrittr %>%
 #' @export
 #'
-#' @param txt (character) Some text to color. \href{https://github.com/sckott/cowsay}\code{cowsay} animals are available in a list of \code{multicolor::things}, e.g. \code{things$cow}.
+#' @param txt (character) Some text to color. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolor::things}, e.g. \code{things$cow}.
 #' @param colors (character) A vector of colors, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
@@ -327,14 +327,16 @@ multi_color <- function(txt = "hello world!",
 #' @importFrom magrittr %>%
 #' @export
 #'
-#' @param txt (character) Some text to colour.
+#' @param txt (character) Some text to colour. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolour::things}, e.g. \code{things$cow}.
 #' @param colors (character) A vector of colours, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
+#' Several out-of-the-box palettes are available; see \code{multicolour::palettes}.
+#'
 #' Must all be \href{https://github.com/r-lib/crayon#256-colours}{\code{crayon}}-supported
-#' colours. Any colours in \code{colors()} or hex values (see \code{?rgb})
+#' colours. Any colours in \code{colours()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, or string.
+#' @param type (character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document} the chunk option \code{results = "asis"} should be used.
 #' @param direction (character) How should the colours be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colours supplied apply to the entire string or
@@ -344,7 +346,7 @@ multi_color <- function(txt = "hello world!",
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
-#' these colours in the order they appear in \code{colours}.
+#' these colours in the order they appear in \code{colors}.
 #'
 #' It cannot be used with RGUI (R.app on some systems).
 #'
@@ -356,8 +358,8 @@ multi_color <- function(txt = "hello world!",
 #'
 #' multi_colour("ahoy")
 #'
-# multi_colour("taste the rainbow",
-#             c("rainbow", "cyan", "cyan", "rainbow"))
+#' multi_colour("taste the rainbow",
+#'             c("rainbow", "cyan", "cyan", "rainbow"))
 #' multi_colour("taste the rainbow",
 #'             c("mediumpurple",
 #'               "rainbow",
@@ -368,8 +370,11 @@ multi_color <- function(txt = "hello world!",
 #'                        rgb(0.2, 0.9, 0.1)))
 #'
 #' multi_colour(
-#'   cowsay::animals[["buffalo"]],
+#'   things$buffalo,
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
+#'
+#' # Built-in colour palette
+#' multi_colour(things$cow, colours = palettes$lacroix)
 #'
 #' multi_colour(cowsay:::rms, sample(colours(), 10))
 #'

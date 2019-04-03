@@ -9,16 +9,18 @@ multi_colour(txt = "hello world!", colors = "rainbow",
   add_leading_newline = FALSE, ...)
 }
 \arguments{
-\item{txt}{(character) Some text to colour.}
+\item{txt}{(character) Some text to colour. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolour::things}, e.g. \code{things$cow}.}
 
 \item{colors}{(character) A vector of colours, defaulting to
 "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 
+Several out-of-the-box palettes are available; see \code{multicolour::palettes}.
+
 Must all be \href{https://github.com/r-lib/crayon#256-colours}{\code{crayon}}-supported
-colours. Any colours in \code{colors()} or hex values (see \code{?rgb})
+colours. Any colours in \code{colours()} or hex values (see \code{?rgb})
 are fair game.}
 
-\item{type}{(character) Message (default), warning, or string.}
+\item{type}{(character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document} the chunk option \code{results = "asis"} should be used.}
 
 \item{direction}{(character) How should the colours be spread? One of
 "horizontal" or "vertical".}
@@ -40,7 +42,7 @@ Multi-colour text
 }
 \details{
 This function evenly (ish) divides up your string into
-these colours in the order they appear in \code{colours}.
+these colours in the order they appear in \code{colors}.
 
 It cannot be used with RGUI (R.app on some systems).
 }
@@ -51,6 +53,8 @@ multi_colour()
 multi_colour("ahoy")
 
 multi_colour("taste the rainbow",
+            c("rainbow", "cyan", "cyan", "rainbow"))
+multi_colour("taste the rainbow",
             c("mediumpurple",
               "rainbow",
              "cyan3"))
@@ -60,8 +64,11 @@ multi_colour(colours = c(rgb(0.1, 0.2, 0.5),
                        rgb(0.2, 0.9, 0.1)))
 
 multi_colour(
-  cowsay::animals[["buffalo"]],
+  things$buffalo,
   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
+
+# Built-in colour palette
+multi_colour(things$cow, colours = palettes$lacroix)
 
 multi_colour(cowsay:::rms, sample(colours(), 10))
 

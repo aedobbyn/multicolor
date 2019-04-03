@@ -9,7 +9,7 @@ multi_color(txt = "hello world!", colors = "rainbow",
   add_leading_newline = FALSE, ...)
 }
 \arguments{
-\item{txt}{(character) Some text to color. \href{https://github.com/sckott/cowsay}\code{cowsay} animals are available in a list of \code{multicolor::things}, e.g. \code{things$cow}.}
+\item{txt}{(character) Some text to color. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolor::things}, e.g. \code{things$cow}.}
 
 \item{colors}{(character) A vector of colors, defaulting to
 "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
