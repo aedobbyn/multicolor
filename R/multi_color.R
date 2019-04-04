@@ -315,7 +315,7 @@ multi_color <- function(txt = "hello world!",
   switch(type,
     message = message(out), # nocov
     warning = warning(out), # nocov
-    rmd = rmd,
+    rmd = rmd, # nocov
     string = out
   )
 }

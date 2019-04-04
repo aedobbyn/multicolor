@@ -4,9 +4,11 @@
 \alias{multicolor_logo}
 \title{The multicolor package logo}
 \usage{
-multicolor_logo(...)
+multicolor_logo(colors = "random", ...)
 }
 \arguments{
+\item{colors}{Vector of colors for the logo. Defaults to "random" which randomly selects one of the \code{palette}s.}
+
 \item{...}{Arguments passed to \code{multi_color}.}
 }
 \description{
@@ -18,4 +20,6 @@ in a randomly selected color palette from a pre-selected list of colors.
 }
 \examples{
 multicolor_logo()
+multicolor_logo(recycle_chars = TRUE)
+multicolor_logo(colors = c("red", "blue"))
 }
