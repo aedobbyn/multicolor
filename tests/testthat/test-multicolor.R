@@ -38,22 +38,24 @@ test_that("baseline works", {
 
   expect_error(
     suppressMessages(
-      multi_color(colors = c(
-        "seafoamgreen",
-        "green"
-      )) # bad colors
-    ),
-
-    expect_error(
-      suppressMessages(
-        multi_color(
-          colors = c(
-            "maroon4", # no maroon5. conspiracy?
-            "bisque2"
-          ),
-          direction = "one"
-        ) # bad direction
+      multi_color(
+        colors = c(
+          "seafoamgreen",
+          "green"
+        ) # bad colors
       )
+    )
+  )
+
+  expect_error(
+    suppressMessages(
+      multi_color(
+        colors = c(
+          "maroon4", # no maroon5. conspiracy?
+          "bisque2"
+        ),
+        direction = "one"
+      ) # bad direction
     )
   )
 
