@@ -1,3 +1,10 @@
+# multicolor 0.1.3
+
+* An RMarkdown vignette was added 
+* Support for multicolored `cowsay` animals in RMarkdown was added
+* Several different palettes for the logo on startup
+* Out-of-the-box palette options are exported
+
 # multicolor 0.1.2
 
 * Support for `multicolor` in RMarkdown documents is added with `type = "rmd"`
