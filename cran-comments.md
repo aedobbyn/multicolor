@@ -5,8 +5,8 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 0 notes
 
 ## Reverse dependencies
 
-Checked all reverse dependencies with devtools::revdep_check().
+Checked all reverse dependencies with revdepcheck::revdep_check().
