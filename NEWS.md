@@ -4,6 +4,7 @@
 * Support for multicolored `cowsay` animals in RMarkdown was added
 * Several different palettes for the logo on startup
 * Out-of-the-box palette options are exported
+* Added examples of reshaping text functions to README
 
 # multicolor 0.1.2
 
