@@ -16,8 +16,8 @@ Named vector of animals and other characters e.g. Yoda, from the \code{cowsay} p
 }
 \examples{
 things[["turkey"]]
-things[["rms"]] \%>\% cat()
-cowsay::animals[["rms"]] \%>\% cat()
+things[["chuck"]] \%>\% cat()
+cowsay::animals[3] \%>\% cat()
 names(things)
 multi_color(things[["stretchycat"]])  # To say something, use the cowsay package
 }
