@@ -16,7 +16,7 @@ A string with the first instance of a newline removed.
 Remove the first instance of a newline from a string
 }
 \examples{
-nix_first_newline("onetwo\\nthree\\nfour")
+nix_first_newline("onetwo\nthree\nfour")
 
 # Nothing to remove
 nix_first_newline("fivesixseven")

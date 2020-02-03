@@ -4,8 +4,14 @@
 \alias{crawl}
 \title{Multi-color crawling text}
 \usage{
-crawl(txt = "hello world!", colors = NULL, recycle_chars = FALSE,
-  direction = "vertical", pause = 0.05, ...)
+crawl(
+  txt = "hello world!",
+  colors = NULL,
+  recycle_chars = FALSE,
+  direction = "vertical",
+  pause = 0.05,
+  ...
+)
 }
 \arguments{
 \item{txt}{(character) Some text to color, stripped of line breaks}
@@ -57,7 +63,7 @@ crawl(things[["hypnotoad"]], colors = c("purple", "blue", "cyan"),
   direction = "horizontal", recycle_chars = TRUE, pause = 0.01)
 
 options("keep.source = FALSE")
-crawl('\\014A long time ago in a galaxy far, far away...
+crawl('\014A long time ago in a galaxy far, far away...
 It is a period of civil war. Rebel spaceships, striking from a hidden base,
 have won their first victory against the evil Galactic Empire.')
 }

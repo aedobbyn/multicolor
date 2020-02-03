@@ -4,9 +4,15 @@
 \alias{multi_colour}
 \title{Multi-colour text}
 \usage{
-multi_colour(txt = "hello world!", colors = "rainbow",
-  type = "message", direction = "vertical", recycle_chars = FALSE,
-  add_leading_newline = FALSE, ...)
+multi_colour(
+  txt = "hello world!",
+  colors = "rainbow",
+  type = "message",
+  direction = "vertical",
+  recycle_chars = FALSE,
+  add_leading_newline = FALSE,
+  ...
+)
 }
 \arguments{
 \item{txt}{(character) Some text to colour. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolour::things}, e.g. \code{things$cow}.}
