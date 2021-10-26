@@ -41,7 +41,7 @@ get_open_close <- function(clr) {
   if (crayon_is_r_color(clr)) {
     o_c <- crayon_style_from_r_color(clr,
       bg = FALSE, num_colors = num_colors, grey = FALSE
-    )
+    )[c("open", "close")]
   } else {
     stop("Don't know how to handle non-R color.")
   }
