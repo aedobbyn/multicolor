@@ -1,7 +1,7 @@
 Package: multicolor
 Type: Package
 Title: Add Multiple Colors to your Console & RMarkdown Output
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person("Amanda", "Dobbyn", email = "amanda.e.dobbyn@gmail.com", role = c("aut", "cre")),
     person("Hernando", "Cortina", email = "hch@alum.mit.edu", role = c("aut"),
@@ -11,7 +11,6 @@ Description: Add multiple colors to text that is printed to the console.
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: TRUE
 URL: http://github.com/aedobbyn/multicolor/
 BugReports: https://github.com/aedobbyn/multicolor/issues/
 Imports: 

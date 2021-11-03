@@ -1,6 +1,7 @@
+This release fixes a bug in a `get_open_close` test that failed on certain flavors of linux.
+
 ## Test environments
-* local OS X install, R 3.6.2
-* ubuntu 12.04 (on travis-ci), R 3.6.2
+* local OS X install, R 4.0.0
 * win-builder (devel and release)
 
 ## R CMD check results
