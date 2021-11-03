@@ -39,9 +39,14 @@ get_open_close <- function(clr) {
   }
 
   if (crayon_is_r_color(clr)) {
-    o_c <- crayon_style_from_r_color(clr,
-      bg = FALSE, num_colors = num_colors, grey = FALSE
-    )
+    o_c <- crayon_style_from_r_color(
+      clr,
+      bg = FALSE,
+      num_colors = num_colors,
+      grey = FALSE
+    ) %>%
+      # On linux there is sometimes a third element called `palette`
+      .[1:2]
   } else {
     stop("Don't know how to handle non-R color.")
   }
@@ -114,7 +119,6 @@ add_css <- function(txt, font_fam = "Monaco") {
 #'
 #' # Nothing to remove
 #' nix_first_newline("fivesixseven")
-
 nix_first_newline <- function(s) {
   newline_ix <- s %>%
     stringr::str_locate("\n") %>%
@@ -149,7 +153,6 @@ nix_first_newline <- function(s) {
 #'
 #' insert_rainbow("rainbow")
 #' insert_rainbow(c("lightsteelblue", "rainbow", "lightsalmon"))
-
 insert_rainbow <- function(clr) {
   if (inherits(clr, "crayon")) {
     return(clr)
@@ -173,7 +176,6 @@ insert_rainbow <- function(clr) {
 #' @examples
 #'
 #' multi_color(things$cat, colors = palettes$lacroix)
-
 palettes <- list(
   lacroix = c("#EF7C12", "#F4B95A", "#009F3F", "#8FDA04", "#AF6125", "#F4E3C7", "#B25D91", "#EFC7E6", "#EF7C12", "#F4B95A"),
   magma = c("#51127CE6", "#6B1D81E6", "#852781E6", "#A1307EE6", "#BD3977E6", "#D8456CE6", "#ED5A5FE6", "#F9785DE6", "#FD9769E6", "#FEB77EE6"),

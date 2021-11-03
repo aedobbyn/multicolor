@@ -13,13 +13,16 @@
 #' @examples
 #' triangle_string("hellooooooooooooooooooooooooooooooooooooooooooooooooooo world") %>%
 #'   multi_color()
-
 triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { # nocov start
   # if maxlen == 0 then stop, no more lines left
-  if (maxlen == 0) return("\n")
+  if (maxlen == 0) {
+    return("\n")
+  }
 
   # string shorter than maxlen, return full string
-  if (stringr::str_length(string) <= maxlen) return(string)
+  if (stringr::str_length(string) <= maxlen) {
+    return(string)
+  }
 
   # recursively print maxlen characters and start new line
   output <- rev(stringr::str_c(
@@ -49,7 +52,6 @@ triangle_string <- function(string, maxlen = 1, step = 1, display = FALSE) { # n
 #' triangle_string(starwars_intro, display = TRUE) %>%
 #'   center_string() %>%
 #'   multi_color(direction = "horizontal", recycle_chars = TRUE)
-
 center_string <- function(string, remove_last_break = TRUE, display = FALSE) { # nocov start
   width <- getOption("width")
   output <- ""

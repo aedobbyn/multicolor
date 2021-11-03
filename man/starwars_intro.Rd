@@ -4,7 +4,9 @@
 \name{starwars_intro}
 \alias{starwars_intro}
 \title{Star Wars a New Hope Intro}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 starwars_intro
 }

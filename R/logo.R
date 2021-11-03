@@ -12,7 +12,6 @@
 #' multicolor_logo()
 #' multicolor_logo(recycle_chars = TRUE)
 #' multicolor_logo(colors = c("red", "blue"))
-
 multicolor_logo <- function(colors = "random", ...) {
   if (use_color() == FALSE || inside_knitr()) {
     return(invisible)

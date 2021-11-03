@@ -4,7 +4,9 @@
 \name{things}
 \alias{things}
 \title{Things}
-\format{An object of class \code{list} of length 45.}
+\format{
+An object of class \code{list} of length 45.
+}
 \usage{
 things
 }
@@ -19,6 +21,6 @@ things[["turkey"]]
 things[["chuck"]] \%>\% cat()
 cowsay::animals[3] \%>\% cat()
 names(things)
-multi_color(things[["stretchycat"]])  # To say something, use the cowsay package
+multi_color(things[["stretchycat"]]) # To say something, use the cowsay package
 }
 \keyword{datasets}

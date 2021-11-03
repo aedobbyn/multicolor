@@ -58,20 +58,29 @@ multi_color()
 
 multi_color("ahoy")
 
-multi_color("taste the rainbow",
-            c("rainbow", "cyan", "cyan", "rainbow"))
-multi_color("taste the rainbow",
-            c("mediumpurple",
-              "rainbow",
-             "cyan3"))
+multi_color(
+  "taste the rainbow",
+  c("rainbow", "cyan", "cyan", "rainbow")
+)
+multi_color(
+  "taste the rainbow",
+  c(
+    "mediumpurple",
+    "rainbow",
+    "cyan3"
+  )
+)
 
-multi_color(colors = c(rgb(0.1, 0.2, 0.5),
-                       "yellow",
-                       rgb(0.2, 0.9, 0.1)))
+multi_color(colors = c(
+  rgb(0.1, 0.2, 0.5),
+  "yellow",
+  rgb(0.2, 0.9, 0.1)
+))
 
 multi_color(
   things$buffalo,
-  c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
+  c("mediumorchid4", "dodgerblue1", "lemonchiffon1")
+)
 
 # Built-in color palette
 multi_color(things$cow, colors = palettes$lacroix)
@@ -80,12 +89,14 @@ multi_color(cowsay:::rms, sample(colors(), 10))
 
 # Mystery Bulgarian animal
 multi_color(things[[sample(length(things), 1)]],
-            c("white", "darkgreen", "darkred"),
-            direction = "horizontal")
+  c("white", "darkgreen", "darkred"),
+  direction = "horizontal"
+)
 
 # Mystery Italian animal
 multi_color(things[[sample(length(things), 1)]],
-            c("darkgreen", "white", "darkred"),
-            direction = "vertical")
+  c("darkgreen", "white", "darkred"),
+  direction = "vertical"
+)
 }
 }

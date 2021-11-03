@@ -9,8 +9,7 @@
 #' things[["chuck"]] %>% cat()
 #' cowsay::animals[3] %>% cat()
 #' names(things)
-#' multi_color(things[["stretchycat"]])  # To say something, use the cowsay package
-
+#' multi_color(things[["stretchycat"]]) # To say something, use the cowsay package
 things <-
   append(
     cowsay::animals,

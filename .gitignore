@@ -9,3 +9,4 @@ Dockerfile
 revdep
 extra
 scratchpad.R
+*.DS_Store

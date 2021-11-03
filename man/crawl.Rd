@@ -59,12 +59,14 @@ crawl("It was a dark and stormy night")
 
 crawl("Taste the rainbow", colors = "rainbow")
 
-crawl(things[["hypnotoad"]], colors = c("purple", "blue", "cyan"),
-  direction = "horizontal", recycle_chars = TRUE, pause = 0.01)
+crawl(things[["hypnotoad"]],
+  colors = c("purple", "blue", "cyan"),
+  direction = "horizontal", recycle_chars = TRUE, pause = 0.01
+)
 
 options("keep.source = FALSE")
-crawl('\014A long time ago in a galaxy far, far away...
+crawl("\014A long time ago in a galaxy far, far away...
 It is a period of civil war. Rebel spaceships, striking from a hidden base,
-have won their first victory against the evil Galactic Empire.')
+have won their first victory against the evil Galactic Empire.")
 }
 }
