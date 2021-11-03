@@ -11,7 +11,7 @@ Description: Add multiple colors to text that is printed to the console.
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: http://github.com/aedobbyn/multicolor/
+URL: https://github.com/aedobbyn/multicolor/
 BugReports: https://github.com/aedobbyn/multicolor/issues/
 Imports: 
     cowsay,
