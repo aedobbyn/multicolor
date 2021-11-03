@@ -1,5 +1,9 @@
 # multicolor 0.1.4
 
+* Fixed a test that broke on some flavors of linux
+
+# multicolor 0.1.4
+
 * Some tests that don't pass in noninteractive mode were set to run only when in interactive mode
 
 # multicolor 0.1.3
