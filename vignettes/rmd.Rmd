@@ -73,7 +73,7 @@ You can keep the output monospace by wrapping a chunk in, e.g.,
 
 <br>
 
-Or use a [`knitr` hook](https://yihui.name/knitr/hooks/) such as 
+Or use a [`knitr` hook](https://yihui.org/knitr/hooks/) such as 
 
 ```{r, eval=FALSE}
 knitr::knit_hooks$set(
@@ -122,7 +122,7 @@ You can do this document-wide with:
 knitr::opts_chunk$set(results = "asis")
 ```
 
-The chunk containing this option can be hidden with the `echo = FALSE` option. More on [`knitr` options](https://yihui.name/knitr/options/).
+The chunk containing this option can be hidden with the `echo = FALSE` option. More on [`knitr` options](https://yihui.org/knitr/options/).
 
 Another global option that should be set is:
 
