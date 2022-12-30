@@ -122,7 +122,7 @@ add_css <- function(txt, font_fam = "Monaco") {
 nix_first_newline <- function(s) {
   newline_ix <- s %>%
     stringr::str_locate("\n") %>%
-    purrr::as_vector() %>%
+    as.vector() %>%
     dplyr::first()
 
   if (is.na(newline_ix)) {
