@@ -10,3 +10,4 @@
 ^codecov\.yml$
 ^appveyor\.yml$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
