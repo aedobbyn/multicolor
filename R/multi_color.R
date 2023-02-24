@@ -263,9 +263,9 @@ multi_color <- function(txt = "hello world!",
       dplyr::mutate(
         tagged = dplyr::case_when(
           tag_type == "open" ~
-          stringr::str_c(tag, split_chars, collapse = ""),
+            stringr::str_c(tag, split_chars, collapse = ""),
           tag_type == "close" ~
-          stringr::str_c(split_chars, tag, collapse = ""),
+            stringr::str_c(split_chars, tag, collapse = ""),
           TRUE ~ split_chars
         )
       ) %>%
@@ -309,6 +309,11 @@ multi_color <- function(txt = "hello world!",
 
   if (add_leading_newline) {
     out <- stringr::str_c("\n", out, collapse = "")
+
+    # Add close tag if it's not there yet
+    if (!stringr::str_detect(out, "\\\033\\[39m$")) {
+      out <- stringr::str_c(out, close_tag)
+    }
   }
 
   if (type == "rmd") {
