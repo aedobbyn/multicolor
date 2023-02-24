@@ -293,7 +293,7 @@ multi_color <- function(txt = "hello world!",
   if (max(by_line$line_id) == 1) {
     out <- out %>% nix_first_newline()
 
-    # Add close tag if it's not there yet
+    # Add close tag if it's not there yet for single lines
     if (!stringr::str_detect(out, "\\\033\\[39m$")) {
       out <- stringr::str_c(out, close_tag)
     }
