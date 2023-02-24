@@ -292,6 +292,11 @@ multi_color <- function(txt = "hello world!",
 
   if (max(by_line$line_id) == 1) {
     out <- out %>% nix_first_newline()
+
+    # Add close tag if it's not there yet
+    if (!stringr::str_detect(out, "\\\033\\[39m$")) {
+      out <- stringr::str_c(out, close_tag)
+    }
   }
 
   # Set warning length so it's not truncated
@@ -309,11 +314,6 @@ multi_color <- function(txt = "hello world!",
 
   if (add_leading_newline) {
     out <- stringr::str_c("\n", out, collapse = "")
-
-    # Add close tag if it's not there yet
-    if (!stringr::str_detect(out, "\\\033\\[39m$")) {
-      out <- stringr::str_c(out, close_tag)
-    }
   }
 
   if (type == "rmd") {
