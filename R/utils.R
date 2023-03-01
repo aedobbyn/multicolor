@@ -86,9 +86,9 @@ add_clr_tags <- function(df) {
     dplyr::mutate(
       tagged = dplyr::case_when(
         tag_type == "open" ~
-        stringr::str_c(tag, line, collapse = ""),
+          stringr::str_c(tag, line, collapse = ""),
         tag_type == "close" ~
-        stringr::str_c(line, tag, collapse = ""),
+          stringr::str_c(line, tag, collapse = ""),
         TRUE ~ line
       )
     )
