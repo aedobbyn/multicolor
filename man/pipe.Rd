@@ -6,6 +6,9 @@
 \usage{
 lhs \%>\% rhs
 }
+\value{
+The \code{magrittr} pipe operator
+}
 \description{
 See \code{magrittr::\link[magrittr]{\%>\%}} for details.
 }

@@ -3,9 +3,8 @@
 status](https://travis-ci.org/aedobbyn/multicolor.svg?branch=master)](https://travis-ci.org/aedobbyn/multicolor)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/aedobbyn/multicolor?branch=master&svg=true)](https://ci.appveyor.com/project/aedobbyn/multicolor)
-[![Coverage
-status](https://codecov.io/gh/aedobbyn/multicolor/branch/master/graph/badge.svg)](https://codecov.io/github/aedobbyn/multicolor?branch=master)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/multicolor)](https://cran.r-project.org/package=multicolor)
+<!-- [![Coverage status](https://codecov.io/gh/aedobbyn/multicolor/branch/master/graph/badge.svg)](https://codecov.io/github/aedobbyn/multicolor?branch=master) -->
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/multicolor)](https://cran.r-project.org/package=multicolor)
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/multicolor)](https://github.com/r-hub/cranlogs.app)
 
@@ -31,11 +30,15 @@ examples.*
 
 Stable, from CRAN:
 
-    install.packages("multicolor")
+``` r
+install.packages("multicolor")
+```
 
 or the development version from GitHub:
 
-    devtools::install_github("aedobbyn/multicolor")
+``` r
+devtools::install_github("aedobbyn/multicolor")
+```
 
 *Note*: colors cannot be applied in the R GUI and certain other
 environments. RStudio or any terminal should work fine<sup>1</sup>.
@@ -46,13 +49,17 @@ is also in play 👍.
 
 ### Usage
 
-    library(multicolor)
+``` r
+library(multicolor)
+```
 
 Supply a character vector of colors to `colors`. This defaults to
 `"rainbow"`, i.e.,
 `c("red", "orange", "yellow", "green", "blue", "purple")`.
 
-    multi_color("Hello world")
+``` r
+multi_color("Hello world")
+```
 
 <p align="left">
 <img src="./man/img/hello_world.jpg" alt="hello_world" height="22px">
@@ -88,8 +95,10 @@ The default **`type`** messages the result. If you want the bare string
 back with color encodings attached, use `type = "string"`, which looks
 like:
 
-    multi_color("Why are avocado pits so big?",
-      type = "string")
+``` r
+multi_color("Why are avocado pits so big?",
+  type = "string")
+```
 
 <p align="left">
 <img src="./man/img/avocado_q.jpg" alt="avocado_q" height="37px">
@@ -99,9 +108,11 @@ So you can ask
 <a href="https://youtu.be/B759dzymyoc?t=14s" target="_blank">important
 questions</a> ☝️and answer them colorfully 👇:
 
-    multi_color("The wild avocado grows in subtropical jungles, so the new sprout has to get several feet tall before it can share sunlight (to make food) with its neighbors. Until it grows out of their shadows, it relies on nutrients in the seed, so it'd better be big.",
-                sample(colors(), 
-                       sample(10, 1)))
+``` r
+multi_color("The wild avocado grows in subtropical jungles, so the new sprout has to get several feet tall before it can share sunlight (to make food) with its neighbors. Until it grows out of their shadows, it relies on nutrients in the seed, so it'd better be big.",
+            sample(colors(), 
+                   sample(10, 1)))
+```
 
 <p align="left">
 <img src="./man/img/avocado_a.jpg" alt="avocado_a" height="55px">
@@ -115,12 +126,14 @@ All `cowsay` animals are exported in `multicolor::things`, but to get
 the animals to speak, you need
 [`cowsay`](https://github.com/sckott/cowsay).
 
-    library(cowsay)
+``` r
+library(cowsay)
 
-    say(what = "holygrail", 
-        by = "yoda",
-        what_color = "olivedrab",
-        by_color = colors()[which(grepl("green", colors()))])
+say(what = "holygrail", 
+    by = "yoda",
+    what_color = "olivedrab",
+    by_color = colors()[which(grepl("green", colors()))])
+```
 
 <p align="left">
 <img src="./man/img/yoda.jpg" alt="yoda" height="460px">
@@ -128,10 +141,12 @@ the animals to speak, you need
 
 Error in style:
 
-    my_error <- multi_color("An unknown error has occurred.", 
-                            type = "string")
+``` r
+my_error <- multi_color("An unknown error has occurred.", 
+                        type = "string")
 
-    stop(my_error)
+stop(my_error)
+```
 
 <p align="left">
 <img src="./man/img/err.jpg" alt="error" height="17px">
@@ -139,15 +154,17 @@ Error in style:
 
 And with character:
 
-    my_msg <- 
-      say(what = "Error: something went horribly wrong",
-        by = "rms",
-        what_color = viridisLite::magma(5)[3],
-        by_color = viridisLite::magma(10),
-        type = "string")
+``` r
+my_msg <- 
+  say(what = "Error: something went horribly wrong",
+    by = "rms",
+    what_color = viridisLite::magma(5)[3],
+    by_color = viridisLite::magma(10),
+    type = "string")
 
-    e <- simpleError(my_msg)
-    tryCatch(log("foo"), error = function(e) message(my_msg))
+e <- simpleError(my_msg)
+tryCatch(log("foo"), error = function(e) message(my_msg))
+```
 
 <p align="left">
 <img src="./man/img/rms_error.jpg" alt="rms" height="380px">
@@ -155,14 +172,16 @@ And with character:
 
 Or just send messages to your users that they’ll want to read.
 
-    this_variable <- "foo"
-    this_option <- "bar"
+``` r
+this_variable <- "foo"
+this_option <- "bar"
 
-    say(what = 
-          glue::glue("Aha, I see you set {this_variable} to {this_option}. Excellent choice."),
-        by = "owl",
-        what_color = c("seagreen3", "turquoise3", "seagreen3"),
-        by_color = c("turquoise3", "seagreen3", "turquoise3"))
+say(what = 
+      glue::glue("Aha, I see you set {this_variable} to {this_option}. Excellent choice."),
+    by = "owl",
+    what_color = c("seagreen3", "turquoise3", "seagreen3"),
+    by_color = c("turquoise3", "seagreen3", "turquoise3"))
+```
 
 <p align="left">
 <img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="210px">
@@ -178,17 +197,21 @@ within the console, while `triangle_string` can create upward and
 downward pointing triangles of varying width. These can be combined with
 `multi_color` to create visuals such as these:
 
-    triangle_string(ipsum, step = 4, maxlen = 11, display = TRUE) %>%
-        center_string() %>%
-        multi_color(direction = "horizontal", viridis::plasma(n = 6, direction = -1, begin = 0.3))
+``` r
+triangle_string(ipsum, step = 4, maxlen = 11, display = TRUE) %>%
+    center_string() %>%
+    multi_color(direction = "horizontal", viridis::plasma(n = 6, direction = -1, begin = 0.3))
+```
 
 <p align="left">
 <img src="./man/img/lorem_triangle_up.png" alt="triangle_up" height="210px">
 </p>
 
-    triangle_string(ipsum, step = -4, maxlen = 56, display = TRUE) %>%
-        center_string() %>%
-        multi_color(direction = "horizontal", viridis::inferno(n = 8, direction = -1, begin = 0.3))
+``` r
+triangle_string(ipsum, step = -4, maxlen = 56, display = TRUE) %>%
+    center_string() %>%
+    multi_color(direction = "horizontal", viridis::inferno(n = 8, direction = -1, begin = 0.3))
+```
 
 <p align="left">
 <img src="./man/img/lorem_triangle_down.png" alt="triangle_down" height="235px">

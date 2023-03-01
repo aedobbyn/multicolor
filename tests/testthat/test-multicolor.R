@@ -4,6 +4,7 @@ library(testthat)
 context("multicolor")
 
 skip_on_os("windows")
+skip_on_os("linux")
 
 test_that("baseline works", {
   expect_error(

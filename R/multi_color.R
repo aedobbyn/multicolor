@@ -29,7 +29,7 @@
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
 #'
-#' @examples \dontrun{
+#' @examples
 #' multi_color()
 #'
 #' multi_color("ahoy")
@@ -61,7 +61,7 @@
 #' # Built-in color palette
 #' multi_color(things$cow, colors = palettes$lacroix)
 #'
-#' multi_color(cowsay:::rms, sample(colors(), 10))
+#' multi_color(cowsay::animals[[sample(1:length(cowsay::animals), 1)]], sample(colors(), 10))
 #'
 #' # Mystery Bulgarian animal
 #' multi_color(things[[sample(length(things), 1)]],
@@ -74,7 +74,6 @@
 #'   c("darkgreen", "white", "darkred"),
 #'   direction = "vertical"
 #' )
-#' }
 multi_color <- function(txt = "hello world!",
                         colors = "rainbow",
                         type = "message",
@@ -400,7 +399,7 @@ multi_color <- function(txt = "hello world!",
 #' # Built-in colour palette
 #' multi_colour(things$cow, colours = palettes$lacroix)
 #'
-#' multi_colour(cowsay:::rms, sample(colours(), 10))
+#'multi_color(cowsay::animals[[sample(1:length(cowsay::animals), 1)]], sample(colours(), 10))
 #'
 #' # Mystery Bulgarian animal
 #' multi_colour(things[[sample(length(things), 1)]],

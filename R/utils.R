@@ -5,6 +5,7 @@
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal
+#' @return The \code{magrittr} pipe operator
 #' @export
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs

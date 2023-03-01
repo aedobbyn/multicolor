@@ -11,6 +11,9 @@ multicolor_logo(colors = "random", ...)
 
 \item{...}{Arguments passed to \code{multi_color}.}
 }
+\value{
+The colorful package logo on load
+}
 \description{
 The multicolor package logo
 }
