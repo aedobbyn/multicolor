@@ -29,8 +29,7 @@
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
 #'
-#' @examples
-#' \dontrun{
+#' @examples \donttest{
 #' multi_color()
 #'
 #' multi_color("ahoy")
@@ -369,7 +368,7 @@ multi_color <- function(txt = "hello world!",
 #' @return A string if \code{type} is "string", or coloured
 #' text if type is "message" or "warning"
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' multi_colour()
 #'
 #' multi_colour("ahoy")

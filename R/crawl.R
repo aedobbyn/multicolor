@@ -31,7 +31,7 @@
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' crawl()
 #'
 #' crawl("It was a dark and stormy night")

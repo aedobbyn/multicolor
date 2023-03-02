@@ -52,7 +52,7 @@ Colors cannot be applied in RGUI (R.app on some systems) or other environments t
 colored text. In these cases, the \code{txt} will simply be crawled over without applying colors.
 }
 \examples{
-\dontrun{
+\donttest{
 crawl()
 
 crawl("It was a dark and stormy night")

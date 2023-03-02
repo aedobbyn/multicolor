@@ -53,7 +53,7 @@ these colors in the order they appear in \code{colors}.
 It cannot be used with RGUI (R.app on some systems).
 }
 \examples{
-\dontrun{
+\donttest{
 multi_color()
 
 multi_color("ahoy")
